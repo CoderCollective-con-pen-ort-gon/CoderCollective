@@ -34,6 +34,14 @@ public class User {
     @OneToMany(cascade= CascadeType.ALL, mappedBy = "user" )
     private List<Comment> comments;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="favorite_post",
+            joinColumns={@JoinColumn(name="user_id")},
+            inverseJoinColumns={@JoinColumn(name="post_id")}
+    )
+    private List<Post> post;
+
     public User() {
 
     }

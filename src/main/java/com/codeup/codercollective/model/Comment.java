@@ -2,6 +2,7 @@ package com.codeup.codercollective.model;
 
 import javax.persistence.*;
 import javax.persistence.ManyToOne;
+import java.util.List;
 
 
 @Entity
@@ -24,6 +25,9 @@ public class Comment {
     @ManyToOne
     @JoinColumn (name="post_id")
     private Post post;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "comment")
+    private List<Rating> ratings;
 
 
     public Comment(){}
