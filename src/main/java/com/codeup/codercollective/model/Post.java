@@ -30,7 +30,10 @@ public class Post {
             joinColumns={@JoinColumn(name="post_id")},
             inverseJoinColumns = {@JoinColumn(name="forum_id")}
     )
-    private List<PostForum> forums;
+    private List<Forum> forums;
+
+    @ManyToMany(mappedBy = "post")
+    private List<User> users;
 
 
     public Post () {
