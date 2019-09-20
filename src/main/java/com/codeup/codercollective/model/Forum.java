@@ -24,6 +24,7 @@ public class Forum {
         this.posts = posts;
     }
 
+
     public long getId() {
         return id;
     }
