@@ -1,0 +1,70 @@
+package com.codeup.codercollective.model;
+
+import javax.persistence.*;
+import javax.persistence.ManyToOne;
+
+
+@Entity
+@Table(name="comments")
+public class Comment {
+
+    @Id @GeneratedValue
+    private long id;
+
+    @Column(nullable=false,columnDefinition="TEXT")
+    private String body;
+
+
+    @ManyToOne
+    @JoinColumn (name="user_id")
+    private User user;
+
+
+
+    @ManyToOne
+    @JoinColumn (name="post_id")
+    private Post post;
+
+
+    public Comment(){}
+
+    public Comment(String body, User user, Post post) {
+        this.body = body;
+        this.user = user;
+        this.post = post;
+    }
+
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+}
