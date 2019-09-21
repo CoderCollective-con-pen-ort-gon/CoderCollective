@@ -34,6 +34,7 @@ public class ForumController {
     public String show(@PathVariable long id, Model vModel) {
         Forum forumId = forumDao.findOne(id);
         List <Post> posts=forumId.getPosts();
+        vModel.addAttribute("forum", forumId);
         vModel.addAttribute("posts", posts);
         return "posts/posts";
     }
