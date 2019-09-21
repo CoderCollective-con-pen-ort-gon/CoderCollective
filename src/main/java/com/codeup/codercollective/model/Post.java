@@ -35,6 +35,8 @@ public class Post {
     )
     private List<Forum> forums;
 
+
+
     @ManyToMany(mappedBy = "post")
     private List<User> users;
 
@@ -57,6 +59,17 @@ public class Post {
         this.body = body;
         this.owner = owner;
         this.comments = comments;
+    }
+
+    public Post(String title, String body, String createdAt, String photo, User owner, List<Comment> comments, List<Forum> forums, List<User> users) {
+        this.title = title;
+        this.body = body;
+        this.createdAt = createdAt;
+        this.photo = photo;
+        this.owner = owner;
+        this.comments = comments;
+        this.forums = forums;
+        this.users = users;
     }
 
     public long getId() {

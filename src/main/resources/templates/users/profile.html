@@ -9,7 +9,7 @@
     <p th:text="${user.getEmail()}"></p>
     <p th:text="${user.getUsername()}"></p>
     <p th:text="${user.getTitle()}"></p>
-    <img th:src="@{user.get}"/>
+    <img th:src= "${user.getPhoto()}" alt="profile image"/>
 
 
 
