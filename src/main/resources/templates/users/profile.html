@@ -5,10 +5,11 @@
     </th:block>
 </head>
 <body>
-<h1><span th:text="${user.getUsername()}"></span><span th:text="${user.getLastname()}"></span> </h1>
+<h1><span th:text="${user.getUsername()}"></span> <span th:text="${user.getLastname()}"></span> </h1>
     <p th:text="${user.getEmail()}"></p>
     <p th:text="${user.getUsername()}"></p>
     <p th:text="${user.getTitle()}"></p>
+    <img th:src="@{user.get}"/>
 
 
 
