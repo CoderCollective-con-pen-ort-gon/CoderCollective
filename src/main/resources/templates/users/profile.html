@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <th:block th:replace="fragments/header :: my-header('Profile')">
+    </th:block>
 </head>
 <body>
+<h1><span th:text="${user.getUsername()}"></span><span th:text="${user.getLastname()}"></span> </h1>
+    <p th:text="${user.getEmail()}"></p>
+    <p th:text="${user.getUsername()}"></p>
+    <p th:text="${user.getTitle()}"></p>
+
+
 
 </body>
 </html>

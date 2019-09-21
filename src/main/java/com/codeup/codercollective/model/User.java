@@ -31,6 +31,9 @@ public class User {
     @Column(nullable = true)
     private String title;
 
+    @Column(nullable=true)
+    private String photo;
+
     @OneToMany(cascade= CascadeType.ALL, mappedBy = "user" )
     private List<Comment> comments;
 
@@ -46,13 +49,14 @@ public class User {
 
     }
 
-    public User(String username, String email, String password, String firstname, String lastname, String title, List<Comment> comments) {
+    public User(String username, String email, String password, String firstname, String lastname, String title,String photo, List<Comment> comments) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.title = title;
+        this.photo=photo;
         this.comments = comments;
     }
 
