@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>Forums</h1>
+
+    <div th:each="forum : ${forums}">
+        <h1 th:text="${forum.name}"></h1>
+<!--        <a th:href="@{/posts/{forumId}(forumId = ${forum.id})}">View Forum</a>-->
+    </div>
+
+</body>
+</html>
