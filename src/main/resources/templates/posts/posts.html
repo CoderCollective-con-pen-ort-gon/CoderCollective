@@ -5,11 +5,14 @@
     <title>Posts</title>
 </head>
 <body>
-<h1>Posts</h1>
+<h1 th:text="${}">Posts</h1>
 
 <div th:each="post : ${posts}">
     <h1 th:text="${post.title}"></h1>
+    <p th:Text="${post.owner.username}"></p>
+    <p th:Text="${post.createdAt}"></p>
 </div>
+
 
 </body>
 </html>
