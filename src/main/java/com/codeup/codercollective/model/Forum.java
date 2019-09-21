@@ -48,4 +48,5 @@ public class Forum {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
+
 }
