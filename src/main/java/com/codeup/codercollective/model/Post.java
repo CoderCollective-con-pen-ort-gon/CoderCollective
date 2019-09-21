@@ -1,5 +1,8 @@
 package com.codeup.codercollective.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import java.util.Date;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,8 +18,10 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
-    @Column(nullable= false, columnDefinition = "DATETIME")
-    private String createdAt;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="create_date")
+    private Date createdAt;
 
     @Column(nullable=true)
     private String photo;
@@ -45,7 +50,7 @@ public class Post {
 
     }
 
-    public Post(String title, String body,String createdAt, User owner, List<Comment> comments,String photo) {
+    public Post(String title, String body,Date createdAt, User owner, List<Comment> comments,String photo) {
         this.title = title;
         this.body = body;
         this.createdAt = createdAt;
@@ -61,7 +66,7 @@ public class Post {
         this.comments = comments;
     }
 
-    public Post(String title, String body, String createdAt, String photo, User owner, List<Comment> comments, List<Forum> forums, List<User> users) {
+    public Post(String title, String body, Date createdAt, String photo, User owner, List<Comment> comments, List<Forum> forums, List<User> users) {
         this.title = title;
         this.body = body;
         this.createdAt = createdAt;
@@ -112,11 +117,11 @@ public class Post {
         this.comments = comments;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 

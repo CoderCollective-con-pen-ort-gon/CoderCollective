@@ -5,7 +5,7 @@ insert into users(id, email, firstname, lastname, password, title, username) val
 (2, 'victorpena@gmail.com', 'victor', 'pena', 'pass', 'junior software developer', 'victor'),
 (3, 'joseph@gmail.com', 'joesph', 'ortega', 'pass', 'senior software developer', 'joseph');
 
-insert into posts(id, body, title, owner_id, created_at) values
+insert into posts(id, body, title, owner_id, create_date) values
 (1, 'I need help with springboot', 'HELP', 1, '2010-10-10'),
 (2, 'Javascript tutorial', 'helloworld', 2, '2009-10-10');
 
