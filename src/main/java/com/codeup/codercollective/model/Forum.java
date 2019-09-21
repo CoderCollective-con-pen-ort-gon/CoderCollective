@@ -25,6 +25,8 @@ public class Forum {
     }
 
 
+
+
     public long getId() {
         return id;
     }
