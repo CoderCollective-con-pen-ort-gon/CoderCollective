@@ -11,4 +11,11 @@ public class PostController {
         return "posts/index";
     }
 
+    @GetMapping("/posts")
+    public String showPosts(){
+        return "posts/posts";
+    }
+
+
+
 }

@@ -9,7 +9,8 @@
 
     <div th:each="forum : ${forums}">
         <h1 th:text="${forum.name}"></h1>
-<!--        <a th:href="@{/posts/{forumId}(forumId = ${forum.id})}">View Forum</a>-->
+<!--        <a href="/posts/">View forum</a>-->
+        <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View Forum</a>
     </div>
 
 </body>
