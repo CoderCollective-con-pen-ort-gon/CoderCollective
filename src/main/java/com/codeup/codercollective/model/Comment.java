@@ -15,6 +15,9 @@ public class Comment {
     @Column(nullable=false,columnDefinition="TEXT")
     private String body;
 
+    @Column(nullable=true)
+    private String photo;
+
 
     @ManyToOne
     @JoinColumn (name="user_id")
@@ -32,10 +35,11 @@ public class Comment {
 
     public Comment(){}
 
-    public Comment(String body, User user, Post post) {
+    public Comment(String body, User user, Post post,String photo) {
         this.body = body;
         this.user = user;
         this.post = post;
+        this.photo= photo;
     }
 
 

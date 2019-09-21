@@ -18,6 +18,9 @@ public class Post {
     @Column(nullable= false, columnDefinition = "DATETIME")
     private String createdAt;
 
+    @Column(nullable=true)
+    private String photo;
+
     @OneToOne
     private User owner;
 
@@ -40,12 +43,13 @@ public class Post {
 
     }
 
-    public Post(String title, String body,String createdAt, User owner, List<Comment> comments) {
+    public Post(String title, String body,String createdAt, User owner, List<Comment> comments,String photo) {
         this.title = title;
         this.body = body;
         this.createdAt = createdAt;
         this.owner = owner;
         this.comments = comments;
+        this.photo=photo;
     }
 
     public Post(long id, String title, String body, User owner, List<Comment> comments) {
