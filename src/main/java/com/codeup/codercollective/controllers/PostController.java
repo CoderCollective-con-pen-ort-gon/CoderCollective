@@ -6,6 +6,7 @@ import com.codeup.codercollective.repos.CommentRepository;
 import com.codeup.codercollective.repos.ForumRepository;
 import com.codeup.codercollective.repos.PostRepository;
 import com.codeup.codercollective.repos.UserRepository;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,14 +20,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class PostController {
 
     private final UserRepository userDao;
+
     private final PostRepository postDao;
     private final ForumRepository forumDao;
     private final CommentRepository commentDao;
 
-    public PostController(UserRepository userRepository, PostRepository postRepository, ForumRepository forumRepository, CommentRepository commentRepository) {
-        userDao = userRepository;
+    public PostController(PostRepository postRepository, ForumRepository forumRepository,UserRepository userRepository, CommentRepository commentRepository) {
         postDao = postRepository;
         forumDao = forumRepository;
+        userDao = userRepository;
         commentDao = commentRepository;
     }
 
@@ -55,12 +57,27 @@ public class PostController {
         User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findOne(userSession.getId());
         comment.setUser(user);
-        Comment savedComment=commentDao.save(comment);
+        Comment savedComment = commentDao.save(comment);
         long postId =savedComment.getPost().getId();
 
         return "redirect:/posts/"+postId;
 
     }
 
+    @GetMapping("/posts/create")
+    public String createPostForm( Model vModel){
+        vModel.addAttribute("post", new Post());
+
+        return "posts/create";
+    }
+
+    @PostMapping("profile/create")
+        public String createPostOnProfile(@ModelAttribute Post post) {
+        User userSession=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userdb =userDao.findOne(userSession.getId());
+        post.setOwner(userdb);
+        postDao.save(post);
+        return "/profile/{id}";
+    }
 
 }
