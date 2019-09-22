@@ -1,6 +1,7 @@
 package com.codeup.codercollective.controllers;
 
 import com.codeup.codercollective.model.Forum;
+import com.codeup.codercollective.model.Post;
 import com.codeup.codercollective.model.User;
 import com.codeup.codercollective.repos.ForumRepository;
 import com.codeup.codercollective.repos.UserRepository;
@@ -32,6 +33,7 @@ public class UserController {
 //        User user=userDao.findOne(id);
         Iterable<Forum> forums = forumDao.findAll();
         vModel.addAttribute("forums", forums);
+
         vModel.addAttribute("user",userSession);
         return"users/profile";
     }
