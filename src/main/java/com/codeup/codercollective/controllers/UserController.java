@@ -4,6 +4,7 @@ import com.codeup.codercollective.model.Forum;
 import com.codeup.codercollective.model.User;
 import com.codeup.codercollective.repos.ForumRepository;
 import com.codeup.codercollective.repos.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,13 +26,13 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/profile/{id}")
-    public String getUserProfile(@PathVariable long id, Model vModel){
-        User user=userDao.findOne(id);
+    @GetMapping("/profile")
+    public String getUserProfile(Model vModel){
+        User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user=userDao.findOne(id);
         Iterable<Forum> forums = forumDao.findAll();
         vModel.addAttribute("forums", forums);
-        vModel.addAttribute("user",user);
-
+        vModel.addAttribute("user",userSession);
         return"users/profile";
     }
 
@@ -48,10 +49,6 @@ public class UserController {
         userDao.save(user);
         return "redirect:/login";
     }
-
-
-
-
 
 
 

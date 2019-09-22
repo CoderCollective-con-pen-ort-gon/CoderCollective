@@ -23,20 +23,20 @@
     <img th:src= "${user.getPhoto()}" alt="profile image"/>
 
 
-<h3>Create a Post</h3>
-<form action="/post/create">
-    <select class="form-control">
-        <option>Select Topic </option>
-        <option th:each="forum : ${forums}" th:text="${forum.name}"></option>
+<!--<h3>Create a Post</h3>-->
+<!--<form action="/post/create">-->
+<!--    <select class="form-control">-->
+<!--        <option>Select Topic </option>-->
+<!--        <option th:each="forum : ${forums}" th:text="${forum.name}"></option>-->
 
-    </select>
-    <input class="form-control" type="text" placeholder="Title"/>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Post body</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<!--    </select>-->
+<!--    <input class="form-control" type="text" placeholder="Title"/>-->
+<!--    <div class="form-group">-->
+<!--        <label for="exampleFormControlTextarea1">Post body</label>-->
+<!--        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--</form>-->
 
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
