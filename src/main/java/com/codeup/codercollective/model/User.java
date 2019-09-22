@@ -45,11 +45,11 @@ public class User {
     )
     private List<Post> post;
 
-    public User() {
-
+    public User(){
     }
 
-    public User(String username, String email, String password, String firstname, String lastname, String title,String photo, List<Comment> comments) {
+    public User(long id,String username, String email, String password, String firstname, String lastname, String title,String photo, List<Comment> comments,List<Post> posts) {
+        this.id=id;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -58,18 +58,31 @@ public class User {
         this.title = title;
         this.photo=photo;
         this.comments = comments;
+        this.post=posts;
     }
 
-    public User(long id,String username, String email, String password, String firstname, String lastname, String title, List<Comment> comments) {
-        this.id=id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.title = title;
-        this.comments = comments;
+    public User(User copy){
+        this.id=copy.id;
+        this.username = copy.username;
+        this.email = copy.email;
+        this.password = copy.password;
+        this.firstname = copy.firstname;
+        this.lastname = copy.lastname;
+        this.title = copy.title;
+        this.photo= copy.photo;
+        this.comments = copy.comments;
+        this.post= copy.post;
+
     }
+//
+//    public User(User copy){
+//        id=copy.id;
+//        email=copy.email;
+//        username=copy.username;
+//        password=copy.password;
+//    }
+
+
 
     public long getId() {
         return id;
