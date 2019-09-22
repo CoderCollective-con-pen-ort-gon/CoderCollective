@@ -11,7 +11,16 @@
 <p th:text="${post.owner.username}"></p>
 <p th:text="${post.createdAt}"></p>
 
+<h1>Create Comment</h1>
+
+
 <h1>Comments</h1>
+
+<form th:action="@{'/posts/' + ${post.id} + '/comment'}" method="post" th:object="${comment}">
+    <textarea name="comment" th:field="*{body}"></textarea>
+    <button type="submit">Add Comment</button>
+</form>
+
 
 <div th:each="comment : ${comments}">
     <p th:text="${comment.body}"></p>
