@@ -42,7 +42,8 @@ public class Comment {
         this.photo= photo;
     }
 
-    public Comment(String body, String photo, User user, Post post, List<Rating> ratings) {
+    public Comment(long id, String body, String photo, User user, Post post, List<Rating> ratings) {
+        this.id = id;
         this.body = body;
         this.photo = photo;
         this.user = user;
