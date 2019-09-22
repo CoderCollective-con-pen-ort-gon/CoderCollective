@@ -5,6 +5,17 @@
     </th:block>
 </head>
 <body>
+<nav>
+    <ul>
+        <!-- More links here... -->
+        <li>
+            <form th:action="@{/logout}" th:method="post">
+                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+            </form>
+        </li>
+    </ul>
+</nav>
+
 <h1><span th:text="${user.getUsername()}"></span> <span th:text="${user.getLastname()}"></span> </h1>
     <p th:text="${user.getEmail()}"></p>
     <p th:text="${user.getUsername()}"></p>
@@ -12,20 +23,20 @@
     <img th:src= "${user.getPhoto()}" alt="profile image"/>
 
 
-<h3>Create a Post</h3>
-<form th:action="@{/profile/create}" th:method="post" th:object="${post}">
-    <select class="form-control">
-        <option>Select Topic </option>
-        <option th:each="forum : ${forums}" th:text="${forum.name}"></option>
+<!--<h3>Create a Post</h3>-->
+<!--<form action="/post/create">-->
+<!--    <select class="form-control">-->
+<!--        <option>Select Topic </option>-->
+<!--        <option th:each="forum : ${forums}" th:text="${forum.name}"></option>-->
 
-    </select>
-    <input th:field="*{title}" class="form-control" type="text" placeholder="Title"/>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Post body</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="*{body}"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<!--    </select>-->
+<!--    <input class="form-control" type="text" placeholder="Title"/>-->
+<!--    <div class="form-group">-->
+<!--        <label for="exampleFormControlTextarea1">Post body</label>-->
+<!--        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--</form>-->
 
 
 <div>

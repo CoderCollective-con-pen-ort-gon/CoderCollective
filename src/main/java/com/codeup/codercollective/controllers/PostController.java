@@ -1,6 +1,5 @@
 package com.codeup.codercollective.controllers;
 import com.codeup.codercollective.model.Comment;
-import com.codeup.codercollective.model.Forum;
 import com.codeup.codercollective.model.Post;
 import com.codeup.codercollective.model.User;
 import com.codeup.codercollective.repos.ForumRepository;
@@ -12,9 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
-
 
 
 @Controller
@@ -31,7 +27,7 @@ public class PostController {
         userDao = userRepository;
     }
 
-    @GetMapping("/cc")
+    @GetMapping("/")
     public String home(){
         return "posts/index";
     }
@@ -49,7 +45,7 @@ public class PostController {
         vModel.addAttribute("comments", comments);
         vModel.addAttribute("post", postDao.findOne(id));
 
-        return "posts/post";
+        return "posts/postDetail";
     }
 
     @GetMapping("/posts/create")
