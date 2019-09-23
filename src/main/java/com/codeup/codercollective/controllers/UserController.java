@@ -4,6 +4,7 @@ import com.codeup.codercollective.model.Forum;
 import com.codeup.codercollective.model.Post;
 import com.codeup.codercollective.model.User;
 import com.codeup.codercollective.repos.ForumRepository;
+import com.codeup.codercollective.repos.PostRepository;
 import com.codeup.codercollective.repos.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,23 +21,26 @@ public class UserController {
     private final UserRepository userDao;
     private final ForumRepository forumDao;
     private final PasswordEncoder passwordEncoder;
+    private final PostRepository postDao;
 
-    public UserController(UserRepository userRepository,ForumRepository forumRepository, PasswordEncoder passwordEncoder){
+    public UserController(UserRepository userRepository,ForumRepository forumRepository, PasswordEncoder passwordEncoder, PostRepository postRepository){
         userDao = userRepository;
         forumDao = forumRepository;
         this.passwordEncoder = passwordEncoder;
+        postDao= postRepository;
     }
 
     @GetMapping("/profile")
     public String getUserProfile(Model vModel){
         User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        User user=userDao.findOne(id);
         Iterable<Forum> forums = forumDao.findAll();
         vModel.addAttribute("forums", forums);
-
+        vModel.addAttribute("posts",new Post());
         vModel.addAttribute("user",userSession);
         return"users/profile";
     }
+
+
 
     @GetMapping("/register")
     public String signUp(Model vModel){

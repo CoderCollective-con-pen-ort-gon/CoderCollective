@@ -25,25 +25,26 @@
     <img th:src= "${user.getPhoto()}" alt="profile image"/>
 
 
-<!--<h3>Create a Post</h3>-->
-<!--<form action="/post/create">-->
-<!--    <select class="form-control">-->
-<!--        <option>Select Topic </option>-->
-<!--        <option th:each="forum : ${forums}" th:text="${forum.name}"></option>-->
-
-<!--    </select>-->
-<!--    <input class="form-control" type="text" placeholder="Title"/>-->
-<!--    <div class="form-group">-->
-<!--        <label for="exampleFormControlTextarea1">Post body</label>-->
-<!--        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
-<!--    </div>-->
-<!--    <button type="submit" class="btn btn-primary">Submit</button>-->
-<!--</form>-->
+<h3>Create a Post</h3>
 
 
-<div>
-    <h3>Here are your created post</h3>
-</div>
+<form th:action=" @{/profile/create}" method="post" th:object="${posts}">
+    <select class="form-control" name="forum_id" th:field="*{forums.id}" th:value="${forums}">
+        <option th:each="forum : ${forums}" name="forum_id" th:value="${forum.id}" th:text="${forum.name}"></option>
+
+    </select>
+    <input class="form-control" name="title" th:field="*{title}"  type="text" placeholder="Title"/>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Post body</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="body" th:field="*{body}"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<h3>Here are your created post</h3>
+
+
 
 
 
