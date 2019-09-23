@@ -14,9 +14,6 @@ public class Forum {
     @Column(nullable=false)
     private String name;
 
-//    @ManyToMany(mappedBy="forums")
-//    private List<Post> posts;
-
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "forums")
     private List<Post> posts;

@@ -26,50 +26,29 @@ public class Post {
     @Column(nullable=true)
     private String photo;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name="user_id")
     private User owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
 
-//    @ManyToMany(cascade= CascadeType.ALL)
-//    @JoinTable(
-//            name="posts_Forums",
-//            joinColumns={@JoinColumn(name="post_id")},
-//            inverseJoinColumns = {@JoinColumn(name="forum_id")}
-//    )
-//    private List<Forum> forums;
+
 
     @ManyToOne
     @JoinColumn (name="forum_id")
     private Forum forums;
 
 
-    @ManyToMany(mappedBy = "post")
-    private List<User> users;
+    @ManyToMany(mappedBy = "favoritepost")
+    private List<User> postfavorites;
 
 
     public Post () {
 
     }
 
-    public Post(String title, String body,Date createdAt, User owner, List<Comment> comments,String photo) {
-        this.title = title;
-        this.body = body;
-        this.createdAt = createdAt;
-        this.owner = owner;
-        this.comments = comments;
-        this.photo=photo;
-    }
-
-    public Post(long id, String title, String body, User owner, List<Comment> comments) {
-        this.title = title;
-        this.body = body;
-        this.owner = owner;
-        this.comments = comments;
-    }
-
-    public Post(String title, String body, Date createdAt, String photo, User owner, List<Comment> comments, Forum forums, List<User> users) {
+    public Post(String title, String body, Date createdAt, String photo, User owner, List<Comment> comments, Forum forums, List<User> postfavorites) {
         this.title = title;
         this.body = body;
         this.createdAt = createdAt;
@@ -77,7 +56,7 @@ public class Post {
         this.owner = owner;
         this.comments = comments;
         this.forums = forums;
-        this.users = users;
+        this.postfavorites = postfavorites;
     }
 
     public long getId() {
@@ -144,11 +123,11 @@ public class Post {
         this.forums = forums;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<User> getPostfavorites() {
+        return postfavorites;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setPostfavorites(List<User> postfavorites) {
+        this.postfavorites = postfavorites;
     }
 }
