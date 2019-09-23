@@ -34,10 +34,14 @@
             <input class="form-control" id="title" name="title" th:field="*{title}"/>
         </div>
 
-<!--Image via FileStack-->
-        <label for="fileupload">Select a file to upload</label>
-        <input th:field="*{images}" type="file" id="fileupload"/>
-<!---->
+        <!--Image via FileStack-->
+        <div>
+            <label for="photo">Photo</label>
+            <input hidden th:field="*{photo}" type="text" id="photo" value=""/>
+            <button type="button" id="open">Open Picker</button>
+
+        </div>
+        <!---->
 
         <div class="form-group">
             <label for="password">Password</label>
@@ -53,20 +57,17 @@
 
 <!--FileStack JS-->
 <script>
-    let img;
     const openBtn = document.getElementById('open');
     const options = {
-        onUploadDone: file => {
-            console.log(img);
-        }
+        onUploadDone: (res) =>
+            document.getElementById("photo").value = res.filesUploaded[0].url,
     };
     console.log(50);
     const client = filestack.init(FSKey);
 
     openBtn.addEventListener("click", function () {
-        client.picker(options).open().then(function () {
-            img = file.url;
-        })
+        client.picker(options).open()
+
     });
 </script>
 

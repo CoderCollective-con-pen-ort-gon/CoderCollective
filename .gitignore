@@ -1,8 +1,7 @@
 HELP.md
+
+
 target/
-
-keys.js
-
 
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
@@ -33,3 +32,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+FSKey.js
+
