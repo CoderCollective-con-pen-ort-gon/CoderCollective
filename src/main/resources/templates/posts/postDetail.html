@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <th:block th:replace="fragments/header :: my-header('Posts')">
     </th:block>
@@ -38,12 +38,19 @@
     <button type="submit">Add Comment</button>
 </form>
 
-
 <h1>Comments</h1>
 
 <div th:each="comment : ${comments}">
     <p th:text="${comment.body}"></p>
+    <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
+        <button class="btn btn-warning">Edit</button>
+    </form>
+    <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="get" th:object="${comment}">
+        <button class="btn btn-danger">Delete</button>
+    </form>
 </div>
+
+
 
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
