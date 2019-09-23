@@ -7,10 +7,7 @@ import com.codeup.codercollective.repos.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -89,6 +86,34 @@ public class PostController {
 
 
         return "redirect:/profile";
+    }
+
+
+    @GetMapping("/comment/{id}/edit")
+    public String editComment(@PathVariable long id, Model vModel) {
+
+        vModel.addAttribute("comment", commentDao.findOne(id));
+        return "posts/editComment";
+    }
+
+    @PostMapping("/comment/{id}/edit")
+    public String returnEditComment(@PathVariable long id,
+                                    @RequestParam(name = "body") String body) {
+        Comment updateComment = commentDao.findOne(id);
+        updateComment.setBody(body);
+        commentDao.save(updateComment);
+        Post post=updateComment.getPost();
+        long postId =post.getId();
+        return "redirect:/posts/" + postId;
+    }
+
+    @GetMapping("/comment/{id}/delete")
+    public String deleteComment(@PathVariable long id) {
+        Comment comment=commentDao.findOne(id);
+        long postId=comment.getPost().getId();
+        commentDao.delete(id);
+
+        return "redirect:/posts/" + postId;
     }
 
 }

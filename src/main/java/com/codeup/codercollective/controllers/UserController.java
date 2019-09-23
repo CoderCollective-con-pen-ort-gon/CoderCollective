@@ -56,6 +56,16 @@ public class UserController {
         return "redirect:/login";
     }
 
-
+    @GetMapping("/profile/{id}/edit")
+    public String editProfileForm( Model vModel){
+        User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        vModel.addAttribute("user",userSession);
+        return "users/edit";
+    }
+    @PostMapping("/profile/{id}/edit")
+    public String editProfile(@PathVariable long id, @ModelAttribute User user){
+        userDao.save(user);
+        return "redirect:/profile";
+    }
 
 }
