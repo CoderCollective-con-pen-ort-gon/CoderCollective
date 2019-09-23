@@ -5,10 +5,9 @@
     </th:block>
 </head>
 <body>
-
+<th:block th:replace="fragments/navbar :: top-nav" />
+-
 <h1>Create An Account</h1>
-
-
 
 <div class="container">
     <form th:action="@{/register}" method="post" th:object="${user}">
@@ -43,7 +42,6 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>

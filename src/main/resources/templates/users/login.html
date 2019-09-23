@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Log In</title>
+    <th:block th:replace="fragments/header :: my-header('Sign-In')">
+    </th:block>
 </head>
 <body>
+<th:block th:replace="fragments/navbar :: top-nav" />
 <h1>Log In</h1>
 <div th:if="${param.error}">
     Invalid Username and Password.
@@ -13,14 +14,21 @@
     You have been logged out.
 </div>
 
-<form th:action="@{/login}" method="post">
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text" />
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <input type="submit" value="Log In" />
-</form>
+<div class="container">
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 
-
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
 </body>
 </html>
