@@ -48,6 +48,12 @@
     <p th:text="${post.title}"></p>
     <p th:text="${post.body}"></p>
     <p th:text="${post.createdAt}"></p>
+    <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
+        <button class="btn btn-warning">Edit Post</button>
+    </form>
+<!--    <form th:action="@{'/post/' + ${post.id} + '/delete'}" th:method="post" th:object="${post}">-->
+<!--        <button class="btn btn-danger">Delete Post</button>-->
+<!--    </form>-->
 </div>
 
 
