@@ -34,8 +34,14 @@ public class User {
     @Column(nullable=true)
     private String photo;
 
+    @OneToMany(cascade= CascadeType.ALL, mappedBy = "owner" )
+    private List<Post> post;
+
     @OneToMany(cascade= CascadeType.ALL, mappedBy = "user" )
     private List<Comment> comments;
+
+    @OneToMany(cascade= CascadeType.ALL, mappedBy = "owner" )
+    private List<Rating> ratings;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -43,22 +49,23 @@ public class User {
             joinColumns={@JoinColumn(name="user_id")},
             inverseJoinColumns={@JoinColumn(name="post_id")}
     )
-    private List<Post> post;
+    private List<Post> favoritepost;
 
     public User(){
     }
 
-    public User(long id,String username, String email, String password, String firstname, String lastname, String title,String photo, List<Comment> comments,List<Post> posts) {
-        this.id=id;
+    public User(String username, String email, String password, String firstname, String lastname, String title, String photo, List<Post> post, List<Comment> comments, List<Rating> ratings, List<Post> favoritepost) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.title = title;
-        this.photo=photo;
+        this.photo = photo;
+        this.post = post;
         this.comments = comments;
-        this.post=posts;
+        this.ratings = ratings;
+        this.favoritepost = favoritepost;
     }
 
     public User(User copy){
@@ -72,15 +79,11 @@ public class User {
         this.photo= copy.photo;
         this.comments = copy.comments;
         this.post= copy.post;
+        this.ratings=copy.ratings;
+        this.favoritepost=copy.favoritepost;
 
     }
-//
-//    public User(User copy){
-//        id=copy.id;
-//        email=copy.email;
-//        username=copy.username;
-//        password=copy.password;
-//    }
+
 
 
 
@@ -162,5 +165,21 @@ public class User {
 
     public void setPost(List<Post> post) {
         this.post = post;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public List<Post> getFavoritepost() {
+        return favoritepost;
+    }
+
+    public void setFavoritepost(List<Post> favoritepost) {
+        this.favoritepost = favoritepost;
     }
 }

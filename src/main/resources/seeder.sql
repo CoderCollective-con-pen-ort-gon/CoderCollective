@@ -10,7 +10,7 @@ insert into forums(id, name) values
 (2, 'javascript'),
 (3, 'python');
 
-insert into posts(id, body, title, owner_id, create_date,forum_id) values
+insert into posts(id, body, title, user_id, create_date,forum_id) values
 (1, 'I need help with springboot', 'HELP', 1, '2010-10-10',1),
 (2, 'Javascript tutorial', 'helloworld', 2, '2009-10-10',2);
 
