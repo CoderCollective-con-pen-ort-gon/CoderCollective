@@ -28,7 +28,7 @@ public class PostController {
 
     @GetMapping("/")
     public String home(){
-        return "posts/index";
+        return "landingpage";
     }
 
     @GetMapping("/posts")
