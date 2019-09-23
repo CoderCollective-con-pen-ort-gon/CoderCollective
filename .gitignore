@@ -1,5 +1,9 @@
 HELP.md
 target/
+
+keys.js
+
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**

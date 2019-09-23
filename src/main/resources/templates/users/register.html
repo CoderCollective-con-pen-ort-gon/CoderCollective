@@ -3,9 +3,11 @@
 <head>
     <th:block th:replace="fragments/header :: my-header('Register')">
     </th:block>
+    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+
 </head>
 <body>
-<th:block th:replace="fragments/navbar :: top-nav" />
+<th:block th:replace="fragments/navbar :: top-nav"/>
 -
 <h1>Create An Account</h1>
 
@@ -31,17 +33,42 @@
             <label for="title">Title</label>
             <input class="form-control" id="title" name="title" th:field="*{title}"/>
         </div>
+
+<!--Image via FileStack-->
+        <label for="fileupload">Select a file to upload</label>
+        <input th:field="*{images}" type="file" id="fileupload"/>
+<!---->
+
         <div class="form-group">
             <label for="password">Password</label>
             <input class="form-control" id="password" name="password" th:field="*{password}"/>
         </div>
-<!--        <div class="form-group">-->
-<!--            <label for="confirmpassword">Confirm Password</label>-->
-<!--            <input class="form-control" id="confirmpassword" name="confirmpassword"/>-->
-<!--        </div>-->
+        <!--        <div class="form-group">-->
+        <!--            <label for="confirmpassword">Confirm Password</label>-->
+        <!--            <input class="form-control" id="confirmpassword" name="confirmpassword"/>-->
+        <!--        </div>-->
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+
+<!--FileStack JS-->
+<script>
+    let img;
+    const openBtn = document.getElementById('open');
+    const options = {
+        onUploadDone: file => {
+            console.log(img);
+        }
+    };
+    console.log(50);
+    const client = filestack.init(FSKey);
+
+    openBtn.addEventListener("click", function () {
+        client.picker(options).open().then(function () {
+            img = file.url;
+        })
+    });
+</script>
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>
