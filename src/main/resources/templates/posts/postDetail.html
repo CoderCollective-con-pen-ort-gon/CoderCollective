@@ -47,6 +47,7 @@
 <h1>Comments</h1>
 
 <div th:each="comment : ${comments}">
+    <p th:text="${comment.user.username}"></p>
     <p th:text="${comment.body}"></p>
     <div sec:authorize="isAuthenticated()">
     <div th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
