@@ -38,6 +38,9 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model vModel) {
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println("UserId = " + loggedIn.getId());
+
         Post postId = postDao.findOne(id);
         Iterable<Comment> comments = postId.getComments();
         vModel.addAttribute("comments", comments);
@@ -88,9 +91,32 @@ public class PostController {
         return "redirect:/profile";
     }
 
+    @PostMapping("/comment/{id}/delete")
+    public String deleteComment(@PathVariable long id) {
+        Comment comment=commentDao.findOne(id);
+        long postId=comment.getPost().getId();
+        commentDao.delete(id);
+
+        return "redirect:/posts/" + postId;
+    }
+
+
+
+    @PostMapping("/post/{id}/delete")
+    public String deletePost(@PathVariable long id) {
+//        Forum forum = forumDao.findOne(id);
+//        long forumId = forum.getId();
+        postDao.delete(id);
+        return "redirect:/forums";
+//        return "/forums/" + forumId;
+    }
+
+
+
 
     @GetMapping("/comment/{id}/edit")
     public String editComment(@PathVariable long id, Model vModel) {
+
 
         vModel.addAttribute("comment", commentDao.findOne(id));
         return "posts/editComment";
@@ -107,13 +133,31 @@ public class PostController {
         return "redirect:/posts/" + postId;
     }
 
-    @GetMapping("/comment/{id}/delete")
-    public String deleteComment(@PathVariable long id) {
-        Comment comment=commentDao.findOne(id);
-        long postId=comment.getPost().getId();
-        commentDao.delete(id);
 
+
+
+
+
+
+
+    @GetMapping("/post/{id}/edit")
+    public String editPost(@PathVariable long id, Model vModel) {
+        vModel.addAttribute("post", postDao.findOne(id));
+        return "posts/editPost";
+    }
+
+    @PostMapping("/post/{id}/edit")
+    public String returnEditPost(@PathVariable long id,
+                                 @RequestParam(name = "title") String title,
+                                 @RequestParam(name = "body") String body) {
+        Post updatePost = postDao.findOne(id);
+        updatePost.setTitle(title);
+        updatePost.setBody(body);
+        postDao.save(updatePost);
+        long postId = updatePost.getId();
         return "redirect:/posts/" + postId;
     }
+
+
 
 }
