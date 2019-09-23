@@ -34,6 +34,9 @@ public class User {
     @Column(nullable=true)
     private String photo;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Post> post;
+
     @OneToMany(cascade= CascadeType.ALL, mappedBy = "user" )
     private List<Comment> comments;
 
@@ -43,12 +46,12 @@ public class User {
             joinColumns={@JoinColumn(name="user_id")},
             inverseJoinColumns={@JoinColumn(name="post_id")}
     )
-    private List<Post> post;
+    private List<Post> postfavorites;
 
     public User(){
     }
 
-    public User(long id,String username, String email, String password, String firstname, String lastname, String title,String photo, List<Comment> comments,List<Post> posts) {
+    public User(long id,String username, String email, String password, String firstname, String lastname, String title,String photo, List<Comment> comments,List<Post> post,List<Post> postfavorites) {
         this.id=id;
         this.username = username;
         this.email = email;
@@ -58,7 +61,8 @@ public class User {
         this.title = title;
         this.photo=photo;
         this.comments = comments;
-        this.post=posts;
+        this.post=post;
+        this.postfavorites=postfavorites;
     }
 
     public User(User copy){
@@ -74,13 +78,7 @@ public class User {
         this.post= copy.post;
 
     }
-//
-//    public User(User copy){
-//        id=copy.id;
-//        email=copy.email;
-//        username=copy.username;
-//        password=copy.password;
-//    }
+
 
 
 
@@ -162,5 +160,13 @@ public class User {
 
     public void setPost(List<Post> post) {
         this.post = post;
+    }
+
+    public List<Post> getPostfavorites() {
+        return postfavorites;
+    }
+
+    public void setPostfavorites(List<Post> postfavorites) {
+        this.postfavorites = postfavorites;
     }
 }

@@ -18,11 +18,13 @@
     </ul>
 </nav>
 
-<h1><span th:text="${user.getUsername()}"></span> <span th:text="${user.getLastname()}"></span> </h1>
-    <p th:text="${user.getEmail()}"></p>
-    <p th:text="${user.getUsername()}"></p>
-    <p th:text="${user.getTitle()}"></p>
-    <img th:src= "${user.getPhoto()}" alt="profile image"/>
+<h1><span th:text="${user.firstname}"></span> <span th:text="${user.lastname}"></span> </h1>
+    <p th:text="${user.email}"></p>
+    <p th:text="${user.username}"></p>
+    <p th:text="${user.title}"></p>
+    <img th:src= "${user.photo}" alt="profile image"/>
+
+<a th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>
 
 
 <h3>Create a Post</h3>

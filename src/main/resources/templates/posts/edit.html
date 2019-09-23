@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/header :: my-header('Edit Post')">
+    </th:block>
+</head>
+<body>
+<form th:action ="@{'/post/'+ ${post.id} +'/edit'}" th:method="POST" th:object="${post}">
+    <input type="text"  th:field="*{title}" />
+    <input type="text"  th:field="*{body}" />
+    <input type="hidden" th:field="*{owner.id}" />
+    <button>Edit</button>
+</form>
+
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
+</body>
+</html>

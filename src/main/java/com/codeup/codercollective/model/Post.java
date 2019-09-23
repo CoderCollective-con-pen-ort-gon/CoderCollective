@@ -26,19 +26,17 @@ public class Post {
     @Column(nullable=true)
     private String photo;
 
-    @OneToOne
+//    @OneToOne
+//    private User owner;
+
+    @ManyToOne
+    @JoinColumn (name="user_id")
     private User owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
 
-//    @ManyToMany(cascade= CascadeType.ALL)
-//    @JoinTable(
-//            name="posts_Forums",
-//            joinColumns={@JoinColumn(name="post_id")},
-//            inverseJoinColumns = {@JoinColumn(name="forum_id")}
-//    )
-//    private List<Forum> forums;
+
 
     @ManyToOne
     @JoinColumn (name="forum_id")
