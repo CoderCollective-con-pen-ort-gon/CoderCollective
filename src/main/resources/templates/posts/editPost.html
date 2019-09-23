@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/header :: my-header('Edit Comment')">
+    </th:block>
+</head>
+<body>
+<h1>Edit Post</h1>
+
+<form th:action=" @{'/post/' + ${post.id} + '/edit'}" method="post" th:object="${post}">
+<!--    <select class="form-control" name="forum_id" th:field="*{forums.id}" th:value="${forums}">-->
+<!--        <option th:each="forum : ${forums}" name="forum_id" th:value="${forum.id}" th:text="${forum.name}"></option>-->
+<!--    </select>-->
+    <input class="form-control" name="title" th:field="*{title}"  type="text" placeholder="Title"/>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Post body</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="body" th:field="*{body}"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Edit Post</button>
+</form>
+
+
+
+
+
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
+</body>
+</html>

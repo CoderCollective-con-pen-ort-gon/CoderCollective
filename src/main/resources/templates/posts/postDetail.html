@@ -22,6 +22,12 @@
     </div>
 </div>
 
+<form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
+    <button class="btn btn-warning">Edit Post</button>
+</form>
+<form th:action="@{'/post/' + ${post.id} + '/delete'}" th:method="post" th:object="${post}">
+    <button class="btn btn-danger">Delete Post</button>
+</form>
 
 
 
@@ -42,12 +48,15 @@
 
 <div th:each="comment : ${comments}">
     <p th:text="${comment.body}"></p>
+    <div sec:authorize="isAuthenticated()">
+    <div th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
     <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
         <button class="btn btn-warning">Edit</button>
     </form>
-    <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="get" th:object="${comment}">
+    <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="post" th:object="${comment}">
         <button class="btn btn-danger">Delete</button>
     </form>
+    </div></div>
 </div>
 
 
