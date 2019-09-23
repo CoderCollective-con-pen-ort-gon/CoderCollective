@@ -2,11 +2,7 @@ package com.codeup.codercollective.controllers;
 import com.codeup.codercollective.model.Comment;
 import com.codeup.codercollective.model.Post;
 import com.codeup.codercollective.model.User;
-import com.codeup.codercollective.repos.CommentRepository;
-import com.codeup.codercollective.repos.ForumRepository;
-import com.codeup.codercollective.repos.PostRepository;
-import com.codeup.codercollective.repos.UserRepository;
-
+import com.codeup.codercollective.repos.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,10 +70,11 @@ public class PostController {
     @PostMapping("profile/create")
         public String createPostOnProfile(@ModelAttribute Post post) {
         User userSession=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User userdb =userDao.findOne(userSession.getId());
-        post.setOwner(userdb);
+        post.setOwner(userSession);
         postDao.save(post);
-        return "/profile/{id}";
+
+
+        return "redirect:/profile";
     }
 
 }

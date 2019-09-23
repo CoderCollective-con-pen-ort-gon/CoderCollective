@@ -32,14 +32,17 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
 
-    @ManyToMany(cascade= CascadeType.ALL)
-    @JoinTable(
-            name="posts_Forums",
-            joinColumns={@JoinColumn(name="post_id")},
-            inverseJoinColumns = {@JoinColumn(name="forum_id")}
-    )
-    private List<Forum> forums;
+//    @ManyToMany(cascade= CascadeType.ALL)
+//    @JoinTable(
+//            name="posts_Forums",
+//            joinColumns={@JoinColumn(name="post_id")},
+//            inverseJoinColumns = {@JoinColumn(name="forum_id")}
+//    )
+//    private List<Forum> forums;
 
+    @ManyToOne
+    @JoinColumn (name="forum_id")
+    private Forum forums;
 
 
     @ManyToMany(mappedBy = "post")
@@ -66,7 +69,7 @@ public class Post {
         this.comments = comments;
     }
 
-    public Post(String title, String body, Date createdAt, String photo, User owner, List<Comment> comments, List<Forum> forums, List<User> users) {
+    public Post(String title, String body, Date createdAt, String photo, User owner, List<Comment> comments, Forum forums, List<User> users) {
         this.title = title;
         this.body = body;
         this.createdAt = createdAt;
@@ -133,11 +136,11 @@ public class Post {
         this.photo = photo;
     }
 
-    public List<Forum> getForums() {
+    public Forum getForums() {
         return forums;
     }
 
-    public void setForums(List<Forum> forums) {
+    public void setForums( Forum forums) {
         this.forums = forums;
     }
 
