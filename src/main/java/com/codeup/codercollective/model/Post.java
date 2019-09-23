@@ -26,16 +26,16 @@ public class Post {
     @Column(nullable=true)
     private String photo;
 
-//    @OneToOne
-//    private User owner;
+
 
     @ManyToOne
     @JoinColumn (name="user_id")
     private User owner;
 
+
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
-
 
 
     @ManyToOne
@@ -43,31 +43,16 @@ public class Post {
     private Forum forums;
 
 
-    @ManyToMany(mappedBy = "post")
-    private List<User> users;
+    @ManyToMany(mappedBy = "favoritepost")
+    private List<User> postFavorites;
 
 
     public Post () {
 
     }
 
-    public Post(String title, String body,Date createdAt, User owner, List<Comment> comments,String photo) {
-        this.title = title;
-        this.body = body;
-        this.createdAt = createdAt;
-        this.owner = owner;
-        this.comments = comments;
-        this.photo=photo;
-    }
 
-    public Post(long id, String title, String body, User owner, List<Comment> comments) {
-        this.title = title;
-        this.body = body;
-        this.owner = owner;
-        this.comments = comments;
-    }
-
-    public Post(String title, String body, Date createdAt, String photo, User owner, List<Comment> comments, Forum forums, List<User> users) {
+    public Post(String title, String body, Date createdAt, String photo, User owner, List<Comment> comments, Forum forums, List<User> postFavorites) {
         this.title = title;
         this.body = body;
         this.createdAt = createdAt;
@@ -75,7 +60,7 @@ public class Post {
         this.owner = owner;
         this.comments = comments;
         this.forums = forums;
-        this.users = users;
+        this.postFavorites = postFavorites;
     }
 
     public long getId() {
@@ -142,11 +127,11 @@ public class Post {
         this.forums = forums;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<User> getPostFavorites() {
+        return postFavorites;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setPostFavorites(List<User> postFavorites) {
+        this.postFavorites = postFavorites;
     }
 }

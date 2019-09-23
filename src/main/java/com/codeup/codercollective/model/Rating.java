@@ -7,14 +7,14 @@ import javax.persistence.GeneratedValue;
 public class Rating{
     @Id @GeneratedValue
     private long id;
+
     @Column(nullable=false,columnDefinition = "TINYINT")
     private Boolean vote;
 
-    @OneToOne
+    @ManyToOne
     private User owner;
 
     @ManyToOne
-    @JoinColumn (name = "comment_id")
     private Comment comment;
 
     public Rating(){}
