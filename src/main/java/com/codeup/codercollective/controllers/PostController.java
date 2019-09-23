@@ -1,5 +1,6 @@
 package com.codeup.codercollective.controllers;
 import com.codeup.codercollective.model.Comment;
+import com.codeup.codercollective.model.Forum;
 import com.codeup.codercollective.model.Post;
 import com.codeup.codercollective.model.User;
 import com.codeup.codercollective.repos.*;
@@ -62,10 +63,23 @@ public class PostController {
 
     @GetMapping("/posts/create")
     public String createPostForm( Model vModel){
-        vModel.addAttribute("post", new Post());
-
+        Iterable<Forum> forums = forumDao.findAll();
+        vModel.addAttribute("forums", forums);
+        vModel.addAttribute("posts",new Post());
         return "posts/create";
     }
+
+    @PostMapping("/posts/create")
+    public String createPost( @ModelAttribute Post post){
+        User userSession=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setOwner(userSession);
+        Post savedPost=postDao.save(post);
+        long postid=savedPost.getId();
+
+        return"redirect:/posts/"+ postid;
+    }
+
+
 
     @PostMapping("profile/create")
         public String createPostOnProfile(@ModelAttribute Post post) {
