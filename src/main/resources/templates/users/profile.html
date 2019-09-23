@@ -44,7 +44,11 @@
 
 <h3>Here are your created post</h3>
 
-
+<div th:each="post : ${userPosts}">
+    <p th:text="${post.title}"></p>
+    <p th:text="${post.body}"></p>
+    <p th:text="${post.createdAt}"></p>
+</div>
 
 
 <a th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>

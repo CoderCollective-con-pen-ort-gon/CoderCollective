@@ -45,6 +45,8 @@ public class UserController {
         vModel.addAttribute("forums", forums);
         vModel.addAttribute("posts",new Post());
         vModel.addAttribute("user",userSession);
+        Iterable<Post> userPosts = postDao.findByOwner(userSession);
+        vModel.addAttribute("userPosts", userPosts);
         return"users/profile";
     }
 
