@@ -7,31 +7,31 @@
 <body>
 <nav class="main-nav" th:fragment="top-nav">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="fader navbar navbar-expand-lg navbar-light navbar-fixed">
         <a class="navbar-brand" href="/">Coder Collective</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="/forums">Forums<span class="sr-only" sec:authorize="isAuthenticated()">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/profile">Profile<span class="sr-only" sec:authorize="isAuthenticated()">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="/login" sec:authorize="!isAuthenticated()">Login</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="/posts/create" sec:authorize="isAuthenticated()">Create</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="/register" sec:authorize="!isAuthenticated()">Register</a>
                 </li>
                 <li>
                     <form th:action="@{/logout}" th:method="post">
-                        <button class="nav-link">Logout</button>
+                        <a class="nav-link">Logout</a>
                     </form>
                 </li>
 <!--                <li class="nav-item">-->
