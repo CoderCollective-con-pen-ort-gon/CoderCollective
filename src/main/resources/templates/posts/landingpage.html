@@ -51,7 +51,7 @@
                         <div class="card-body">
 
                             <!-- Form -->
-                            <form>
+                            <form th:action="@{/register}" method="post" th:object="${user}">
                                 <!-- Heading -->
                                 <h3 class="dark-grey-text text-center">
                                     <strong>Sign Up</strong>
@@ -60,27 +60,27 @@
 
                                 <div class="md-form">
                                     <label for="email">Email Address</label>
-                                    <input class="form-control" id="email" name="email"/>
+                                    <input class="form-control" id="email" name="email" th:field="*{email}"/>
                                 </div>
                                 <div class="md-form">
                                     <label for="username">Username</label>
-                                    <input class="form-control" id="username" name="username"/>
+                                    <input class="form-control" id="username" name="username" th:field="*{username}"/>
                                 </div>
                                 <div class="md-form">
                                     <label for="firstname">First Name</label>
-                                    <input class="form-control" id="firstname" name="firstname"/>
+                                    <input class="form-control" id="firstname" name="firstname" th:field="*{firstname}"/>
                                 </div>
                                 <div class="md-form">
                                     <label for="lastname">Last Name</label>
-                                    <input class="form-control" id="lastname" name="lastname"/>
+                                    <input class="form-control" id="lastname" name="lastname" th:field="*{lastname}"/>
                                 </div>
                                 <div class="md-form">
                                     <label for="title">Title</label>
-                                    <input class="form-control" id="title" name="title"/>
+                                    <input class="form-control" id="title" name="title" th:field="*{title}"/>
                                 </div>
                                 <div class="md-form">
                                     <label for="password">Password</label>
-                                    <input class="form-control" type="password" id="password" name="password"/>
+                                    <input class="form-control" type="password" id="password" name="password" th:field="*{password}"/>
                                 </div>
 
 
