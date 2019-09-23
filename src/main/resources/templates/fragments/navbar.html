@@ -29,7 +29,7 @@
                 <li class="nav-item active" sec:authorize="!isAuthenticated()">
                     <a class="nav-link" href="/register" >Register</a>
                 </li>
-                <li>
+                <li class="nav-item active" sec:authorize="isAuthenticated()">
                     <form th:action="@{/logout}" th:method="post">
                         <a class="nav-link">Logout</a>
                     </form>
