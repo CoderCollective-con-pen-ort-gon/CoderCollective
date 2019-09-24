@@ -90,6 +90,29 @@ public class Comment {
         return ratings;
     }
 
+    public long ratingTota(){
+        long sum=0;
+        for (Rating rating:this.ratings) {
+            if(rating.getVote()== true){
+                sum++;
+            }else{
+                sum--;
+            }
+        }
+        return sum;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", body='" + body + '\'' +
+                ", photo='" + photo + '\'' +
+                ", user=" + user +
+                ", post=" + post +
+                '}';
+    }
+
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
