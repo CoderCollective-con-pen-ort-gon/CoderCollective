@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <th:block th:replace="fragments/header :: main-header('Uh-oh!')">
+    </th:block>
 </head>
 <body>
 
+<br/>
+<br/>
+<h1>Something went wrong!</h1>
+<a href="/landingpage">Go Home</a>
+
+
+
+
 </body>
 </html>
+<img class="d-block w-100" src="https://media3.giphy.com/media/xUySTN8cIzNNOvp8di/200.webp?cid=790b761186f7f2923c888711e5377813846208049c1f99d5&rid=200.webp"  alt="900x400" />
