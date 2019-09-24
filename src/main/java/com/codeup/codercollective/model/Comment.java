@@ -35,21 +35,16 @@ public class Comment {
 
     public Comment(){}
 
-    public Comment(String body, User user, Post post,String photo) {
-        this.body = body;
-        this.user = user;
-        this.post = post;
-        this.photo= photo;
-    }
 
-    public Comment(long id, String body, String photo, User user, Post post, List<Rating> ratings) {
-        this.id = id;
+    public Comment(String body, String photo, User user, Post post, List<Rating> ratings) {
         this.body = body;
         this.photo = photo;
         this.user = user;
         this.post = post;
         this.ratings = ratings;
     }
+
+
 
     public long getId() {
         return id;
