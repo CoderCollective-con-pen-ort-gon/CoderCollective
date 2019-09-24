@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/header :: my-header('Edit Comment')">
+    </th:block>
+</head>
+<body>
+
+<h1>Edit Comment</h1>
+
+
+<form th:action="@{'/comment/' + ${comment.id} + '/edit'}" method="post" th:object="${comment}">
+<!--    <input type="hidden" name="post.id" th:value="${post.id}"/>-->
+    <textarea name="comment" th:field="*{body}"></textarea>
+    <button type="submit">Edit Comment</button>
+</form>
+
+
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
+</body>
+</html>

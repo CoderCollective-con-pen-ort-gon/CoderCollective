@@ -5,17 +5,22 @@ insert into users(id, email, firstname, lastname, password, title, username) val
 (2, 'victorpena@gmail.com', 'victor', 'pena', 'pass', 'junior software developer', 'victor'),
 (3, 'joseph@gmail.com', 'joesph', 'ortega', 'pass', 'senior software developer', 'joseph');
 
+<<<<<<< HEAD
 
 insert into posts(id, body, title, user_id, create_date,forum_id) values
 (1, 'I need help with springboot', 'HELP', 1, '2010-10-10',1),
 (2, 'Javascript tutorial', 'helloworld', 1, '2009-10-10',2);
 
+=======
+>>>>>>> 9f009d83b7099573e492fea96716590c9ae0f1df
 insert into forums(id, name) values
 (1, 'springboot'),
 (2, 'javascript'),
 (3, 'python');
 
-
+insert into posts(id, body, title, user_id, create_date,forum_id) values
+(1, 'I need help with springboot', 'HELP', 1, '2010-10-10',1),
+(2, 'Javascript tutorial', 'helloworld', 2, '2009-10-10',2);
 
 insert into comments(id, body, post_id, user_id) values
 (1, 'you saved my life', 2, 1),

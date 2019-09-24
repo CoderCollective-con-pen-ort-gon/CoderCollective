@@ -27,6 +27,14 @@ public class UserController {
         postDao= postRepository;
     }
 
+    @GetMapping("/landingpage")
+    public String user(Model vModel){
+        vModel.addAttribute("user", new User());
+        return "posts/landingpage";
+    }
+
+
+
     @GetMapping("/profile")
     public String getUserProfile(Model vModel){
         User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -34,24 +42,10 @@ public class UserController {
         vModel.addAttribute("forums", forums);
         vModel.addAttribute("posts",new Post());
         vModel.addAttribute("user",userSession);
+        Iterable<Post> userPosts = postDao.findByOwner(userSession);
+        vModel.addAttribute("userPosts", userPosts);
         return"users/profile";
     }
-
-    @GetMapping("/profile/{id}/edit")
-        public String editProfileForm( Model vModel){
-        User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        vModel.addAttribute("user",userSession);
-        return "users/edit";
-    }
-
-
-    @PostMapping("/profile/{id}/edit")
-    public String editProfile(@PathVariable long id, @ModelAttribute User user){
-        userDao.save(user);
-        return "redirect:/profile";
-    }
-
-
 
     @GetMapping("/register")
     public String signUp(Model vModel){
@@ -67,6 +61,16 @@ public class UserController {
         return "redirect:/login";
     }
 
-
+    @GetMapping("/profile/{id}/edit")
+    public String editProfileForm( Model vModel){
+        User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        vModel.addAttribute("user",userSession);
+        return "users/edit";
+    }
+    @PostMapping("/profile/{id}/edit")
+    public String editProfile(@PathVariable long id, @ModelAttribute User user){
+        userDao.save(user);
+        return "redirect:/profile";
+    }
 
 }

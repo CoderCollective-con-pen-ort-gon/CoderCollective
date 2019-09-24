@@ -1,3 +1,4 @@
+
 package com.codeup.codercollective.model;
 
 
@@ -13,6 +14,7 @@ public class Forum {
 
     @Column(nullable=false)
     private String name;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "forums")
     private List<Post> posts;
