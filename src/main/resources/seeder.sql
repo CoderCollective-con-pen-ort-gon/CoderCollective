@@ -4,7 +4,7 @@ insert into users(id, email, firstname, lastname, password, title, username) val
 (1, 'alexchris99@gmail.com', 'alex', 'contreras', 'password', 'Java Developer', 'alex'),
 (2, 'victorpena@gmail.com', 'victor', 'pena', 'password', 'Front-End Software Developer', 'victor'),
 (3, 'joseph@gmail.com', 'joesph', 'ortega', 'password', 'Full-Stack Software Developer', 'joseph'),
-(3, 'joey@gmail.com', 'Joey', 'Gonzalez', 'password', 'Full-Stack Software Developer', 'joey');
+(4, 'joey@gmail.com', 'Joey', 'Gonzalez', 'password', 'Full-Stack Software Developer', 'joey');
 
 insert into forums(id, name) values
 (1, 'Ruby'),
