@@ -6,9 +6,10 @@
 </head>
 <body>
 
-<th:block th:replace="fragments/navbar :: top-nav" />
+<th:block th:replace="fragments/navbar :: top-nav"/>
 
-<div class="view full-page-intro" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/78.jpg'); background-repeat: no-repeat; background-size: cover;">
+<div class="view full-page-intro"
+     style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/78.jpg'); background-repeat: no-repeat; background-size: cover;">
 
     <!-- Mask & flexbox options-->
     <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
@@ -31,7 +32,10 @@
                     </p>
 
                     <p class="mb-4 d-none d-md-block">
-                        <strong>Coding Collective is a site for people to meet, interact, learn the basics of coding, and discover popular resources that others use. Coding Collective is a community-driven site, with the community vetting and ensuring the quality of recommendations and materials produced.</strong>
+                        <strong>Coding Collective is a site for people to meet, interact, learn the basics of coding,
+                            and discover popular resources that others use. Coding Collective is a community-driven
+                            site, with the community vetting and ensuring the quality of recommendations and materials
+                            produced.</strong>
                     </p>
 
                     <a target="_blank" href="" class="btn btn-indigo btn-lg">Learn More
@@ -68,7 +72,8 @@
                                 </div>
                                 <div class="md-form">
                                     <label for="firstname">First Name</label>
-                                    <input class="form-control" id="firstname" name="firstname" th:field="*{firstname}"/>
+                                    <input class="form-control" id="firstname" name="firstname"
+                                           th:field="*{firstname}"/>
                                 </div>
                                 <div class="md-form">
                                     <label for="lastname">Last Name</label>
@@ -80,10 +85,10 @@
                                 </div>
                                 <div class="md-form">
                                     <label for="password">Password</label>
-                                    <input class="form-control" type="password" id="password" name="password" th:field="*{password}"/>
+                                    <input class="form-control" type="password" id="password" name="password"
+                                           th:field="*{password}"/>
                                 </div>
 
-l
 
                                 <div class="text-center">
                                     <button class="btn btn-indigo">Send</button>

@@ -18,17 +18,19 @@ public class PostController {
     private final PostRepository postDao;
     private final ForumRepository forumDao;
     private final CommentRepository commentDao;
+    private final FavoritesRepository favDao;
 
-    public PostController(PostRepository postRepository, ForumRepository forumRepository,UserRepository userRepository, CommentRepository commentRepository) {
+    public PostController(PostRepository postRepository, ForumRepository forumRepository,UserRepository userRepository, CommentRepository commentRepository, FavoritesRepository favoritesRepository) {
         postDao = postRepository;
         forumDao = forumRepository;
         userDao = userRepository;
         commentDao = commentRepository;
+        favDao = favoritesRepository;
     }
 
     @GetMapping("/")
     public String home(){
-        return "landingpage";
+        return "posts/landingpage";
     }
 
     @GetMapping("/posts")
@@ -106,6 +108,8 @@ public class PostController {
     public String deletePost(@PathVariable long id) {
 //        Forum forum = forumDao.findOne(id);
 //        long forumId = forum.getId();
+        favDao.deleteByPost_Id(id);
+        commentDao.deleteByPost_Id(id);
         postDao.delete(id);
         return "redirect:/forums";
 //        return "/forums/" + forumId;
