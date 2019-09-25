@@ -95,8 +95,6 @@ public class Comment {
         for (Rating rating:this.ratings) {
             if(rating.getVote()== true){
                 sum++;
-            }else{
-                sum--;
             }
         }
         return sum;

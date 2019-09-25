@@ -25,10 +25,6 @@ public class PostController {
         ratingDao = ratingRepository;
     }
 
-    @GetMapping("/")
-    public String home(){
-        return "landingpage";
-    }
 
     @GetMapping("/posts")
     public String showPosts(){
@@ -164,6 +160,13 @@ public class PostController {
     public String rateComment( @ModelAttribute Rating rating ){
         User userSession=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         rating.setOwner(userSession);
+        System.out.println(rating.getOwner().getId());
+        Iterable<Rating> ratings=ratingDao.findAll();
+        for(Rating rate : ratings) {
+            if (rating.getOwner().getId() == rate.getOwner().getId() && rating.getComment().getId()== rate.getComment().getId()) {
+                ratingDao.delete(rate);
+            }
+        }
         Rating savedRating =ratingDao.save(rating);
         System.out.println(rating);
         long commentid=rating.getComment().getId();
@@ -171,9 +174,11 @@ public class PostController {
         long postId=comment.getPost().getId();
 //        Comment comment=rating.getComment();
 //        System.out.println(comment);
-
         return"redirect:/posts/"+postId;
     }
+
+
+
 
 
 }

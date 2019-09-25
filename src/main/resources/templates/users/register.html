@@ -40,60 +40,17 @@
             <button type="button" id="open">Open Picker</button>
 
         </div>
-
-        <!---->
-<!--this the way to do the password with out confirming -->
-<!--        <div class="form-group">-->
-<!--            <label for="password">Password</label>-->
-<!--            <input class="form-control" type="password" id="password" name="password" th:field="*{password}"/>-->
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-<!--            <label for="confirmpassword">Confirm Password</label>-->
-<!--            <input class="form-control" type="password" id="confirmpassword" name="confirmpassword"/>-->
-<!--        </div>-->
-
-<!--        <button type="submit" class="btn btn-primary">Submit</button>-->
-<!---->
-
-        <div class="field">
-            <div class="control">
-                <label for="password">Password</label>
-                <input id="password" type="password" class="input" th:field="*{password}" placeholder="Password" />
-                <div class="content">
-                    <div th:if="${#fields.hasErrors('password')}" class="notification is-warning">
-                        <a class="delete"></a>
-                        <strong th:errors="*{password}"></strong>
-                    </div>
-                </div>
-                <div id="password2" class="content" style="display: none">
-                    <div class="notification is-warning">
-                        <a class="delete"></a>
-                        <strong>Password must be between 6 and 20 characters.</strong>
-                    </div>
-                </div>
-            </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password" th:field="*{password}"/>
         </div>
 
-        <div class="field">
-            <div class="control">
-                <label for="passwordConfirm">Confirm Password</label>
-                <input id="passwordConfirm" type="password" class="input" placeholder="Confirm Password" />
-                <div id="passwordConfirm2" class="content" style="display: none">
-                    <div class="notification is-warning">
-                        <a class="delete"></a>
-                        <strong>Passwords don't match!</strong>
-                    </div>
-                </div>
-            </div>
+        <div class="form-group">
+            <label for="confirmpassword">Confirm Password</label>
+            <input class="form-control" type="password" id="confirmpassword" name="confirmpassword"/>
         </div>
 
-        <div class="field">
-            <div class="content">
-                <button id="register" class="button is-success">Register Now</button>
-            </div>
-        </div>
-
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 
