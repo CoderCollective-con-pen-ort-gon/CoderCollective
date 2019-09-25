@@ -45,13 +45,27 @@
             <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
                 <button class="btn btn-warning">Edit</button>
             </form>
+
             <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="post" th:object="${comment}">
                 <button class="btn btn-danger">Delete</button>
             </form>
         </div>
     </div>
-</div>
+    <div th:text="${comment.ratingTota()}">
 
+    </div>
+
+    <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
+        <input type="hidden" name="vote" th:value="1"/>
+        <input type="hidden" name="comment.id" th:value="${comment.id}"/>
+        <button class="btn btn-success">Up</button>
+    </form>
+    <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
+        <input type="hidden" name="vote" th:value="0"/>
+        <input type="hidden" name="comment.id" th:value="${comment.id}"/>
+        <button class="btn btn-danger">Down</button>
+    </form>
+</div>
 
 
 

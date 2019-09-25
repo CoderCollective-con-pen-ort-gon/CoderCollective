@@ -1,8 +1,5 @@
 package com.codeup.codercollective.controllers;
-import com.codeup.codercollective.model.Comment;
-import com.codeup.codercollective.model.Forum;
-import com.codeup.codercollective.model.Post;
-import com.codeup.codercollective.model.User;
+import com.codeup.codercollective.model.*;
 import com.codeup.codercollective.repos.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,18 +15,16 @@ public class PostController {
     private final PostRepository postDao;
     private final ForumRepository forumDao;
     private final CommentRepository commentDao;
+    private final RatingRepository ratingDao;
 
-    public PostController(PostRepository postRepository, ForumRepository forumRepository,UserRepository userRepository, CommentRepository commentRepository) {
+    public PostController(PostRepository postRepository, ForumRepository forumRepository,UserRepository userRepository, CommentRepository commentRepository, RatingRepository ratingRepository) {
         postDao = postRepository;
         forumDao = forumRepository;
         userDao = userRepository;
         commentDao = commentRepository;
+        ratingDao = ratingRepository;
     }
 
-    @GetMapping("/")
-    public String home(){
-        return "landingpage";
-    }
 
     @GetMapping("/posts")
     public String showPosts(){
@@ -38,14 +33,16 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model vModel) {
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("UserId = " + loggedIn.getId());
-
+//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        System.out.println("UserId = " + loggedIn.getId());
         Post postId = postDao.findOne(id);
         Iterable<Comment> comments = postId.getComments();
         vModel.addAttribute("comments", comments);
         vModel.addAttribute("post", postDao.findOne(id));
         vModel.addAttribute("comment", new Comment());
+        vModel.addAttribute("rating", new Rating());
+
+
         return "posts/postDetail";
     }
 
@@ -157,6 +154,29 @@ public class PostController {
         long postId = updatePost.getId();
         return "redirect:/posts/" + postId;
     }
+
+    @PostMapping("/comment/rate")
+    public String rateComment( @ModelAttribute Rating rating ){
+        User userSession=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        rating.setOwner(userSession);
+        System.out.println(rating.getOwner().getId());
+        Iterable<Rating> ratings=ratingDao.findAll();
+        for(Rating rate : ratings) {
+            if (rating.getOwner().getId() == rate.getOwner().getId() && rating.getComment().getId()== rate.getComment().getId()) {
+                ratingDao.delete(rate);
+            }
+        }
+        Rating savedRating =ratingDao.save(rating);
+        System.out.println(rating);
+        long commentid=rating.getComment().getId();
+        Comment comment=commentDao.findOne(commentid);
+        long postId=comment.getPost().getId();
+//        Comment comment=rating.getComment();
+//        System.out.println(comment);
+        return"redirect:/posts/"+postId;
+    }
+
+
 
 
 

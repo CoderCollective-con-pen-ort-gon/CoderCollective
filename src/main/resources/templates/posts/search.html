@@ -1,21 +1,29 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <th:block th:replace="fragments/header :: my-header('Posts')">-->
-<!--    </th:block>-->
-<!--</head>-->
-<!--<body>-->
-<!--<th:block th:replace="fragments/navbar :: top-nav" />-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/header :: my-header('Forums')">
+    </th:block>
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: top-nav"/>
+<!--<h1>Search:</h1>-->
+<form th:action="@{/search}" th:method="POST" th:object="${searched}">
+    <label for="searched">Search:</label>
+    <input id="searched" type="text" name="searched"/>
+    <button>Search</button>
+</form>
+<th:block th:if="${searched != null}">
+    <h1 th:text="'Search:' + ${searched}"></h1>
+    <div th:each="post : ${posts}">
+        <h1 th:text="${post.title}"></h1>
+        <p th:Text="${post.owner.username}"></p>
+        <p th:Text="${post.createdAt}"></p>
+        <a th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+    </div>
+</th:block>
 
-<!--<h1>Forums</h1>-->
 
-<!--    <div th:each="forum : ${forums}">-->
-<!--        <h1 th:text="${forum.name}"></h1>-->
-<!--        <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View Forum</a>-->
-<!--    </div>-->
-
-
-<!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
-<!--</th:block>-->
-<!--</body>-->
-<!--</html>-->
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
+</body>
+</html>
