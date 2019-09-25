@@ -104,12 +104,21 @@ public class PostController {
 
 
 
-    @PostMapping("/post/{id}/delete")
+    @PostMapping("/{id}/delete")
     public String deletePost(@PathVariable long id) {
 //        Forum forum = forumDao.findOne(id);
 //        long forumId = forum.getId();
-        favDao.deleteByPost_Id(id);
-        commentDao.deleteByPost_Id(id);
+        System.out.println(id);
+
+        if (favDao.findFavByPost_Id(id) != null) {
+            favDao.deleteFavByPost_Id(id);
+        }
+        System.out.println("fav");
+        if (commentDao.findAllByPost_Id(id) != null) {
+            commentDao.deleteAllByPost_Id(id);
+        }
+        System.out.println("comment");
+
         postDao.delete(id);
         return "redirect:/forums";
 //        return "/forums/" + forumId;

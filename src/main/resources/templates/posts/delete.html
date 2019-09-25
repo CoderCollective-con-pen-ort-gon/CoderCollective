@@ -1,0 +1,68 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <th:block th:replace="fragments/header :: my-header('Posts')">-->
+<!--    </th:block>-->
+<!--</head>-->
+<!--<body>-->
+<!--<th:block th:replace="fragments/navbar :: top-nav" />-->
+
+<!--<div class="container">-->
+<!--    <div class="card">-->
+<!--        <div class="card-header" th:text="${post.title}">-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <blockquote class="blockquote mb-0">-->
+<!--                <p th:text="${post.body}"></p>-->
+<!--                <footer class="blockquote-footer" th:text="${post.owner.username}">username</footer>-->
+<!--                <footer class="blockquote-footer" th:text="${post.owner.title}"></footer>-->
+<!--                <footer class="blockquote-footer" th:text="${post.createdAt}"></footer>-->
+<!--            </blockquote>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;<h1 th:text="${post.title}"></h1>&ndash;&gt;-->
+<!--&lt;!&ndash;<p th:text="${post.body}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;<p th:text="${post.owner.username}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;<p th:text="${post.createdAt}"></p>&ndash;&gt;-->
+
+<!--<h1>Delete Post</h1>-->
+
+<!--<form th:action="@{'/posts/' + ${post.id} + '/delete'}" method="post">-->
+<!--    <button type="submit">Delete Post</button>-->
+<!--</form>-->
+
+
+<!--<h1>Create Comment</h1>-->
+
+<!--<form th:action="@{/posts/comment}" method="post" th:object="${comment}">-->
+<!--    <input type="hidden" name="post.id" th:value="${post.id}"/>-->
+<!--    <textarea name="comment" th:field="*{body}"></textarea>-->
+<!--    <button type="submit">Add Comment</button>-->
+<!--</form>-->
+
+<!--<h1>Comments!</h1>-->
+
+<!--<div th:each="comment : ${comments}">-->
+<!--    <p th:text="${comment.user.username}"></p>-->
+<!--    <p th:text="${comment.body}"></p>-->
+<!--    <div sec:authorize="isAuthenticated()">-->
+<!--        <div th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">-->
+<!--            <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">-->
+<!--                <button class="btn btn-warning">Edit</button>-->
+<!--            </form>-->
+<!--            <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="post" th:object="${comment}">-->
+<!--                <button class="btn btn-danger">Delete</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+
+<!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
+<!--</th:block>-->
+<!--</body>-->
+<!--</html>-->
