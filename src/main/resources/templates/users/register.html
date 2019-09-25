@@ -12,7 +12,10 @@
 <h1>Create An Account</h1>
 
 <div class="container">
-    <form th:action="@{/register}" method="post" th:object="${user}">
+    <form th:action="@{/register}" id="signUpForm" method="post" th:object="${user}">
+        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">Fill in form</div>
+        <div onclick="signOut();" class="g-signin2" data-theme="dark">Sign out</div>
+
         <div class="form-group">
             <label for="email">Email Address</label>
             <input class="form-control" id="email" name="email" th:field="*{email}"/>
@@ -37,7 +40,7 @@
         <!--Image via FileStack-->
         <div>
             <label for="photo">Photo</label>
-            <input th:field="*{photo}" type="text" id="photo" value=""/>
+            <input th:field="*{photo}" th:type="hidden" id="photo" value=""/>
             <button type="button" id="open">Open Picker</button>
 
         </div>
@@ -50,33 +53,34 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <a th:href="'/restricted'">Google Login</a>
 </div>
 
-<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-<!--<a href="#" onclick="signOut();">Sign out</a>-->
 
 <script>
 
-    gapi.load('auth2', function () {
-        gapi.auth2.init();
-    });
+    // gapi.load('auth2', function () {
+    //     gapi.auth2.init();
+    // });
     function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
+        let profile = googleUser.getBasicProfile();
+        let firstName = profile.getName().split(' ').slice(0, -1).join(' ');
+        let lastName = profile.getName().split(' ').slice(-1).join(' ');
+        var username   = profile.getEmail().substring(0, profile.getEmail().lastIndexOf("@"));
         var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
+
+        document.getElementById("email").value = profile.getEmail();
+        document.getElementById("username").value = username;
+        document.getElementById("firstname").value = firstName;
+        document.getElementById("lastname").value = lastName;
+        document.getElementById("photo").value = profile.getImageUrl();
+        document.getElementById("password").value = id_token;
+        document.getElementById("title").value = "New Member";
+        // user: email, username, first last title photo
+        document.getElementById("signUpForm").submit();
     }
     function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
+        let auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             console.log('User signed out.');
         });

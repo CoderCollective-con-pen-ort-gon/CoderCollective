@@ -15,7 +15,8 @@
 </div>
 
 <div class="container">
-    <form th:action="@{/login}" method="post">
+    <form th:action="@{/login}" id="loginForm" method="post">
+        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" placeholder="Username"/>
@@ -27,6 +28,28 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+
+<script>
+
+    function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        let profile = googleUser.getBasicProfile();
+        var username   = profile.getEmail().substring(0, profile.getEmail().lastIndexOf("@"));
+        var id_token = googleUser.getAuthResponse().id_token;
+
+        document.getElementById("username").value = username;
+        document.getElementById("password").value = id_token;
+        document.getElementById("loginForm").submit();
+    }
+    function signOut() {
+            // Get `GoogleAuth` instance
+            var auth2 = gapi.auth2.getAuthInstance();
+            // Sign-Out
+            auth2.signOut()
+                .then(changeProfile);
+    }
+
+</script>
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>

@@ -31,9 +31,10 @@
                     <a class="nav-link" href="/register">Register</a>
                 </li>
                 <li class="nav-item active" sec:authorize="isAuthenticated()">
-                    <form th:action="@{/logout}" th:method="post">
-                        <a class="nav-link">Logout</a>
+                    <form >
+                        <button class="nav-link" onclick="signOut();">Logout</button>
                     </form>
+
                 </li>
                 <li class="nav-item active" sec:authorize="isAuthenticated()">
                     <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
@@ -55,7 +56,27 @@
     </nav>
 </nav>
 
+<script>
 
+    function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        let profile = googleUser.getBasicProfile();
+        var username   = profile.getEmail().substring(0, profile.getEmail().lastIndexOf("@"));
+        var id_token = googleUser.getAuthResponse().id_token;
+
+        document.getElementById("username").value = username;
+        document.getElementById("password").value = id_token;
+        document.getElementById("loginForm").submit();
+    }
+    function signOut() {
+        // Get `GoogleAuth` instance
+        var auth2 = gapi.auth2.getAuthInstance();
+        // Sign-Out
+        auth2.signOut()
+            .then(changeProfile);
+    }
+
+</script>
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>
 </body>
