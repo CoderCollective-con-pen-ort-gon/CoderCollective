@@ -45,6 +45,7 @@
             <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
                 <button class="btn btn-warning">Edit</button>
             </form>
+
             <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="post" th:object="${comment}">
                 <button class="btn btn-danger">Delete</button>
             </form>
@@ -65,9 +66,6 @@
         <button class="btn btn-danger">Down</button>
     </form>
 </div>
-
-
-
 
 
 
