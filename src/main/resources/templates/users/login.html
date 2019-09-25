@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Bootstrap core css -->
+    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
     <th:block th:replace="fragments/header :: my-header('Sign-In')">
     </th:block>
+    <style>
+        div .container1 {
+            margin-top: 80px;
+            width: 80%
+        }
+        @media (min-width: 1200px) {
+            /* This part is only read by viewports wider than 1200 pixels */
+            div .container1 {
+                margin-top: 80px;
+                width:40%;
+            }
+        }
+        @media (max-width :768px) {
+            /* This part is only read by viewports wider than 1200 pixels */
+            div .container1 {
+                margin-top: 80px;
+                width:80%;
+            }
+        }
+        @media (min-width:960px) {
+            /* This part is only read by viewports wider than 1200 pixels */
+            div .container1 {
+                margin-top: 80px;
+                width:40%;
+            }
+        }
+    </style>
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
-<h1>Log In</h1>
+<div class="view full-page-intro" style="background-image: url('https://images.pexels.com/photos/908284/pexels-photo-908284.jpeg'); background-repeat: no-repeat; background-size: cover;">
+    <div class="mask rgba-black-light d-flex justify-content-center">
 <div th:if="${param.error}">
     Invalid Username and Password.
 </div>
@@ -14,21 +48,32 @@
     You have been logged out.
 </div>
 
-<div class="container">
+<div class="container1">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="dark-grey-text text-center">
+                <strong>Sign In</strong>
+            </h3>
+
+
     <form th:action="@{/login}" method="post">
-        <div class="form-group">
-            <label for="username">Username</label>
+        <div class="md-form">
+
             <input type="text" class="form-control" id="username" name="username" placeholder="Username"/>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
+        <div class="md-form">
+
             <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-</div>
 
-<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
-</th:block>
+
+</div></div>
+    </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../../static/js/bootstrap.js" ></script>
 </body>
 </html>

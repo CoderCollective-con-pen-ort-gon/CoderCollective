@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments/header :: my-header('Posts')">
-    </th:block>
+    <meta charset="utf-8"/>
+
+    <title>Home</title>
+    <!-- Bootstrap core css -->
+    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
 </head>
 <body>
 
 <th:block th:replace="fragments/navbar :: top-nav" />
 
-<div class="view full-page-intro" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/78.jpg'); background-repeat: no-repeat; background-size: cover;">
+<div class="view full-page-intro" style="background-image: url('https://images.pexels.com/photos/908284/pexels-photo-908284.jpeg'); background-repeat: no-repeat; background-size: cover;">
 
     <!-- Mask & flexbox options-->
     <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
@@ -34,7 +41,7 @@
                         <strong>Coding Collective is a site for people to meet, interact, learn the basics of coding, and discover popular resources that others use. Coding Collective is a community-driven site, with the community vetting and ensuring the quality of recommendations and materials produced.</strong>
                     </p>
 
-                    <a target="_blank" href="" class="btn btn-indigo btn-lg">Learn More
+                    <a href="" class="btn btn-indigo btn-lg">Learn More
                         <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
                     </a>
 
@@ -59,29 +66,35 @@
                                 <hr/>
 
                                 <div class="md-form">
-                                    <label for="email">Email Address</label>
-                                    <input class="form-control" id="email" name="email" th:field="*{email}"/>
+
+                                    <input type="text" class="form-control" id="email" placeholder="Email" th:field="*{email}"/>
                                 </div>
                                 <div class="md-form">
-                                    <label for="username">Username</label>
-                                    <input class="form-control" id="username" name="username" th:field="*{username}"/>
+
+                                    <input type="text" class="form-control" id="username" placeholder="Username" th:field="*{username}"/>
                                 </div>
                                 <div class="md-form">
-                                    <label for="firstname">First Name</label>
-                                    <input class="form-control" id="firstname" name="firstname" th:field="*{firstname}"/>
+
+                                    <input type="text" class="form-control" id="firstname" placeholder="Firstname"  th:field="*{firstname}"/>
                                 </div>
                                 <div class="md-form">
-                                    <label for="lastname">Last Name</label>
-                                    <input class="form-control" id="lastname" name="lastname" th:field="*{lastname}"/>
+
+                                    <input type="text" class="form-control" id="lastname" placeholder="Lastname" th:field="*{lastname}"/>
                                 </div>
                                 <div class="md-form">
-                                    <label for="title">Title</label>
-                                    <input class="form-control" id="title" name="title" th:field="*{title}"/>
+
+                                    <input  class="form-control" type="text" id="title" placeholder="Job Title" th:field="*{title}"/>
                                 </div>
                                 <div class="md-form">
-                                    <label for="password">Password</label>
-                                    <input class="form-control" type="password" id="password" name="password" th:field="*{password}"/>
+
+                                    <input class="form-control" type="password" id="password" placeholder="Password" th:field="*{password}"/>
                                 </div>
+
+<!--                                <div class="md-form">-->
+<!--                                    <label for="photo"></label>-->
+<!--                                    <input th:field="*{photo}" class="form-control" type="text" id="photo" value=""/><input type="submit"/>-->
+
+<!--                                </div>-->
 
 
 
@@ -110,8 +123,9 @@
     <!-- Mask & flexbox options-->
 
 </div>
-
-<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
-</th:block>
+<script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../../static/js/bootstrap.js" ></script>
+<!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
+<!--</th:block>-->
 </body>
 </html>
