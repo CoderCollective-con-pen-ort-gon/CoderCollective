@@ -27,12 +27,13 @@
 <!--<p th:text="${post.owner.username}"></p>-->
 <!--<p th:text="${post.createdAt}"></p>-->
 
+<th:block th:if="${user.getId() == post.owner.getId()}">
 <h1>Delete Post</h1>
 
 <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
     <button type="submit">Delete Post</button>
 </form>
-
+</th:block>
 
 <h1>Create Comment</h1>
 
