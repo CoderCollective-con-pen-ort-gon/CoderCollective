@@ -27,15 +27,24 @@
 <!--<p th:text="${post.owner.username}"></p>-->
 <!--<p th:text="${post.createdAt}"></p>-->
 
-<h1>Create Comment</h1>
 
-<form th:action="@{/posts/comment}" method="post" th:object="${comment}">
-    <input type="hidden" name="post.id" th:value="${post.id}"/>
-    <textarea name="comment" th:field="*{body}"></textarea>
-    <button type="submit">Add Comment</button>
-</form>
+
+<div sec:authorize="isAuthenticated()" class="container">
+    <h1>Create Comment</h1>
+    <form th:action="@{/posts/comment}" method="post" th:object="${comment}">
+        <input type="hidden" name="post.id" th:value="${post.id}"/>
+        <textarea name="comment" th:field="*{body}"></textarea>
+        <button type="submit">Add Comment</button>
+    </form>
+</div>
+
 
 <h1>Comments!</h1>
+
+
+
+
+
 
 <div th:each="comment : ${comments}">
     <p th:text="${comment.user.username}"></p>
@@ -50,20 +59,27 @@
             </form>
         </div>
     </div>
+
+
     <div th:text="${comment.ratingTota()}">
 
-    </div>
 
-    <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
-        <input type="hidden" name="vote" th:value="1"/>
-        <input type="hidden" name="comment.id" th:value="${comment.id}"/>
-        <button class="btn btn-success">Up</button>
-    </form>
-    <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
-        <input type="hidden" name="vote" th:value="0"/>
-        <input type="hidden" name="comment.id" th:value="${comment.id}"/>
-        <button class="btn btn-danger">Down</button>
-    </form>
+
+
+    </div>
+   <div sec:authorize="isAuthenticated()">
+       <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
+           <input type="hidden" name="vote" th:value="1"/>
+           <input type="hidden" name="comment.id" th:value="${comment.id}"/>
+           <button class="btn btn-success">Up</button>
+       </form>
+       <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
+           <input type="hidden" name="vote" th:value="0"/>
+           <input type="hidden" name="comment.id" th:value="${comment.id}"/>
+           <button class="btn btn-danger">Down</button>
+       </form>
+   </div>
+
 </div>
 
 

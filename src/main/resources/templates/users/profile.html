@@ -7,17 +7,6 @@
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
 
-<nav>
-    <ul>
-        <!-- More links here... -->
-        <li>
-            <form th:action="@{/logout}" th:method="post">
-                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-            </form>
-        </li>
-    </ul>
-</nav>
-
 <h1><span th:text="${user.firstname}"></span> <span th:text="${user.lastname}"></span> </h1>
     <p th:text="${user.email}"></p>
     <p th:text="${user.username}"></p>
