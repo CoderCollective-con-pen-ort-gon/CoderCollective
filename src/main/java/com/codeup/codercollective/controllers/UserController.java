@@ -28,7 +28,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/landingpage")
+    @GetMapping("/")
     public String user(Model vModel){
         vModel.addAttribute("user", new User());
         return "posts/landingpage";
