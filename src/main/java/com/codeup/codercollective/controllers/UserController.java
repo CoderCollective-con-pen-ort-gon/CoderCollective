@@ -35,7 +35,6 @@ public class UserController {
     }
 
 
-
     @GetMapping("/profile")
     public String getUserProfile(Model vModel){
         User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
