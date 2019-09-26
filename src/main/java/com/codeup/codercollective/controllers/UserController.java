@@ -38,10 +38,14 @@ public class UserController {
     @GetMapping("/profile")
     public String getUserProfile(Model vModel){
         User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser= userDao.findOne(userSession.getId());
+
+
+
         Iterable<Forum> forums = forumDao.findAll();
         vModel.addAttribute("forums", forums);
         vModel.addAttribute("posts",new Post());
-        vModel.addAttribute("user",userSession);
+        vModel.addAttribute("user",currentUser);
         Iterable<Post> userPosts = postDao.findByOwner(userSession);
         vModel.addAttribute("userPosts", userPosts);
         return"users/profile";
@@ -64,11 +68,16 @@ public class UserController {
     @GetMapping("/profile/{id}/edit")
     public String editProfileForm( Model vModel){
         User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        vModel.addAttribute("user",userSession);
+        User currentUser= userDao.findOne(userSession.getId());
+
+        vModel.addAttribute("user",currentUser);
         return "users/edit";
     }
     @PostMapping("/profile/{id}/edit")
     public String editProfile(@PathVariable long id, @ModelAttribute User user){
+        User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long userid =userSession.getId();
+        user.setId(userid);
         userDao.save(user);
         return "redirect:/profile";
     }

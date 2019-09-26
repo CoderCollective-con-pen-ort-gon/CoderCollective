@@ -20,6 +20,12 @@
         <div class="card-header" th:text="${post.title}">
         </div>
         <div class="card-body">
+
+
+
+            <img th:if="${post.photo != null}" th:src= "${post.photo}" alt="post image"/>
+
+
             <blockquote class="blockquote mb-0">
                 <p th:text="${post.body}"></p>
                 <footer class="blockquote-footer" th:text="${post.owner.username}">username</footer>
@@ -29,7 +35,6 @@
         </div>
     </div>
 </div>
-
 
 <!--create a comment-->
 
@@ -46,6 +51,7 @@
 
 <!--comments-->
 <p id="comment">Comment</p>
+
 
 <div class="container">
     <div th:each="comment : ${comments}">
