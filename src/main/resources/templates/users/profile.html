@@ -33,6 +33,23 @@
                 margin-top: 80px;
                 width:40%;
             }
+
+
+
+
+         .pic {
+             display: inline-block;
+             width: 150px;
+             height: 150px;
+             border-radius: 50%;
+
+             background-repeat: no-repeat;
+             background-position: center center;
+             background-size: cover;
+         }
+
+
+
         }
     </style>
 
@@ -56,7 +73,9 @@
     </nav>
 
         <div class="profile">
-            <img th:src= "${user.photo}" alt="profile image"/>
+            <div >
+            <img class="pic" th:src= "${user.photo}" alt="profile image"/>
+            </div>
             <h1><span th:text="${user.firstname}"></span></h1>
             <p th:text="${user.email}"></p>
             <p th:text="${user.username}"></p>

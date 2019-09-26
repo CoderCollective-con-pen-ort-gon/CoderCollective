@@ -9,8 +9,35 @@
     <input type="text"  th:field="*{title}" />
     <input type="text"  th:field="*{body}" />
     <input type="hidden" th:field="*{owner.id}" />
+    <div class="md-form">
+        <input class="form-control" placeholder="Edit Post Picture" th:field="*{photo}" type="text"
+               id="photo" value=""/>
+        <button type="button" id="open">Open Picker</button>
+    </div>
+
     <button>Edit</button>
 </form>
+
+
+
+
+
+
+
+<script>
+    const openBtn = document.getElementById('open');
+    const options = {
+        onUploadDone: (res) =>
+            document.getElementById("photo").value = res.filesUploaded[0].url,
+    };
+    console.log(50);
+    const client = filestack.init(FSKey);
+
+    openBtn.addEventListener("click", function () {
+        client.picker(options).open()
+
+    });
+</script>
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>

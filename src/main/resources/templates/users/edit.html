@@ -21,6 +21,7 @@
     <input type="hidden"  name="password" th:field="*{password}" />
 
     <button type="submit" class="btn btn-primary">Submit Edit</button>
+
 </form>
 <script>
     const openBtn = document.getElementById('open');
@@ -33,6 +34,10 @@
 
     openBtn.addEventListener("click", function () {
         client.picker(options).open()
+
+
+    });
+</script>
 
     });
 </script>
