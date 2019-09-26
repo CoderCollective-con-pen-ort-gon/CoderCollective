@@ -43,6 +43,7 @@
 
 
 <form th:action=" @{/posts/create}" method="post" th:object="${posts}">
+
     <select class="form-control" name="forum_id" th:field="*{forums.id}" th:value="${forums}">
         <option th:each="forum : ${forums}" name="forum_id" th:value="${forum.id}" th:text="${forum.name}"></option>
 
@@ -52,8 +53,22 @@
         <label for="exampleFormControlTextarea1">Post body</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="body" th:field="*{body}"></textarea>
     </div>
+
+    <div class="md-form">
+
+        <input class="form-control" placeholder="Upload Image" th:field="*{photo}" type="text" id="photo" value=""/>
+        <button type="button" id="open">Open Picker</button>
+
+    </div>
+
+
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+
+
+
+
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 
