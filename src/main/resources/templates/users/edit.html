@@ -5,23 +5,24 @@
     </th:block>
 </head>
 <body>
-<form th:action ="@{'/profile/'+ ${user.id} +'/edit'}" th:method="POST" th:object="${user}">
-    <input type="text"  name="username" th:field="*{username}" />
-    <input type="text"  name="email" th:field="*{email}" />
-    <input type="text"  name="firstname" th:field="*{firstname}" />
-    <input type="text"  name="lastname" th:field="*{lastname}" />
-    <input type="text"  name="title" th:field="*{title}" />
-    <input type="hidden"  name="password" th:field="*{password}" />
-
+<form th:action=" @{'/profile/' + ${user.id} + '/edit'}" method="post" th:object="${user}">
+    <input class="form-control" name="title" th:field="*{username}"  type="text" placeholder="Username"/>
+    <input type="text" class="form-control" name="email" th:field="*{email}" placeholder="Email"/>
+    <input type="text" class="form-control" name="firstname" th:field="*{firstname}" placeholder="First Name"/>
+    <input type="text" class="form-control" name="lastname" th:field="*{lastname}" placeholder="Last Name"/>
+    <input type="text" class="form-control" name="title" th:field="*{title}" placeholder="Title"/>
     <div class="md-form">
+
         <input class="form-control" placeholder="Profile Picture" th:field="*{photo}" type="text"
                id="photo" value=""/>
         <button type="button" id="open">Open Picker</button>
+
     </div>
+    <input type="hidden"  name="password" th:field="*{password}" />
 
-    <button>Edit </button>
+    <button type="submit" class="btn btn-primary">Submit Edit</button>
+
 </form>
-
 <script>
     const openBtn = document.getElementById('open');
     const options = {
@@ -34,9 +35,12 @@
     openBtn.addEventListener("click", function () {
         client.picker(options).open()
 
+
     });
 </script>
 
+    });
+</script>
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>
 </body>
