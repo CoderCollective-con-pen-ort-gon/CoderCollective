@@ -1,68 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Bootstrap core css -->
+    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+
+    <style>
+        div .container {
+            margin-top: 80px;
+            width: 80%
+        }
+        @media (min-width: 1200px) {
+            /* This part is only read by viewports wider than 1200 pixels */
+            div .container {
+                margin-top: 80px;
+                width:40%;
+            }
+        }
+        @media (max-width :768px) {
+            /* This part is only read by viewports wider than 1200 pixels */
+            div .container {
+                margin-top: 80px;
+                width:80%;
+            }
+        }
+        @media (min-width:960px) {
+            /* This part is only read by viewports wider than 1200 pixels */
+            div .container {
+                margin-top: 80px;
+                width:40%;
+            }
+        }
+    </style>
+
     <th:block th:replace="fragments/header :: my-header('Profile')">
     </th:block>
+
+
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
+<div class="container" >
+    <nav>
+        <ul>
+            <!-- More links here... -->
+            <li>
+                <form th:action="@{/logout}" th:method="post">
+                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
 
-<nav>
-    <ul>
-        <!-- More links here... -->
-        <li>
-            <form th:action="@{/logout}" th:method="post">
-                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+        <div class="profile">
+            <img th:src= "${user.photo}" alt="profile image"/>
+            <h1><span th:text="${user.firstname}"></span></h1>
+            <p th:text="${user.email}"></p>
+            <p th:text="${user.username}"></p>
+            <p th:text="${user.title}"></p>
+            <a th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>
+        </div>
+        <div class="bodyForum">
+        <h3>Create a Post</h3>
+        <form th:action=" @{/profile/create}" method="post" th:object="${posts}">
+            <select class="form-control" name="forum_id" th:field="*{forums.id}" th:value="${forums}">
+                <option th:each="forum : ${forums}" name="forum_id" th:value="${forum.id}" th:text="${forum.name}"></option>
+            </select>
+            <input class="form-control" name="title" th:field="*{title}"  type="text" placeholder="Title"/>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Post body</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="body" th:field="*{body}"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+        <h3>Here are your created post</h3>
+        <div th:each="post : ${userPosts}">
+            <p th:text="${post.title}"></p>
+            <p th:text="${post.body}"></p>
+            <p th:text="${post.createdAt}"></p>
+            <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
+                <button class="btn btn-warning">Edit Post</button>
             </form>
-        </li>
-    </ul>
-</nav>
-
-<h1><span th:text="${user.firstname}"></span> <span th:text="${user.lastname}"></span> </h1>
-    <p th:text="${user.email}"></p>
-    <p th:text="${user.username}"></p>
-    <p th:text="${user.title}"></p>
-    <img th:src= "${user.photo}" alt="profile image"/>
-
-<a th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>
-
-
-<h3>Create a Post</h3>
-
-
-<form th:action=" @{/profile/create}" method="post" th:object="${posts}">
-    <select class="form-control" name="forum_id" th:field="*{forums.id}" th:value="${forums}">
-        <option th:each="forum : ${forums}" name="forum_id" th:value="${forum.id}" th:text="${forum.name}"></option>
-
-    </select>
-    <input class="form-control" name="title" th:field="*{title}"  type="text" placeholder="Title"/>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Post body</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="body" th:field="*{body}"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-
-<h3>Here are your created post</h3>
-
-<div th:each="post : ${userPosts}">
-    <p th:text="${post.title}"></p>
-    <p th:text="${post.body}"></p>
-    <p th:text="${post.createdAt}"></p>
-    <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
-        <button class="btn btn-warning">Edit Post</button>
-    </form>
-<!--    <form th:action="@{'/post/' + ${post.id} + '/delete'}" th:method="post" th:object="${post}">-->
-<!--        <button class="btn btn-danger">Delete Post</button>-->
-<!--    </form>-->
+        </div>
 </div>
-
-
-<a th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>
-
-
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>
+<script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 </body>
 </html>

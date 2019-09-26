@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Bootstrap core css -->
+    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+
+    <style>
+        div .container2 {
+            margin-top: 80px;
+            width: 80%
+        }
+        @media (min-width: 1200px) {
+            /* This part is only read by viewports wider than 1200 pixels */
+            div .container2 {
+                margin-top: 80px;
+                width:40%;
+            }
+        }
+        @media (max-width :768px) {
+            /* This part is only read by viewports wider than 1200 pixels */
+            div .container2 {
+                margin-top: 80px;
+                width:80%;
+            }
+        }
+        @media (min-width:960px) {
+            /* This part is only read by viewports wider than 1200 pixels */
+            div .container2 {
+                margin-top: 80px;
+                width:40%;
+            }
+        }
+    </style>
     <th:block th:replace="fragments/header :: my-header('Posts')">
     </th:block>
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
-
+<div class="container2">
 <h1>Forums</h1>
 
     <div th:each="forum : ${forums}">
@@ -14,8 +48,9 @@
         <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View Forum</a>
     </div>
 
+</div>
 
-<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
-</th:block>
+<script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 </body>
 </html>

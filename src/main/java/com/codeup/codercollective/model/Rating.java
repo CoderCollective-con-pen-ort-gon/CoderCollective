@@ -56,5 +56,15 @@ public class Rating{
     public void setComment(Comment comment) {
         this.comment = comment;
     }
+
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "id=" + id +
+                ", vote=" + vote +
+                ", owner=" + owner +
+                ", comment=" + comment +
+                '}';
+    }
 }
 
