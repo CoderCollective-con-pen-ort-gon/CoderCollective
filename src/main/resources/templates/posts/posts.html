@@ -3,18 +3,66 @@
 <head>
     <th:block th:replace="fragments/header :: my-header('Forums')">
     </th:block>
+    <link th:rel="stylesheet" th:href="@{'/css/post.css'}" />
+
+
+
 </head>
+
+
 <body>
-<th:block th:replace="fragments/navbar :: top-nav" />
+<div class="container-fluid">
 
-<h1 th:text="${forum.name}"></h1>
+    <th:block th:replace="fragments/navbar :: top-nav" />
 
-<div th:each="post : ${posts}">
-    <h1 th:text="${post.title}"></h1>
-    <p th:Text="${post.owner.username}"></p>
-    <p th:Text="${post.createdAt}"></p>
-    <a th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+    <div class="jumbo jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 th:text="${forum.name}" class="display-4"></h1>
+            <p class="lead">See what the community is talking about</p>
+        </div>
+    </div>
+
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th >Title</th>
+            <th >Author</th>
+
+            <th >Posted</th>
+            <th >Comments</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}">
+
+            <!--<div th:each="post : ${posts}">-->
+            <td th:text="${post.title}"></td>
+            <td th:Text="${post.owner.username}"></td>
+            <td th:Text="${post.getCreatedAt().getMonth()}+'/'+${post.getCreatedAt().getDay()} + '/2019'"></td>
+            <td>11<img id="commentIcon" th:src="@{'/image/commenticon.png'}"/>
+
+            </td>
+            <td> <a class="btn btn-lg btn-info" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th >Posted</th>
+            <th >Comments</th>
+            <th > </th>
+        </tr>
+        </tfoot>
+    </table>
 </div>
+
+
+
+
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>
