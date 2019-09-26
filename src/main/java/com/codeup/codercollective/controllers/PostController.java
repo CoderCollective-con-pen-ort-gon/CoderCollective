@@ -28,10 +28,10 @@ public class PostController {
         favDao = favoritesRepository;
     }
 
-    @GetMapping("/")
-    public String home() {
-        return "posts/landingpage";
-    }
+//    @GetMapping("/")
+//    public String home() {
+//        return "posts/landingpage";
+//    }
 
     @GetMapping("/posts")
     public String showPosts() {
