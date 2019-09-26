@@ -79,8 +79,7 @@
         <!--Image via FileStack-->
         <div class="md-form">
 
-            <input
-                   placeholder="Profile Picture" th:field="*{photo}" type="text" id="photo" value=""/>
+            <input class="form-control" placeholder="Profile Picture" th:field="*{photo}" type="text" id="photo" value=""/>
             <button type="button" id="open">Open Picker</button>
 
         </div>
@@ -88,9 +87,9 @@
 
 
 
-        <div class="form-group">
-            <label for="confirmpassword">Confirm Password</label>
-            <input class="form-control" type="password" id="confirmpassword" name="confirmpassword"/>
+        <div class="md-form">
+
+            <input class="form-control" type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password"/>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
