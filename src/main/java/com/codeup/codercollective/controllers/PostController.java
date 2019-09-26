@@ -35,6 +35,7 @@ public class PostController {
     public String show(@PathVariable long id, Model vModel) {
 //        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        System.out.println("UserId = " + loggedIn.getId());
+
         Post postId = postDao.findOne(id);
         Iterable<Comment> comments = postId.getComments();
         vModel.addAttribute("comments", comments);
