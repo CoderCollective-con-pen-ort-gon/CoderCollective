@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <th:block th:replace="fragments/header :: my-header('Posts')">
     </th:block>
+    <script src="https://pagecdn.io/lib/ace/1.4.5/ace.js"
+            integrity="sha256-5Xkhn3k/1rbXB+Q/DX/2RuAtaB4dRRyQvMs83prFjpM=" crossorigin="anonymous"></script>
+    <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
+    <style type="text/css" media="screen">
+        #editor {
+            margin: 0;
+            position: absolute;
+            top: 90%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
 </head>
 <body>
-<th:block th:replace="fragments/navbar :: top-nav" />
+<th:block th:replace="fragments/navbar :: top-nav"/>
 
 <div class="container">
     <div class="card">
@@ -28,11 +43,11 @@
 <!--<p th:text="${post.createdAt}"></p>-->
 
 <th:block th:if="${user.getId() == post.owner.getId()}">
-<h1>Delete Post</h1>
+    <h1>Delete Post</h1>
 
-<form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
-    <button type="submit">Delete Post</button>
-</form>
+    <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
+        <button type="submit">Delete Post</button>
+    </form>
 </th:block>
 
 <div sec:authorize="isAuthenticated()" class="container">
@@ -72,24 +87,41 @@
     <div th:text="${comment.ratingTota()}">
 
 
-
-
     </div>
-   <div sec:authorize="isAuthenticated()">
-       <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
-           <input type="hidden" name="vote" th:value="1"/>
-           <input type="hidden" name="comment.id" th:value="${comment.id}"/>
-           <button class="btn btn-success">Up</button>
-       </form>
-       <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
-           <input type="hidden" name="vote" th:value="0"/>
-           <input type="hidden" name="comment.id" th:value="${comment.id}"/>
-           <button class="btn btn-danger">Down</button>
-       </form>
-   </div>
-
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
+            <input type="hidden" name="vote" th:value="1"/>
+            <input type="hidden" name="comment.id" th:value="${comment.id}"/>
+            <button class="btn btn-success">Up</button>
+        </form>
+        <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
+            <input type="hidden" name="vote" th:value="0"/>
+            <input type="hidden" name="comment.id" th:value="${comment.id}"/>
+            <button class="btn btn-danger">Down</button>
+        </form>
+    </div>
+</div>
+<div id="editor" style="width: 100%; height: 500px;">function foo(items) {
+    var x = "All this is syntax highlighted";
+    return x;
+    }
 </div>
 
+
+<script>
+    // var editor = ace.edit("editor");
+    // editor.setTheme("ace/theme/monokai");
+    // editor.session.setMode("ace/mode/javascript");
+    var aceEditor = ace.edit("editor");
+
+    // defines the style of the editor
+    aceEditor.setTheme("ace/theme/monokai");
+    // hides line numbers (widens the area occupied by error and warning messages)
+    aceEditor.renderer.setOption("showLineNumbers", false);
+    // ensures proper autocomplete, validation and highlighting of JavaScript code
+    aceEditor.getSession().setMode("ace/mode/javascript_expression");
+
+</script>
 
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
