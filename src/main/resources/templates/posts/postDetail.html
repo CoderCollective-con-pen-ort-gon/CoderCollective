@@ -3,6 +3,14 @@
 <head>
     <th:block th:replace="fragments/header :: my-header('Posts')">
     </th:block>
+    <style>
+        .img-thumbnail {
+
+        }
+        #comment  {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
@@ -22,67 +30,67 @@
     </div>
 </div>
 
-<!--<h1 th:text="${post.title}"></h1>-->
-<!--<p th:text="${post.body}"></p>-->
-<!--<p th:text="${post.owner.username}"></p>-->
-<!--<p th:text="${post.createdAt}"></p>-->
 
+<!--create a comment-->
 
-
-<div sec:authorize="isAuthenticated()" class="container">
-    <h1>Create Comment</h1>
+<div class="container" sec:authorize="isAuthenticated()">
     <form th:action="@{/posts/comment}" method="post" th:object="${comment}">
-        <input type="hidden" name="post.id" th:value="${post.id}"/>
-        <textarea name="comment" th:field="*{body}"></textarea>
-        <button type="submit">Add Comment</button>
+        <div class="input-group">
+            <div class="input-group-prepend"></div>
+            <textarea class="form-control" aria-label="With textarea"></textarea>
+            <button type="submit">Add Comment</button>
+        </div>
     </form>
 </div>
 
 
-<h1>Comments!</h1>
+<!--comments-->
+<p id="comment">Comment</p>
 
-
-
-
-
-
-<div th:each="comment : ${comments}">
-    <p th:text="${comment.user.username}"></p>
-    <p th:text="${comment.body}"></p>
-    <div sec:authorize="isAuthenticated()">
-        <div th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
-            <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
-                <button class="btn btn-warning">Edit</button>
-            </form>
-
-            <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="post" th:object="${comment}">
-                <button class="btn btn-danger">Delete</button>
-            </form>
+<div class="container">
+    <div th:each="comment : ${comments}">
+        <div class="row">
+            <div class="col-lg-8">
+                <div th:text="${comment.user.username}"></div>
+            </div>
         </div>
+        <div class="row">
+            <div class="col col-lg-2"><img th:src="${comment.user.photo}" class="img-thumbnail"/><br/></div>
+            <div class="col-lg-8" th:text="${comment.body}"><br/></div>
+            <div class="col">
+                <div th:text="'likes: ' + ${comment.ratingTota()}"></div>
+                <div sec:authorize="isAuthenticated()">
+                    <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
+                        <input type="hidden" name="vote" th:value="1"/>
+                        <input type="hidden" name="comment.id" th:value="${comment.id}"/>
+                        <button class="btn btn-link"> Like</button>
+                    </form>
+                    <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
+                        <input type="hidden" name="vote" th:value="0"/>
+                        <input type="hidden" name="comment.id" th:value="${comment.id}"/>
+                        <button class="btn btn-link"> Unlike</button>
+                    </form>
+                </div>
+                <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+                            <div class="dropdown-menu">
+                                <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
+                                    <button class="btn btn-link btn-sm">Edit</button>
+                                </form>
+                                <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="post" th:object="${comment}">
+                                    <button class="btn btn-link btn-sm">Delete</button>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br/>
     </div>
-
-
-    <div th:text="${comment.ratingTota()}">
-
-
-
-
-    </div>
-   <div sec:authorize="isAuthenticated()">
-       <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
-           <input type="hidden" name="vote" th:value="1"/>
-           <input type="hidden" name="comment.id" th:value="${comment.id}"/>
-           <button class="btn btn-success">Up</button>
-       </form>
-       <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
-           <input type="hidden" name="vote" th:value="0"/>
-           <input type="hidden" name="comment.id" th:value="${comment.id}"/>
-           <button class="btn btn-danger">Down</button>
-       </form>
-   </div>
-
 </div>
-
 
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
