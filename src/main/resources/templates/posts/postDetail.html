@@ -12,6 +12,13 @@
         <div class="card-header" th:text="${post.title}">
         </div>
         <div class="card-body">
+
+
+
+            <img th:if="${post.photo != null}" th:src= "${post.photo}" alt="post image"/>
+
+<!--            <img id="image" class="activator" th:if="${!#arrays.isEmpty(post.images)}" th:src="${post.images[0].path}" />-->
+
             <blockquote class="blockquote mb-0">
                 <p th:text="${post.body}"></p>
                 <footer class="blockquote-footer" th:text="${post.owner.username}">username</footer>
@@ -22,10 +29,7 @@
     </div>
 </div>
 
-<!--<h1 th:text="${post.title}"></h1>-->
-<!--<p th:text="${post.body}"></p>-->
-<!--<p th:text="${post.owner.username}"></p>-->
-<!--<p th:text="${post.createdAt}"></p>-->
+
 
 <th:block th:if="${user.getId() == post.owner.getId()}">
 <h1>Delete Post</h1>
@@ -56,6 +60,7 @@
 <div th:each="comment : ${comments}">
     <p th:text="${comment.user.username}"></p>
     <p th:text="${comment.body}"></p>
+
     <div sec:authorize="isAuthenticated()">
         <div th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
             <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
