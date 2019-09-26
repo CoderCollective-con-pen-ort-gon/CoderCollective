@@ -59,6 +59,8 @@ public class PostController {
         User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findOne(userSession.getId());
         comment.setUser(user);
+        System.out.println(comment.getPost().getId());
+
         Comment savedComment = commentDao.save(comment);
         long postId = savedComment.getPost().getId();
 
