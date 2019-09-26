@@ -77,6 +77,8 @@
                         <button class="btn btn-link"> Unlike</button>
                     </form>
                 </div>
+
+
                 <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
                     <ul class="nav nav-pills">
                         <li class="nav-item dropdown">
