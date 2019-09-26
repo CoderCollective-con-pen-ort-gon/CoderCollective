@@ -71,6 +71,7 @@
             <div class="input-group">
                 <div class="input-group-prepend"></div>
                 <textarea class="form-control" th:field="*{body}" aria-label="With textarea"></textarea>
+                <input type="hidden" name="post.id" th:value="${post.id}"/>
                 <button type="submit">Add Comment</button>
             </div>
         </form>
