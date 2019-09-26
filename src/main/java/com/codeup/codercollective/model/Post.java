@@ -1,5 +1,7 @@
 package com.codeup.codercollective.model;
 import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.*;
 import java.util.List;
@@ -94,4 +96,5 @@ public class Post {
     public void setPostfavorites(List<User> postfavorites) {
         this.postfavorites = postfavorites;
     }
+
 }

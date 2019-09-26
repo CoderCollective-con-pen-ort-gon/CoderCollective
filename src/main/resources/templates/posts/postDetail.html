@@ -40,6 +40,12 @@
     <form th:action="@{/posts/comment}" method="post" th:object="${comment}">
         <input type="hidden" name="post.id" th:value="${post.id}"/>
         <textarea name="comment" th:field="*{body}"></textarea>
+        <div class="md-form">
+
+            <input class="form-control" placeholder="Upload Image" th:field="*{photo}" type="text" id="photo" value=""/>
+            <button type="button" id="open">Open Picker</button>
+
+        </div>
         <button type="submit">Add Comment</button>
     </form>
 </div>

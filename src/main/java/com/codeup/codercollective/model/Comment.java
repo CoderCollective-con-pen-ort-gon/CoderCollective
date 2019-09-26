@@ -114,4 +114,5 @@ public class Comment {
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
+
 }

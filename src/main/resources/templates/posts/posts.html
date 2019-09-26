@@ -41,11 +41,15 @@
             <td th:text="${post.title}"></td>
             <td th:Text="${post.owner.username}"></td>
             <td th:Text="${post.getCreatedAt().getMonth()}+'/'+${post.getCreatedAt().getDay()} + '/2019'"></td>
-            <td>11<img id="commentIcon" th:src="@{'/image/commenticon.png'}"/>
+            <td><span th:Text="${post.comments.size()}+ ' ' "> </span><img id="commentIcon" th:src="@{'/image/commenticon.png'}"/>
+
+
+
 
             </td>
             <td> <a class="btn btn-lg btn-info" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
             </td>
+
         </tr>
         </tbody>
         <tfoot>
