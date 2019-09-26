@@ -10,96 +10,142 @@
 
     <th:block th:replace="fragments/header :: my-header('Register')">
     </th:block>
-    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
     <style>
         div .container {
             margin-top: 80px;
             width: 80%
         }
+
         @media (min-width: 1200px) {
             /* This part is only read by viewports wider than 1200 pixels */
             div .container {
                 margin-top: 80px;
-                width:40%;
+                width: 40%;
             }
         }
-        @media (max-width :768px) {
+
+        @media (max-width: 768px) {
             /* This part is only read by viewports wider than 1200 pixels */
             div .container {
                 margin-top: 80px;
-                width:80%;
+                width: 80%;
             }
         }
-        @media (min-width:960px) {
+
+        @media (min-width: 960px) {
             /* This part is only read by viewports wider than 1200 pixels */
             div .container {
                 margin-top: 80px;
-                width:40%;
+                width: 40%;
             }
         }
     </style>
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav"/>
-<div class="view full-page-intro" style="background-image: url('https://images.pexels.com/photos/908284/pexels-photo-908284.jpeg'); background-repeat: no-repeat; background-size: cover;">
+<div class="view full-page-intro"
+     style="background-image: url('https://images.pexels.com/photos/908284/pexels-photo-908284.jpeg'); background-repeat: no-repeat; background-size: cover;">
     <div class="mask rgba-black-light d-flex justify-content-center">
 
-<div class="container">
-    <div class="card">
-    <div class="card-body">
-        <h3 class="dark-grey-text text-center">
-            <strong>Create Account</strong>
-        </h3>
-    <form th:action="@{/register}" method="post" th:object="${user}">
-        <div class="md-form">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="dark-grey-text text-center">
+                        <strong>Create Account</strong>
+                    </h3>
+                    <form th:action="@{/register}" method="post" th:object="${user}">
+                        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">Fill in form</div>
+                        <div onclick="signOut();" class="g-signout2" data-theme="dark">Sign out</div>
 
-            <input class="form-control" id="email" name="email" placeholder="Email" th:field="*{email}"/>
+                        <div class="md-form">
+
+                            <input class="form-control" id="email" name="email" placeholder="Email"
+                                   th:field="*{email}"/>
+                        </div>
+                        <div class="md-form">
+
+                            <input class="form-control" id="username" name="username" placeholder="Username"
+                                   th:field="*{username}"/>
+                        </div>
+                        <div class="md-form">
+
+                            <input class="form-control" id="firstname" name="firstname" placeholder="Firstname"
+                                   th:field="*{firstname}"/>
+                        </div>
+                        <div class="md-form">
+
+                            <input class="form-control" id="lastname" name="lastname" placeholder="Lastname"
+                                   th:field="*{lastname}"/>
+                        </div>
+                        <div class="md-form">
+
+                            <input class="form-control" id="title" name="title" placeholder="Job Title"
+                                   th:field="*{title}"/>
+                        </div>
+                        <div class="md-form">
+
+                            <input class="form-control" type="password" id="password" name="password"
+                                   placeholder="Password" th:field="*{password}"/>
+                        </div>
+
+                        <!--Image via FileStack-->
+                        <div class="md-form">
+
+                            <input class="form-control" placeholder="Profile Picture" th:field="*{photo}" type="text"
+                                   id="photo" value=""/>
+                            <button type="button" id="open">Open Picker</button>
+
+                        </div>
+                        <!---->
+
+
+                        <div class="md-form">
+
+                            <input class="form-control" type="password" id="confirmpassword" name="confirmpassword"
+                                   placeholder="Confirm Password"/>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="md-form">
-
-            <input class="form-control" id="username" name="username" placeholder="Username" th:field="*{username}"/>
-        </div>
-        <div class="md-form">
-
-            <input class="form-control" id="firstname" name="firstname" placeholder="Firstname" th:field="*{firstname}"/>
-        </div>
-        <div class="md-form">
-
-            <input class="form-control" id="lastname" name="lastname" placeholder="Lastname" th:field="*{lastname}"/>
-        </div>
-        <div class="md-form">
-
-            <input class="form-control" id="title" name="title" placeholder="Job Title" th:field="*{title}"/>
-        </div>
-        <div class="md-form">
-
-            <input class="form-control" type="password" id="password" name="password" placeholder="Password" th:field="*{password}"/>
-        </div>
-
-        <!--Image via FileStack-->
-        <div class="md-form">
-
-            <input
-                   placeholder="Profile Picture" th:field="*{photo}" type="text" id="photo" value=""/>
-            <button type="button" id="open">Open Picker</button>
-
-        </div>
-        <!---->
-
-
-
-        <div class="form-group">
-            <label for="confirmpassword">Confirm Password</label>
-            <input class="form-control" type="password" id="confirmpassword" name="confirmpassword"/>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
-</div>
-</div>
     </div>
 </div>
+
+
+<script>
+
+    // gapi.load('auth2', function () {
+    //     gapi.auth2.init();
+    // });
+    function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        let profile = googleUser.getBasicProfile();
+        let firstName = profile.getName().split(' ').slice(0, -1).join(' ');
+        let lastName = profile.getName().split(' ').slice(-1).join(' ');
+        var username = profile.getEmail().substring(0, profile.getEmail().lastIndexOf("@"));
+        var id_token = googleUser.getAuthResponse().id_token;
+
+        document.getElementById("email").value = profile.getEmail();
+        document.getElementById("username").value = username;
+        document.getElementById("firstname").value = firstName;
+        document.getElementById("lastname").value = lastName;
+        document.getElementById("photo").value = profile.getImageUrl();
+        document.getElementById("password").value = id_token;
+        document.getElementById("title").value = "New Member";
+        // user: email, username, first last title photo
+        document.getElementById("signUpForm").submit();
+    }
+
+    function signOut() {
+        let auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+
+</script>
 
 <!--FileStack JS-->
 <script>
@@ -120,6 +166,10 @@
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 
 
+<!--https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin-->
 
+
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
 </body>
 </html>

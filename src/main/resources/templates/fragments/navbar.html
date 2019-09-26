@@ -5,62 +5,95 @@
 <body>
 
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" th:fragment="top-nav">
-        <div class="container">
-<!--Brand / Logo-->
-        <a class="navbar-brand" href="/" target="_blank">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" th:fragment="top-nav">
+    <div class="container">
+        <!--Brand / Logo-->
+        <a class="navbar-brand" href="/">
             <strong>Coder-Collective</strong>
         </a>
-<!--            Collapse-->
+        <!--            Collapse-->
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-
-<!--            Links-->
+            <!--            Links-->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-<!--                Left-->
+                <!--                Left-->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Home
-                        <span class="sr-only">(current)</span>
+                            <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" href="/forums" >Forums<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/forums">Forums<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" href="/profile" >Profile<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/profile">Profile<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item" sec:authorize="!isAuthenticated()">
-                        <a class="nav-link" href="/login" >Login</a>
+                        <a class="nav-link" href="/login">Login</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" href="/posts/create" >Create</a>
+                        <a class="nav-link" href="/posts/create">Create</a>
                     </li>
                     <li class="nav-item" sec:authorize="!isAuthenticated()">
-                        <a class="nav-link" href="/register" >Register</a>
+                        <a class="nav-link" href="/register">Register</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <form th:action="@{/logout}" th:method="post">
-                            <a class="nav-link">Logout</a>
+                            <button class="nav-link" type="submit" onclick="signOut();">Logout</button>
                         </form>
+
+
                     </li>
                     <li class="nav-item active" sec:authorize="isAuthenticated()">
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" id="search" placeholder="Search" aria-label="Search"/>
+                        <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
+                            <label for="searched"></label>
+                            <input class="form-control mr-sm-2" name="searched" type="search" id="searched"
+                                   placeholder="Search" aria-label="Search"/>
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </li>
+                    <!--                <li class="nav-item">-->
+                    <!--                    <a class="nav-link" th:action="@{/logout}" href="/logout" sec:authorize="isAuthenticated()" th:method="post">Logout</a>-->
+                    <!--                </li>-->
+                    <!--                <li class="nav-item dropdown">-->
+                    <!--                    <form  sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">-->
+                    <!--                        <button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
+                    <!--                    </form>-->
+                    <!--                </li>-->
                 </ul>
             </div>
+     </div>
+</nav>
 
-        </div>
-    </nav>
+<script>
 
+    function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        let profile = googleUser.getBasicProfile();
+        var username = profile.getEmail().substring(0, profile.getEmail().lastIndexOf("@"));
+        var id_token = googleUser.getAuthResponse().id_token;
 
+        document.getElementById("username").value = username;
+        document.getElementById("password").value = id_token;
+        document.getElementById("loginForm").submit();
+    }
 
+    function signOut() {
+        // Get `GoogleAuth` instance
+        var auth2 = gapi.auth2.getAuthInstance();
+        // Sign-Out
+        auth2.signOut()
+            .then(changeProfile);
+        GoogleAuth.signOut();
+        GoogleAuth.disconnect()
+    }
+
+</script>
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
 </body>
 </html>
