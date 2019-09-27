@@ -1,4 +1,4 @@
-use cc_db;
+use codercollective_db;
 
 
 insert into users(id, email, firstname, lastname, password, title, username) values
