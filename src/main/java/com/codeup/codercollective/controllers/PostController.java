@@ -46,9 +46,9 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model vModel) {
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("UserId = " + loggedIn.getId());
-        vModel.addAttribute("user", loggedIn);
+//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        System.out.println("UserId = " + loggedIn.getId());
+//        vModel.addAttribute("user", loggedIn);
         Post postId = postDao.findOne(id);
         Iterable<Comment> comments = postId.getComments();
         vModel.addAttribute("comments", comments);
@@ -129,7 +129,7 @@ public class PostController {
         System.out.println("comment");
 
         postDao.delete(id);
-        return "redirect:/forums";
+        return "redirect:/profile";
 //        return "/forums/" + forumId;
     }
 

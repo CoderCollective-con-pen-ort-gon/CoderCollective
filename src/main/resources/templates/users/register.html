@@ -11,6 +11,14 @@
     <th:block th:replace="fragments/header :: my-header('Register')">
     </th:block>
     <style>
+
+        .view2 {
+            overflow: auto;
+        }
+        div .card1 {
+            background-color: white ;
+        }
+
         div .container {
             margin-top: 80px;
             width: 80%
@@ -43,12 +51,12 @@
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav"/>
-<div class="view full-page-intro"
+<div class="view2"
      style="background-image: url('https://images.pexels.com/photos/908284/pexels-photo-908284.jpeg'); background-repeat: no-repeat; background-size: cover;">
-    <div class="mask rgba-black-light d-flex justify-content-center">
+    <div class=" rgba-black-light d-flex justify-content-center">
 
         <div class="container">
-            <div class="card">
+            <div class="card1">
                 <div class="card-body">
                     <h3 class="dark-grey-text text-center">
                         <strong>Create Account</strong>
@@ -67,16 +75,16 @@
                             <input class="form-control" id="username" name="username" placeholder="Username"
                                    th:field="*{username}"/>
                         </div>
-                        <div class="md-form">
+<!--                        <div class="md-form">-->
 
-                            <input class="form-control" id="firstname" name="firstname" placeholder="Firstname"
-                                   th:field="*{firstname}"/>
-                        </div>
-                        <div class="md-form">
+<!--                            <input class="form-control" id="firstname" name="firstname" placeholder="Firstname"-->
+<!--                                   th:field="*{firstname}"/>-->
+<!--                        </div>-->
+<!--                        <div class="md-form">-->
 
-                            <input class="form-control" id="lastname" name="lastname" placeholder="Lastname"
-                                   th:field="*{lastname}"/>
-                        </div>
+<!--                            <input class="form-control" id="lastname" name="lastname" placeholder="Lastname"-->
+<!--                                   th:field="*{lastname}"/>-->
+<!--                        </div>-->
                         <div class="md-form">
 
                             <input class="form-control" id="title" name="title" placeholder="Job Title"
@@ -89,23 +97,13 @@
                         </div>
 
                         <!--Image via FileStack-->
-                        <div class="md-form">
 
-                            <input class="form-control" placeholder="Profile Picture" th:field="*{photo}" type="text"
-                                   id="photo" value=""/>
-                            <button type="button" id="open">Open Picker</button>
-
-                        </div>
                         <!---->
 
 
-                        <div class="md-form">
 
-                            <input class="form-control" type="password" id="confirmpassword" name="confirmpassword"
-                                   placeholder="Confirm Password"/>
-                        </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Register</button>
                     </form>
                 </div>
             </div>
@@ -129,8 +127,8 @@
 
         document.getElementById("email").value = profile.getEmail();
         document.getElementById("username").value = username;
-        document.getElementById("firstname").value = firstName;
-        document.getElementById("lastname").value = lastName;
+        // document.getElementById("firstname").value = firstName;
+        // document.getElementById("lastname").value = lastName;
         document.getElementById("photo").value = profile.getImageUrl();
         document.getElementById("password").value = id_token;
         document.getElementById("title").value = "New Member";

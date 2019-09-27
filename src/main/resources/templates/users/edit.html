@@ -8,8 +8,8 @@
 <form th:action=" @{'/profile/' + ${user.id} + '/edit'}" method="post" th:object="${user}">
     <input class="form-control" name="title" th:field="*{username}"  type="text" placeholder="Username"/>
     <input type="text" class="form-control" name="email" th:field="*{email}" placeholder="Email"/>
-    <input type="text" class="form-control" name="firstname" th:field="*{firstname}" placeholder="First Name"/>
-    <input type="text" class="form-control" name="lastname" th:field="*{lastname}" placeholder="Last Name"/>
+<!--    <input type="text" class="form-control" name="firstname" th:field="*{firstname}" placeholder="First Name"/>-->
+<!--    <input type="text" class="form-control" name="lastname" th:field="*{lastname}" placeholder="Last Name"/>-->
     <input type="text" class="form-control" name="title" th:field="*{title}" placeholder="Title"/>
     <div class="md-form">
 
@@ -39,8 +39,6 @@
     });
 </script>
 
-    });
-</script>
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>
 </body>

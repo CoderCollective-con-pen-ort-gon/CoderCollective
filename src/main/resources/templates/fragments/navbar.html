@@ -9,67 +9,65 @@
     <div class="container">
         <!--Brand / Logo-->
         <a class="navbar-brand" href="/">
-            <strong>Coder-Collective</strong>
+            <img th:src="@{image/largerLogo.png}" height="35" width="35"/>
         </a>
         <!--            Collapse-->
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!--            Links-->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!--            Links-->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <!--                Left-->
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link" href="/forums">Forums<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link" href="/profile">Profile<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item" sec:authorize="!isAuthenticated()">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link" href="/posts/create">Create</a>
-                </li>
-                <li class="nav-item" sec:authorize="!isAuthenticated()">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <form th:action="@{/logout}" th:method="post">
-                        <button class="nav-link" type="submit" onclick="signOut();">Logout</button>
-                    </form>
+                <!--                Left-->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forums">Forums<span class="sr-only">(current)</span></a>
+                    </li>
 
-
-                </li>
-                <li class="nav-item active" sec:authorize="isAuthenticated()">
-                    <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
-                        <label for="searched"></label>
-                        <input class="form-control mr-sm-2" name="searched" type="search" id="searched"
-                               placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </li>
-                <!--                <li class="nav-item">-->
-                <!--                    <a class="nav-link" th:action="@{/logout}" href="/logout" sec:authorize="isAuthenticated()" th:method="post">Logout</a>-->
-                <!--                </li>-->
-                <!--                <li class="nav-item dropdown">-->
-                <!--                    <form  sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">-->
-                <!--                        <button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
-                <!--                    </form>-->
-                <!--                </li>-->
-            </ul>
-        </div>
-    </div>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="/profile">Profile<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="/posts/create">Create</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <form th:action="@{/logout}" th:method="post">
+                            <button class="nav-link" type="submit" onclick="signOut();">Logout</button>
+                        </form>
 
 
-
+                    </li>
+                    <li class="nav-item active" sec:authorize="isAuthenticated()">
+                        <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
+                            <label for="searched"></label>
+                            <input class="form-control mr-sm-2" name="searched" type="search" id="searched"
+                                   placeholder="Search" aria-label="Search"/>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </li>
+                    <!--                <li class="nav-item">-->
+                    <!--                    <a class="nav-link" th:action="@{/logout}" href="/logout" sec:authorize="isAuthenticated()" th:method="post">Logout</a>-->
+                    <!--                </li>-->
+                    <!--                <li class="nav-item dropdown">-->
+                    <!--                    <form  sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">-->
+                    <!--                        <button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
+                    <!--                    </form>-->
+                    <!--                </li>-->
+                </ul>
+            </div>
+     </div>
 </nav>
 
 <script>

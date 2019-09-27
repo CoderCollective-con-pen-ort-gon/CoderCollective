@@ -4,6 +4,43 @@
 }
 
 .jumbo{
-    background: rgb(56,168,157);
-    background: linear-gradient(90deg, rgba(56,168,157,1) 0%, rgba(22,227,199,1) 35%, rgba(40,200,232,1) 100%);
+
+
+    background-color: #0c2839;
+    width: 100% !important;
+
+    /*background: rgb(56,168,157);*/
+    /*background: linear-gradient(90deg, rgba(56,168,157,1) 0%, rgba(22,227,199,1) 35%, rgba(40,200,232,1) 100%);*/
+}
+
+.jtext {
+    color: white;
+    font-weight: bold;
+}
+
+.container-bg{
+    background-color: #a1a2a5;
+
+}
+
+body{
+    background-color: #a1a2a5;
+}
+td{
+    background-color: white;
+}
+th{
+    background-color: white;
+}
+
+
+.table {
+    table-layout: fixed;
+}
+
+#line:after {
+    content:' ';
+    display:block;
+    border:1px solid white;
+    width: 35%;
 }
