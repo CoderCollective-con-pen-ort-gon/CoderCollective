@@ -137,6 +137,33 @@
     <!-- Mask & flexbox options-->
 
 </div>
+
+<script>
+    function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        let profile = googleUser.getBasicProfile();
+        let firstName = profile.getName().split(' ').slice(0, -1).join(' ');
+        let lastName = profile.getName().split(' ').slice(-1).join(' ');
+        var username = profile.getEmail().substring(0, profile.getEmail().lastIndexOf("@"));
+        var id_token = googleUser.getAuthResponse().id_token;
+
+        document.getElementById("email").value = profile.getEmail();
+        document.getElementById("username").value = username;
+        document.getElementById("photo").value = profile.getImageUrl();
+        document.getElementById("password").value = id_token;
+        document.getElementById("title").value = "New Member";
+        // user: email, username, first last title photo
+        document.getElementById("signUpForm").submit();
+    }
+
+    function signOut() {
+        let auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+
+</script>
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 <!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
