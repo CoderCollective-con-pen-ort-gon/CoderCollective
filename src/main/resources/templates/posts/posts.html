@@ -17,7 +17,7 @@
 <body>
     <div class="jumbo jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 th:text="${forum.name}" class="display-4 jtext"></h1>
+            <h1 id="line" th:text="${forum.name}" class="display-4 jtext"></h1>
             <p class=" jtext lead">See what the community is talking about</p>
         </div>
     </div>
@@ -52,7 +52,7 @@
 
 
             </td>
-            <td> <a class="btn btn-lg btn-indigo" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+            <td> <a class="btn btn-indigo" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
             </td>
 
         </tr>

@@ -123,7 +123,7 @@ public class PostController {
         System.out.println("comment");
 
         postDao.delete(id);
-        return "redirect:/forums";
+        return "redirect:/profile";
 //        return "/forums/" + forumId;
     }
 

@@ -1,57 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Bootstrap core css -->
     <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
     <!-- Material Design Bootstrap -->
     <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+    <link th:rel="stylesheet" th:href="@{'/css/profile.css'}" />
 
-    <style>
-        div .container {
-            margin-top: 80px;
-            width: 80%
-        }
-        @media (min-width: 1200px) {
-            /* This part is only read by viewports wider than 1200 pixels */
-            div .container {
-                margin-top: 80px;
-                width:40%;
-            }
-        }
-        @media (max-width :768px) {
-            /* This part is only read by viewports wider than 1200 pixels */
-            div .container {
-                margin-top: 80px;
-                width:80%;
-            }
-        }
-        @media (min-width:960px) {
-            /* This part is only read by viewports wider than 1200 pixels */
-            div .container {
-                margin-top: 80px;
-                width:40%;
-            }
-
-
-
-
-         .pic {
-             display: inline-block;
-             width: 150px;
-             height: 150px;
-             border-radius: 50%;
-
-             background-repeat: no-repeat;
-             background-position: center center;
-             background-size: cover;
-         }
-
-
-
-        }
-    </style>
 
     <th:block th:replace="fragments/header :: my-header('Profile')">
     </th:block>
@@ -60,30 +16,25 @@
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
-<div class="container" >
-    <nav>
-        <ul>
-            <!-- More links here... -->
-            <li>
-                <form th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-                </form>
-            </li>
-        </ul>
-    </nav>
-
-        <div class="profile">
+<div class="object">
+        <div class="left">
+            <div class="content">
             <div >
-            <img class="pic" th:src= "${user.photo}" alt="profile image"/>
+            <img class="rounded-circle z-depth-2" th:src= "${user.photo}" alt="profile image"/>
             </div>
 <!--            <h1><span th:text="${user.firstname}"></span></h1>-->
             <p th:text="${user.email}"></p>
             <p th:text="${user.username}"></p>
             <p th:text="${user.title}"></p>
             <a th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>
+            </div>
         </div>
-        <div class="bodyForum">
-        <h3>Create a Post</h3>
+
+
+
+        <div class="right" >
+<div class="rightcontent">
+        <h3 class="text-center">Create a Post</h3>
         <form th:action=" @{/profile/create}" method="post" th:object="${posts}">
             <select class="form-control" name="forum_id" th:field="*{forums.id}" th:value="${forums}">
                 <option th:each="forum : ${forums}" name="forum_id" th:value="${forum.id}" th:text="${forum.name}"></option>
@@ -93,9 +44,9 @@
                 <label for="exampleFormControlTextarea1">Post body</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="body" th:field="*{body}"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary ">Submit</button>
         </form>
-        </div>
+
         <h3>Here are your created post</h3>
         <div th:each="post : ${userPosts}">
             <p th:text="${post.title}"></p>
@@ -104,7 +55,19 @@
             <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
                 <button class="btn btn-warning">Edit Post</button>
             </form>
+
+            <th:block th:if="${user.getId() == post.owner.getId()}">
+                <h1>Delete Post</h1>
+                <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
+                    <button type="submit">Delete Post</button>
+                </form>
+            </th:block>
+
+
+
         </div>
+</div>
+</div>
 </div>
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>

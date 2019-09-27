@@ -34,3 +34,13 @@ th{
 }
 
 
+.table {
+    table-layout: fixed;
+}
+
+#line:after {
+    content:' ';
+    display:block;
+    border:1px solid white;
+    width: 35%;
+}
