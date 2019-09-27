@@ -38,6 +38,12 @@ public class PostController {
         return "posts/posts";
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return "posts/test";
+    }
+
+
     @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model vModel) {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

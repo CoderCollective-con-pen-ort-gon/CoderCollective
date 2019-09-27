@@ -133,10 +133,6 @@
         </div>
 
 
-<!--        <div th:text="${comment.ratingTota()}">-->
-<!--    </div>-->
-
-
         </div>
         <div sec:authorize="isAuthenticated()">
             <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
