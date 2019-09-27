@@ -10,12 +10,8 @@
     <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
-
-<style>
-
-
-</style>
-
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"/>
 
 </head>
 <body>
@@ -39,6 +35,7 @@
                 <div class="col-md-6 mb-4 white-text text-center text-md-left">
 
                     <h1 class="display-4 font-weight-bold">Coder-Collective</h1>
+
 
                     <hr class="hr-light"/>
 
@@ -141,10 +138,39 @@
     <!-- Mask & flexbox options-->
 
 </div>
+
+<script>
+    function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        let profile = googleUser.getBasicProfile();
+        let firstName = profile.getName().split(' ').slice(0, -1).join(' ');
+        let lastName = profile.getName().split(' ').slice(-1).join(' ');
+        var username = profile.getEmail().substring(0, profile.getEmail().lastIndexOf("@"));
+        var id_token = googleUser.getAuthResponse().id_token;
+
+        document.getElementById("email").value = profile.getEmail();
+        document.getElementById("username").value = username;
+        document.getElementById("photo").value = profile.getImageUrl();
+        document.getElementById("password").value = id_token;
+        document.getElementById("title").value = "New Member";
+        // user: email, username, first last title photo
+        document.getElementById("signUpForm").submit();
+    }
+
+    function signOut() {
+        let auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+
+</script>
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 <!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
 <!--</th:block>-->
+<th:block th:replace="fragments/footer">
+</th:block>
 </body>
 
 </html>

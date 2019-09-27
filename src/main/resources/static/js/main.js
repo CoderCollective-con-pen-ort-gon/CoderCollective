@@ -68,3 +68,28 @@
 //
 //
 // })();
+
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "50%";
+    document.getElementById("main").style.marginLeft = "50%";
+    // var editor = ace.edit("editor");
+    // editor.setTheme("ace/theme/monokai");
+    // editor.session.setMode("ace/mode/javascript");
+    var aceEditor = ace.edit("editor");
+
+    // defines the style of the editor
+    aceEditor.setTheme("ace/theme/monokai");
+    // hides line numbers (widens the area occupied by error and warning messages)
+    aceEditor.renderer.setOption("showLineNumbers", false);
+    // ensures proper autocomplete, validation and highlighting of JavaScript code
+    aceEditor.getSession().setMode("ace/mode/javascript");
+
+
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+}
