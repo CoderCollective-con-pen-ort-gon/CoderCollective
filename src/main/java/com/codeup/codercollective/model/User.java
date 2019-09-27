@@ -9,26 +9,37 @@ import java.util.List;
 public class User {
     @Id@GeneratedValue
     private long id;
+
     @Column(nullable = false, unique = true)
     private String username;
+
     @Column(nullable = false)
     private String email;
+
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
+
+    @Column(nullable = true)
     private String firstname;
-    @Column(nullable = false)
+
+    @Column(nullable = true)
     private String lastname;
+
     @Column(nullable = true)
     private String title;
+
     @Column(nullable=true)
     private String photo;
+
     @OneToMany(cascade= CascadeType.ALL, mappedBy = "owner" )
     private List<Post> post;
+
     @OneToMany(cascade= CascadeType.ALL, mappedBy = "user" )
     private List<Comment> comments;
+
     @OneToMany(cascade= CascadeType.ALL, mappedBy = "owner" )
     private List<Rating> ratings;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="favorite_post",
