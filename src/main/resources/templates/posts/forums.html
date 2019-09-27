@@ -8,7 +8,24 @@
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
 
+
     <style>
+        body{
+            scroll-padding-top:20px;
+        }
+
+
+
+        td{
+            background-color:white;
+        }
+        .container-fluid{
+            padding-top:50px;
+        }
+
+        .btn{
+            color:white;
+        }
         div .container2 {
             margin-top: 80px;
             width: 80%
@@ -37,18 +54,81 @@
     </style>
     <th:block th:replace="fragments/header :: my-header('Posts')">
     </th:block>
+    <link th:rel="stylesheet" th:href="@{'/css/post.css'}" />
+
 </head>
 <body>
-<th:block th:replace="fragments/navbar :: top-nav" />
-<div class="container2">
-<h1>Forums</h1>
 
-    <div th:each="forum : ${forums}">
-        <h1 th:text="${forum.name}"></h1>
-        <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View Forum</a>
+<div class="container-fluid">
+
+    <th:block th:replace="fragments/navbar :: top-nav" />
+
+    <div class="jumbo jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class=" jtext display-4">Forums</h1>
+            <p class=" jtext lead">See what the community is talking about</p>
+        </div>
     </div>
 
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th>Topic</th>
+            <th>#Posts</th>
+            <th ></th>
+            <th ></th>
+            <th ></th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+
+<!--        <div th:each="forum : ${forums}">-->
+<!--            <h1 th:text="${forum.name}"></h1>-->
+<!--            <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View Forum</a>-->
+<!--        </div>-->
+
+        <tr th:each="forum : ${forums}">
+
+            <!--<div th:each="post : ${posts}">-->
+            <td th:text="${forum.name}"></td>
+            <td>
+                <span th:Text="${forum.getPosts().size()}+ '  ' "> </span><img id="commentIcon" th:src="@{'/image/post.jpg'}"/>
+
+            </td>
+            <td></td>
+            <td></td>
+
+
+            <td> <a class="btn btn-lg btn-indigo" th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View Forum</a>
+            </td>
+
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Topic</th>
+            <th>#Posts</th>
+            <th></th>
+            <th ></th>
+            <th ></th>
+
+        </tr>
+        </tfoot>
+    </table>
 </div>
+
+
+
+
+
+
+
+
+
+
 
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
