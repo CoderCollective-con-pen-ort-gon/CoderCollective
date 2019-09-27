@@ -26,31 +26,17 @@
         .btn{
             color:white;
         }
-        div .container2 {
-            margin-top: 80px;
-            width: 80%
+        .jumbo {
+            margin-top: 4.8%;
+            width: 100%;
         }
-        @media (min-width: 1200px) {
-            /* This part is only read by viewports wider than 1200 pixels */
-            div .container2 {
-                margin-top: 80px;
-                width:40%;
-            }
+        #line:after {
+            content:' ';
+            display:block;
+            border:1px solid white;
+            width: 35%;
         }
-        @media (max-width :768px) {
-            /* This part is only read by viewports wider than 1200 pixels */
-            div .container2 {
-                margin-top: 80px;
-                width:80%;
-            }
-        }
-        @media (min-width:960px) {
-            /* This part is only read by viewports wider than 1200 pixels */
-            div .container2 {
-                margin-top: 80px;
-                width:40%;
-            }
-        }
+
     </style>
     <th:block th:replace="fragments/header :: my-header('Posts')">
     </th:block>
@@ -59,16 +45,16 @@
 </head>
 <body>
 
+    <div class="jumbo jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 id="line" class=" jtext display-4">Forums</h1>
+            <p class=" jtext lead">See what the community is talking about</p>
+        </div>
+    </div>
 <div class="container-fluid">
 
     <th:block th:replace="fragments/navbar :: top-nav" />
 
-    <div class="jumbo jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class=" jtext display-4">Forums</h1>
-            <p class=" jtext lead">See what the community is talking about</p>
-        </div>
-    </div>
 
 
     <table class="table">
@@ -109,11 +95,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <th>Topic</th>
-            <th>#Posts</th>
-            <th></th>
-            <th ></th>
-            <th ></th>
+
 
         </tr>
         </tfoot>
