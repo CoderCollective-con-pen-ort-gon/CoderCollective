@@ -25,8 +25,8 @@ public class SearchController {
 
     @GetMapping("/search")
     public String showPosts(Model vModel){
-//        vModel.addAttribute("searched", null);
-//        vModel.addAttribute("posts", null);
+        vModel.addAttribute("searched", null);
+        vModel.addAttribute("posts", null);
         return "posts/search";
     }
 

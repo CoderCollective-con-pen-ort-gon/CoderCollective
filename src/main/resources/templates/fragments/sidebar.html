@@ -11,9 +11,12 @@
 
 <nav th:fragment="sidebar">
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn toggler" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" class="closebtn toggler" onclick="closeNav().then(function(){
+            aceEditor.resize()
+        })
+">&times;</a>
         <div id="editor" class="ace_editor"
-             style="width: 80%; height: 100%; position: relative; top: 0; right: 0;">
+             style="width: 80%; height: 100%; position: absolute; top: 10%; right: 0;">
 function foo(items) {
 var x = "All this is syntax highlighted";
 return x;
