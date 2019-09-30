@@ -7,7 +7,14 @@
         /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
         function openNav() {
             document.getElementById("mySidenav").style.width = "50%";
-            document.getElementById("main").style.marginLeft = "50%";
+            document.getElementById("main").style.marginLeft = "0%";
+            document.getElementById("editorContainer").style.width = "50%";
+            document.getElementById("editorContainer").style.height = "100%";
+            document.getElementById("editor").style.width = "80%";
+            document.getElementById("editor").style.height = "100%";
+            document.getElementById("editor").style.position = "absolute";
+            // document.getElementsByClassName("ace_scroller").setAttribute("style", "margin-left: 45px");
+
             // var editor = ace.edit("editor");
             // editor.setTheme("ace/theme/monokai");
             // editor.session.setMode("ace/mode/javascript");
@@ -21,7 +28,13 @@
             // aceEditor.renderer.setOption("showLineNumbers", false);
             // ensures proper autocomplete, validation and highlighting of JavaScript code
             aceEditor.getSession().setMode("ace/mode/javascript");
-            aceEditor.resize()
+            aceEditor.resize();
+
+            document.getElementsByClassName("ace_text-layer").style.width = "30%";
+            document.getElementsByClassName("ace_line").style.width = "50%";
+            document.getElementsByClassName("ace_line").style.minWidth = "200px";
+            aceEditor.resize();
+
         }
 
         /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */

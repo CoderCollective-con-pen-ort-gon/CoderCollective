@@ -3,6 +3,24 @@
 <head>
     <th:block th:replace="fragments/header">
     </th:block>
+    <style type="text/css" media="screen">
+        #editor {
+            /*margin: 0;*/
+            /*margin-top: 10%;*/
+            /*position: fixed;*/
+            top: 100%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .ace_content {
+            margin-left: 50px !important;
+            /*transform: none;*/
+
+        }
+
+    </style>
 
 
 </head>
@@ -11,18 +29,15 @@
 
 <nav th:fragment="sidebar">
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn toggler" onclick="closeNav().then(function(){
-            aceEditor.resize()
-        })
-">&times;</a>
-        <div id="editor" class="ace_editor"
-             style="width: 80%; height: 100%; position: absolute; top: 10%; right: 0;">
-function foo(items) {
+        <a href="javascript:void(0)" class="closebtn toggler" onclick="closeNav()">&times;</a>
+        <div id="editorContainer">
+            <div id="editor" class="ace_editor"
+                 style="width: 80%; height: 100%; top: 10%; right: 0;  min-width: 35% !important; transform: none;
+">function foo(items) {
 var x = "All this is syntax highlighted";
 return x;
-}
+}</div>
         </div>
-
     </div>
 
     <!-- Use any element to open the sidenav -->
