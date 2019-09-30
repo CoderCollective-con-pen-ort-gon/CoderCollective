@@ -20,6 +20,9 @@
         <div class="col-lg-10">
             <div class="card border-0">
                 <h6 th:text="${post.title}"></h6>
+                <form th:action="@{'/posts/'+ ${post.id} +'/favorite'}" th:method="post">
+                    <button class="btn btn-link btn-sm">Add to Favorites </button>
+                </form>
                 <hr/>
                 <!--                <div class="card-header p-3 mb-2 bg-info text-white" th:text="${post.title}">-->
                 <!--                </div>-->
@@ -36,11 +39,11 @@
                         <br/>
 
                         <!-- Button trigger modal -->
-                        <div class="container" sec:authorize="isAuthenticated()">
+<!--                        <div class="container" sec:authorize="isAuthenticated()">-->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                 Comment
                             </button>
-                        </div>
+<!--                        </div>-->
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
