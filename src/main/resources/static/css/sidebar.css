@@ -1,9 +1,51 @@
+#editor {
+    /*width: 100%;*/
+   /*width: 80%; height: 100%; position: absolute; top: 0; right: 0*/
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden; /* Disable horizontal scroll */
+    /*min-width: 100px;*/
+    /*min-height: 100px;*/
+    width: 0;
+    /*height: 100px;*/
+}
+/*#editorContainer {*/
+/*    width: 200px;*/
+/*    height: 100px;*/
+/*    position: relative;*/
+/*    background-color: red;*/
+/*}*/
+.ace_scroller {
+    margin-left: 10px;
+}
+div {
+    /*transform: none;*/
+}
+.ace_content {
+    min-width: 35% !important;
+    /*transform: none;*/
 
+}
+/*div#editor {*/
+/*    width: 80%; height: 100%; position: relative; top: 0; right: 0*/
+
+/*}*/
+/*.ace_text-input {*/
+/*    position: absolute!important;*/
+/*}*/
+
+/*.scrollmargin {*/
+/*    height: 80px;*/
+/*    text-align: center;*/
+/*}*/
 
 .sidenav {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
+    position: relative; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
@@ -14,7 +56,7 @@
 }
 
 .toggler {
-    margin-top: 30%;
+    /*margin-top: 10%;*/
 
 }
 
@@ -39,7 +81,7 @@
     top: 0;
     right: 25px;
     font-size: 36px;
-    margin-left: 50px;
+    margin-left: 10%;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
