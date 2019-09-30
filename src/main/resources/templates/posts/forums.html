@@ -100,6 +100,12 @@
         </div>
     </div>
 
+<div class="container-fluid" id="main">
+
+    <th:block th:replace="fragments/navbar :: top-nav" />
+
+    <th:block th:replace="fragments/sidebar"/>
+
 
 
 
@@ -132,6 +138,11 @@
 
 
 
+    <th:block th:replace="fragments/footer">
+
+    </th:block>
+    <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+    </th:block>
 
 
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Scrollbar Custom CSS -->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"/>-->
+    <th:block th:replace="fragments/header :: my-header('Forums')">
+    </th:block>
+<!--    <script src="https://pagecdn.io/lib/ace/1.4.5/ace.js"-->
+<!--            integrity="sha256-5Xkhn3k/1rbXB+Q/DX/2RuAtaB4dRRyQvMs83prFjpM=" crossorigin="anonymous"></script>-->
+<!--    <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>-->
+
+<!--    <style type="text/css" media="screen">-->
+<!--        #editor {-->
+<!--            margin: 0;-->
+<!--            position: fixed;-->
+<!--            top: 90%;-->
+<!--            bottom: 0;-->
+<!--            left: 0;-->
+<!--            right: 0;-->
+<!--        }-->
+<!--    </style>-->
+<!--    <style>-->
+<!--        .sidenav {-->
+<!--            height: 100%; /* 100% Full-height */-->
+<!--            width: 0; /* 0 width - change this with JavaScript */-->
+<!--            position: fixed; /* Stay in place */-->
+<!--            z-index: 1; /* Stay on top */-->
+<!--            top: 0; /* Stay at the top */-->
+<!--            left: 0;-->
+<!--            background-color: #111; /* Black*/-->
+<!--            overflow-x: hidden; /* Disable horizontal scroll */-->
+<!--            padding-top: 60px; /* Place content 60px from the top */-->
+<!--            transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */-->
+<!--        }-->
+
+<!--        /* The navigation menu links */-->
+<!--        .sidenav a {-->
+<!--            padding: 8px 8px 8px 32px;-->
+<!--            text-decoration: none;-->
+<!--            font-size: 25px;-->
+<!--            color: #818181;-->
+<!--            display: block;-->
+<!--            transition: 0.3s;-->
+<!--        }-->
+
+<!--        /* When you mouse over the navigation links, change their color */-->
+<!--        .sidenav a:hover {-->
+<!--            color: #f1f1f1;-->
+<!--        }-->
+
+<!--        /* Position and style the close button (top right corner) */-->
+<!--        .sidenav .closebtn {-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            right: 25px;-->
+<!--            font-size: 36px;-->
+<!--            margin-left: 50px;-->
+<!--        }-->
+
+<!--        /* Style page content - use this if you want to push the page content to the right when you open the side navigation */-->
+<!--        #main {-->
+<!--            transition: margin-left .5s;-->
+<!--            padding: 20px;-->
+<!--        }-->
+
+<!--        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */-->
+<!--        @media screen and (max-height: 450px) {-->
+<!--            .sidenav {padding-top: 15px;}-->
+<!--            .sidenav a {font-size: 18px;}-->
+<!--        }-->
+
+
+
+<!--    </style>-->
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: top-nav"/>
+<!--<h1>Search:</h1>-->
+<br/>
+<br/>
+<br/>
+<th:block th:replace="fragments/sidebar"/>
+
+<!--<div id="mySidenav" class="sidenav">-->
+<!--    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
+<!--    <div id="editor" style="width: 100%; height: 90%; position: relative; top: 0; right: 0;">-->
+<!--        function foo(items) {-->
+<!--        var x = "All this is syntax highlighted";-->
+<!--        return x;-->
+<!--        }-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--&lt;!&ndash; Use any element to open the sidenav &ndash;&gt;-->
+<!--<span onclick="openNav()">open</span>-->
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+
+</div>
+
+
+<!--<script type="text/javascript">-->
+<!--    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */-->
+<!--    function openNav() {-->
+<!--        document.getElementById("mySidenav").style.width = "50%";-->
+<!--        document.getElementById("main").style.marginLeft = "50%";-->
+<!--        // var editor = ace.edit("editor");-->
+<!--        // editor.setTheme("ace/theme/monokai");-->
+<!--        // editor.session.setMode("ace/mode/javascript");-->
+<!--        var aceEditor = ace.edit("editor");-->
+
+<!--        // defines the style of the editor-->
+<!--        aceEditor.setTheme("ace/theme/monokai");-->
+<!--        // hides line numbers (widens the area occupied by error and warning messages)-->
+<!--        aceEditor.renderer.setOption("showLineNumbers", false);-->
+<!--        // ensures proper autocomplete, validation and highlighting of JavaScript code-->
+<!--        aceEditor.getSession().setMode("ace/mode/javascript");-->
+
+
+<!--    }-->
+
+<!--    /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */-->
+<!--    function closeNav() {-->
+<!--        document.getElementById("mySidenav").style.width = "0";-->
+<!--        document.getElementById("main").style.marginLeft = "0";-->
+<!--    }-->
+<!--</script>-->
+
+<!--&lt;!&ndash; jQuery CDN - Slim version (=without AJAX) &ndash;&gt;-->
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--&lt;!&ndash; Popper.JS &ndash;&gt;-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>-->
+<!--&lt;!&ndash; Bootstrap JS &ndash;&gt;-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>-->
+<!--&lt;!&ndash; jQuery Custom Scroller CDN &ndash;&gt;-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>-->
+
+
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
+<th:block th:replace="fragments/footer"/>
+</body>
+</html>
