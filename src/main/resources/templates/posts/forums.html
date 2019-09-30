@@ -17,9 +17,11 @@
 
         }
 
-        /*.bg{*/
-        /*    background:#E9ECEF;*/
-        /*}*/
+        .bg{
+            background:#F1F3F4;
+
+        }
+
 
         .cbg{
             background: white;
@@ -32,8 +34,6 @@
         }
 
         .curve{
-            /*border-bottom-right-radius:50%;*/
-            /*background-color:#3F51B5 ;*/
             background: linear-gradient(110deg, #3F51B5 40%, #FFFFFF 20%);
 
         }
@@ -87,19 +87,7 @@
 <body class="bg">
 <th:block th:replace="fragments/navbar :: top-nav" />
 
-<!--    <div class="jumbo jumbotron jumbotron-fluid">-->
-<!--        <div class="container">-->
-<!--            <div class="row">-->
-<!--            <div class="col-6">-->
-<!--            <h1 id="line" class=" jtext display-4">Forums</h1>-->
-<!--            <p class="jtext lead">See what the community is talking about</p>-->
-<!--            </div>-->
-<!--            <div class="col-6">-->
-<!--                <img th:src="@{picture/forum.png}" style="height:200px;"/>-->
-<!--            </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+
 <div class="container cbg">
 
     <div class="row jHead curve" >
@@ -108,52 +96,17 @@
             <p class="jtext lead">See what the community is talking about</p>
         </div>
         <div class="col-6 col-md-6">
-            <img th:src="@{picture/forum.png}" style="height:350px;width:500px"/>
+            <img th:src="@{/picture/forum.png}" style="height:350px;width:500px"/>
         </div>
     </div>
 
 
 
 
-<!--    <table class="table">-->
-<!--        <thead class="thead-dark">-->
-<!--        <tr>-->
-<!--            <th>Topic</th>-->
-<!--            <th>#Posts</th>-->
-<!--            <th ></th>-->
-<!--            <th ></th>-->
-<!--            <th ></th>-->
-
-
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
 
 
 
-<!--        <tr th:each="forum : ${forums}">-->
-<!--            <td th:text="${forum.name}"></td>-->
-<!--            <td>-->
-<!--                <span th:Text="${forum.getPosts().size()}+ '  ' "> </span><img id="commentIcon" th:src="@{'/image/post.jpg'}"/>-->
 
-<!--            </td>-->
-<!--            <td></td>-->
-<!--            <td></td>-->
-
-
-<!--            <td> <a class="btn btn-lg btn-indigo" th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View Forum</a>-->
-<!--            </td>-->
-
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--        <tfoot>-->
-<!--        <tr>-->
-
-
-<!--        </tr>-->
-<!--        </tfoot>-->
-<!--    </table>-->
-<!--</div>-->
 
 
 <div class="row">
