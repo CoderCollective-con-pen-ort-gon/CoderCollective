@@ -7,26 +7,26 @@
     bottom: 0;
     left: 0;
     overflow: hidden; /* Disable horizontal scroll */
-    min-width: 100px;
-    min-height: 100px;
-    width: 100px;
-    height: 100px;
+    /*min-width: 100px;*/
+    /*min-height: 100px;*/
+    width: 0;
+    /*height: 100px;*/
 }
-#editorContainer {
-    width: 200px;
-    height: 100px;
-    position: relative;
-    background-color: red;
-}
-/*.ace_scroller {*/
-/*    margin-left: 10px;*/
+/*#editorContainer {*/
+/*    width: 200px;*/
+/*    height: 100px;*/
+/*    position: relative;*/
+/*    background-color: red;*/
 /*}*/
+.ace_scroller {
+    margin-left: 10px;
+}
 div {
-    transform: none;
+    /*transform: none;*/
 }
 .ace_content {
     min-width: 35% !important;
-    transform: none;
+    /*transform: none;*/
 
 }
 /*div#editor {*/
@@ -56,7 +56,7 @@ div {
 }
 
 .toggler {
-    margin-top: 10%;
+    /*margin-top: 10%;*/
 
 }
 
@@ -81,7 +81,7 @@ div {
     top: 0;
     right: 25px;
     font-size: 36px;
-    margin-left: 50px;
+    margin-left: 10%;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */

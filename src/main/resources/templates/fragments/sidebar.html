@@ -12,6 +12,7 @@
             bottom: 0;
             left: 0;
             right: 0;
+            min-height: 50px;
         }
 
         .ace_content {
@@ -31,12 +32,11 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn toggler" onclick="closeNav()">&times;</a>
         <div id="editorContainer">
-            <div id="editor" class="ace_editor"
-                 style="width: 80%; height: 100%; top: 10%; right: 0;  min-width: 35% !important; transform: none;
-">function foo(items) {
-var x = "All this is syntax highlighted";
-return x;
-}</div>
+            <div id="editor" class="ace_editor" style="top: 10%; right: 0;">function foo(items) {
+                var x = "All this is syntax highlighted";
+                return x;
+                }
+            </div>
         </div>
     </div>
 
