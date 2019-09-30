@@ -9,105 +9,102 @@
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
 
     <style>
-        body{
-            scroll-padding-top:20px;
+        .jtext {
+
+            color: #FFFFFF;
+            font-weight: bolder;
+            /*background-color:#3F51B5;*/
+
+        }
+
+        .bg{
+            background:#F1F3F4;
+
+        }
+
+
+        .cbg{
+            background: white;
+        }
+
+        .jmarginImg{
+            margin-top:39px;
+
+        }
+
+        .jmargin{
+            margin-top: 150px;
+
+
+        }
+
+        .curve{
+            background: linear-gradient(110deg, #3F51B5 40%, #FFFFFF 20%);
+            height:360px;
+
         }
 
 
 
-        td{
-            background-color:white;
-        }
-        .container-fluid{
-            padding-top:50px;
-        }
-
-        .btn{
-            color:white;
-        }
-        .jumbo {
-            margin-top: 4.8%;
-            width: 100%;
-        }
         #line:after {
+
             content:' ';
             display:block;
             border:1px solid white;
             width: 35%;
         }
-
     </style>
+
+
+
     <th:block th:replace="fragments/header :: my-header('Posts')">
     </th:block>
-    <link th:rel="stylesheet" th:href="@{'/css/post.css'}" />
+<!--    <link th:rel="stylesheet" th:href="@{'/css/post.css'}" />-->
 
 </head>
-<body>
+<body class="bg">
+<th:block th:replace="fragments/navbar :: top-nav" />
 
-    <div class="jumbo jumbotron jumbotron-fluid">
-        <div class="container">
+
+<div class="container cbg">
+
+    <div class="row jHead curve" >
+        <div class="col-6 col-md-6 jmargin jHead">
             <h1 id="line" class=" jtext display-4">Forums</h1>
-            <p class=" jtext lead">See what the community is talking about</p>
+            <p class="jtext lead">See what the community is talking about</p>
+        </div>
+        <div class="col-6 col-md-6">
+            <img class="jmarginImg" th:src="@{/picture/forum.png}" style="height:350px;width:500px"/>
         </div>
     </div>
-<div class="container-fluid" id="main">
-
-    <th:block th:replace="fragments/navbar :: top-nav" />
-
-    <th:block th:replace="fragments/sidebar"/>
 
 
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th>Topic</th>
-            <th>#Posts</th>
-            <th ></th>
-            <th ></th>
-            <th ></th>
+
+<!--<div class="container-fluid" id="main">-->
+
+<!--    <th:block th:replace="fragments/navbar :: top-nav" />-->
+
+<!--    <th:block th:replace="fragments/sidebar"/>-->
 
 
-        </tr>
-        </thead>
-        <tbody>
-
-<!--        <div th:each="forum : ${forums}">-->
-<!--            <h1 th:text="${forum.name}"></h1>-->
-<!--            <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View Forum</a>-->
-<!--        </div>-->
-
-        <tr th:each="forum : ${forums}">
-
-            <!--<div th:each="post : ${posts}">-->
-            <td th:text="${forum.name}"></td>
-            <td>
-                <span th:Text="${forum.getPosts().size()}+ '  ' "> </span><img id="commentIcon" th:src="@{'/image/post.jpg'}"/>
-
-            </td>
-            <td></td>
-            <td></td>
+<div class="row">
+    <div class="card col-2 col-sm-2 col-md-2 border-0 shadow-none" style="width:20rem; height:30rem; margin-top:50px;" th:each="forum : ${forums}">
 
 
-            <td> <a class="btn btn-lg btn-indigo" th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View Forum</a>
-            </td>
+        <img th:src= "@{'/pics/' +${forum.name} +'.png'}" style="height:12rem;"/>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${forum.name}"></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" th:Text="'Contributions '+ ${forum.getPosts().size()}" > </li>
+        </ul>
+        <div class="card-body">
+            <a class="btn btn-indigo text-white" th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View </a>
+        </div>
+    </div>
 
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-
-
-        </tr>
-        </tfoot>
-    </table>
 </div>
-
-
-
-
-
-
-
+</div>
 
 
     <th:block th:replace="fragments/footer">
