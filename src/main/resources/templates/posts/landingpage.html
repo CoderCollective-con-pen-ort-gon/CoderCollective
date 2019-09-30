@@ -11,8 +11,56 @@
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
 
-<style>
 
+<style>
+    div .imagec{
+
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    div .imaged{
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    div .imagec2 {
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+        padding: 10px;
+    }
+
+html {
+    scroll-behavior: smooth;
+}
+    .flex-item {
+        float: none;
+    }
+
+
+    .view {
+    background-color: #F1F3F4;
+
+        text-align: center;
+    }
+    .flex-item {
+        margin-top: 10%;
+        box-sizing: border-box;
+
+        background-color: white;
+        display: inline-block;
+        width: 20%;
+        height: 65%;
+    }
+    .flex-item + .flex-item {
+        margin-top: 10%;
+        margin-left: 5%;
+    }
 
 </style>
 
@@ -38,7 +86,9 @@
                 <!--Grid column-->
                 <div class="col-md-6 mb-4 white-text text-center text-md-left">
 
-                    <h1 class="display-4 font-weight-bold">Coder-Collective</h1>
+                    <h1 class="display-4 font-weight-bold">Coder</h1>
+                    <h1 class="display-4 font-weight-bold">Collective</h1>
+
 
                     <hr class="hr-light"/>
 
@@ -55,9 +105,8 @@
                             produced.</strong>
                     </p>
 
-                    <a href="" class="btn btn-indigo btn-lg">Learn More
+                    <input type="button" value="Learn More" class="btn btn-indigo btn-lg" onclick="document.getElementById('middle').scrollIntoView();"/>
                         <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
-                    </a>
 
                 </div>
                 <!--Grid column-->
@@ -70,6 +119,8 @@
 
                         <!--Card content-->
                         <div class="card-body">
+
+
 
                             <!-- Form -->
                             <form th:action="@{/register}" method="post" th:object="${user}">
@@ -141,10 +192,42 @@
     <!-- Mask & flexbox options-->
 
 </div>
+<div id="middle" class="view full-page-intro">
+
+
+    <div class="flex-item shadow rounded">
+        <div class="imagec">
+            <img th:src="@{image/undraw_collecting_fjjl.png}" height="80" width="80"/>
+        </div>
+        <h3>Collect</h3>
+        <br/>
+        <p>(a sentence for collect)</p>
+    </div>
+
+    <div class="flex-item shadow rounded">
+        <div class="imaged">
+            <img th:src="@{image/undraw_treasure_of9i.png}" height="80" width="80"/>
+        </div>
+        <h3>Discover</h3>
+        <br/>
+        <p>(a sentence for discover)</p>
+     </div>
+
+    <div class="flex-item shadow rounded">
+        <div class="imagec2">
+            <img th:src="@{image/undraw_developer_activity_bv83.png}" height="80" width="80"/>
+        </div>
+    <h3>Contribute</h3>
+    <br/>
+    <p>(a sentence for contribute)</p>
+    </div>
+</div>
+
+
+
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
-<!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
-<!--</th:block>-->
+
 </body>
 
 </html>
