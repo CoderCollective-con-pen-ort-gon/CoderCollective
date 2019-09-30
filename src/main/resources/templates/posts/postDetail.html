@@ -7,27 +7,86 @@
         .img-thumbnail {
 
         }
-        .marginTop {
-            margin-top: 100px;
+        .jtext {
+
+            color: #FFFFFF;
+            font-weight: bolder;
+            /*background-color:#3F51B5;*/
+
+        }
+
+        .bg{
+            background:#F1F3F4;
+
+        }
+
+        .cbg{
+            background: white;
+        }
+        .jmargin{
+            margin-top:150px;
+
+        }
+
+        .jHead{
+            /*padding-top: 100px;*/
+
+        }
+        .curve{
+            background: linear-gradient(110deg, #3F51B5 40%, #FFFFFF 20%);
+            height: 360px;
+
+        }
+        #line:after {
+
+            content:' ';
+            display:block;
+            border:1px solid white;
+            width: 35%;
+        }
+        #commentPhoto {
+            max-width: 750px;
+        }
+        .alignCenter {
+            align-content: center;
+        }
+        #headerImage {
+
         }
     </style>
 </head>
-<body>
+<body class="bg">
 <th:block th:replace="fragments/navbar :: top-nav" />
 
+<div class="container cbg">
+    <div class="row jHead curve" >
+        <div class="col-6 col-md-6  jmargin jHead">
+            <h1 id="line" class=" jtext display-4">Learn</h1>
+            <p class="jtext lead">Contribute to the conversation!</p>
+        </div>
+        <div class="col-6 col-md-6">
+            <img id="headerImage" th:src="@{/picture/detailedPost.png}" style="height:350px;width:500px"/>
+        </div>
+    </div>
+</div>
+
+<br/>
+
 <div class="container">
-    <div class="row marginTop">
+    <div class="row">
         <div class="col-lg-10">
             <div class="card border-0">
-                <h6 th:text="${post.title}"></h6>
-                <form th:action="@{'/posts/'+ ${post.id} +'/favorite'}" th:method="post">
-                    <button class="btn btn-link btn-sm">Add to Favorites </button>
-                </form>
-                <hr/>
+                <h6 class="text-center" th:text="${post.title}"></h6>
+                <hr width="30%"/>
                 <!--                <div class="card-header p-3 mb-2 bg-info text-white" th:text="${post.title}">-->
                 <!--                </div>-->
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
+                        <div class="row justify-content-center">
+                            <div class="alignCenter">
+                                <img id="commentPhoto" th:if="${post.photo != null}" th:src="${post.photo}"/>
+                            </div>
+                        </div>
                         <div class="text" th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava(post.body),'\n','&lt;br /&gt;'))}">
                             <p th:text="${post.body}"></p>
                         </div>
@@ -35,15 +94,21 @@
                         <footer class="blockquote-footer" th:text="${post.owner.username}">username</footer>
                         <footer class="blockquote-footer" th:text="${post.owner.title}"></footer>
                         <footer class="blockquote-footer" th:text="${post.createdAt}"></footer>
+                        <div sec:authorize="isAuthenticated()">
+                            <form th:action="@{'/posts/'+ ${post.id} +'/favorite'}" th:method="post">
+                                <button class="btn btn-link btn-sm">Add to Favorites </button>
+                            </form>
+                        </div>
 
                         <br/>
 
                         <!-- Button trigger modal -->
-<!--                        <div class="container" sec:authorize="isAuthenticated()">-->
+                        <div class="container" sec:authorize="isAuthenticated()">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                 Comment
                             </button>
-<!--                        </div>-->
+
+                        </div>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -83,8 +148,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col col-lg-2"><img th:src="${comment.user.photo}" class="img-thumbnail"/><br/>
-                                        <div th:text="'likes: ' + ${comment.ratingTota()}"></div>
+                                    <div class="col col-lg-2"><img th:src="${comment.user.photo}" class="img-thumbnail"/><br/></div>
+                                    <div class="col-lg-8" th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava(comment.body),'\n','&lt;br /&gt;'))}"><br/></div>
+                                    <div class="col">
+                                        <div th:text="${comment.ratingTota()} + ' likes'"></div>
                                         <div sec:authorize="isAuthenticated()">
                                             <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
                                                 <input type="hidden" name="vote" th:value="1"/>
@@ -96,24 +163,23 @@
                                                 <input type="hidden" name="comment.id" th:value="${comment.id}"/>
                                                 <button class="btn btn-link"> Unlike</button>
                                             </form>
-                                        </div>
-                                        <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
-                                            <ul class="nav nav-pills">
-                                                <li class="nav-item dropdown">
-                                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
-                                                    <div class="dropdown-menu">
-                                                        <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
-                                                            <button class="btn btn-link btn-sm">Edit</button>
-                                                        </form>
-                                                        <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="post" th:object="${comment}">
-                                                            <button class="btn btn-link btn-sm">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                            <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
+                                                <ul class="nav nav-pills">
+                                                    <li class="nav-item dropdown">
+                                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+                                                        <div class="dropdown-menu">
+                                                            <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
+                                                                <button class="btn btn-link btn-sm">Edit</button>
+                                                            </form>
+                                                            <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="post" th:object="${comment}">
+                                                                <button class="btn btn-link btn-sm">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-10" th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava(comment.body),'\n','&lt;br /&gt;'))}"><br/></div>
                                 </div>
                                 <br/>
                             </div>
@@ -127,12 +193,11 @@
                 <!--                <div class="card-header card-header p-3 mb-2 bg-info text-white">-->
                 <!--                    Languages-->
                 <!--                </div>-->
-                <h6>Languages</h6>
-                <hr/>
+                <h6 class="text-center">Languages</h6>
                 <ul class="list-group list-group-flush">
                     <div th:each="forum : ${forums}">
                         <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
-                            <li class="list-group-item"><a class="btn btn-lg btn-indigo" th:href="@{/forums/{forumId}(forumId = ${forum.id})}" th:text="${forum.name}" style="font-size: 15px;"></a></li>
+                            <li class="list-group-item text-center"><a class="btn btn-lg btn-indigo" th:href="@{/forums/{forumId}(forumId = ${forum.id})}" th:text="${forum.name}" style="font-size: 15px;"></a></li>
                         </div>
                     </div>
                 </ul>
