@@ -9,7 +9,7 @@
     <div class="container">
         <!--Brand / Logo-->
         <a class="navbar-brand" href="/">
-            <img th:src="@{image/largerLogo.png}" height="35" width="35"/>
+            <img th:src="@{/image/largerLogo.png}" height="35" width="35"/>
         </a>
         <!--            Collapse-->
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -50,7 +50,7 @@
                     <li class="nav-item active" sec:authorize="isAuthenticated()">
                         <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
                             <label for="searched"></label>
-                            <input class="form-control mr-sm-2" name="searched" type="search" id="searched"
+                            <input class="form-control mr-sm-2" name="searched" type="text" id="searched"
                                    placeholder="Search" aria-label="Search"/>
                             <button class="btn btn-outline-orange my-2 my-sm-0" type="submit">Search</button>
                         </form>
@@ -91,8 +91,29 @@
         GoogleAuth.disconnect()
     }
 
+    $(document).ready(function () {
+
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            // open or close navbar
+            $('#sidebar').toggleClass('active');
+            // close dropdowns
+            $('.collapse.in').toggleClass('in');
+            // and also adjust aria-expanded attributes we use for the open/closed arrows
+            // in our CSS
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+
+    });
+
 </script>
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>
+<th:block th:replace="fragments/footer">
+</th:block>
+
 </body>
 </html>
