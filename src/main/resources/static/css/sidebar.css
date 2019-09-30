@@ -1,4 +1,14 @@
 
+.ace_editor {
+    border: 1px solid lightgray;
+    margin: auto;
+    height: 80%;
+    width: 80%;
+}
+.scrollmargin {
+    height: 80px;
+    text-align: center;
+}
 
 .sidenav {
     height: 100%; /* 100% Full-height */
@@ -14,7 +24,7 @@
 }
 
 .toggler {
-    margin-top: 30%;
+    margin-top: 10%;
 
 }
 
