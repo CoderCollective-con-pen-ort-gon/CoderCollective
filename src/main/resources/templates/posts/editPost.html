@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/header :: my-header('Edit Comment')">
+    </th:block>
+</head>
+<body>
+<h1>Edit Post</h1>
+
+<div class="container">
+    <form th:action=" @{'/post/' + ${post.id} + '/edit'}" method="post" th:object="${post}">
+        <!--    <select class="form-control" name="forum_id" th:field="*{forums.id}" th:value="${forums}">-->
+        <!--        <option th:each="forum : ${forums}" name="forum_id" th:value="${forum.id}" th:text="${forum.name}"></option>-->
+        <!--    </select>-->
+        <input class="form-control" name="title" th:field="*{title}"  type="text" placeholder="Title"/>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Post body</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="11" name="body" th:field="*{body}"></textarea>
+        </div>
+        <div class="md-form">
+            <input class="form-control" placeholder="Post Picture" th:field="*{photo}" type="text"
+                   id="photo" value=""/>
+            <button type="button" id="open">Open Picker</button>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Edit Post</button>
+    </form>
+</div>
+
+
+<script>
+    const openBtn = document.getElementById('open');
+    const options = {
+        onUploadDone: (res) =>
+            document.getElementById("photo").value = res.filesUploaded[0].url,
+    };
+    console.log(50);
+    const client = filestack.init(FSKey);
+
+    openBtn.addEventListener("click", function () {
+        client.picker(options).open()
+
+
+    });
+</script>
+
+
+
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
+</body>
+</html>

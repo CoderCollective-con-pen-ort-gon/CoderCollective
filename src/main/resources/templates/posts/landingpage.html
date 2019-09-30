@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Home</title>
+    <!-- Bootstrap core css -->
+    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"/>
+
+</head>
+<body>
+
+<th:block th:replace="fragments/navbar :: top-nav"/>
+
+
+<div class="view full-page-intro"
+     style="background-image: url('https://images.pexels.com/photos/908284/pexels-photo-908284.jpeg'); background-repeat: no-repeat; background-size: cover;">
+
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+        <!-- Content -->
+        <div class="container">
+
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-4 white-text text-center text-md-left">
+
+                    <h1 class="display-4 font-weight-bold">Coder-Collective</h1>
+
+
+                    <hr class="hr-light"/>
+
+                    <p>
+                        <strong></strong>
+                    </p>
+
+                    <p class="mb-4 d-none d-md-block">
+                        <strong>Coding Collective is a site for people to meet, interact, learn the basics of
+                            coding,
+                            and discover popular resources that others use. Coding Collective is a community-driven
+                            site, with the community vetting and ensuring the quality of recommendations and
+                            materials
+                            produced.</strong>
+                    </p>
+
+                    <a href="" class="btn btn-indigo btn-lg">Learn More
+                        <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
+                    </a>
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-6 col-xl-5 mb-4">
+
+                    <!--Card-->
+                    <div class="card">
+
+                        <!--Card content-->
+                        <div class="card-body">
+
+                            <!-- Form -->
+                            <form th:action="@{/register}" method="post" th:object="${user}">
+                                <!-- Heading -->
+                                <h3 class="dark-grey-text text-center">
+                                    <strong>Sign Up</strong>
+                                </h3>
+                                <hr/>
+
+                                <div class="md-form">
+
+                                    <input type="text" class="form-control" id="email" placeholder="Email"
+                                           th:field="*{email}"/>
+                                </div>
+                                <div class="md-form">
+
+                                    <input type="text" class="form-control" id="username" placeholder="Username"
+                                           th:field="*{username}"/>
+                                </div>
+<!--                                <div class="md-form">-->
+<!--                                    <input type="text" class="form-control" id="firstname" placeholder="Firstname"-->
+<!--                                           th:field="*{firstname}"/>-->
+<!--                                </div>-->
+<!--                                <div class="md-form">-->
+
+<!--                                    <input type="text" class="form-control" id="lastname" placeholder="Lastname"-->
+<!--                                           th:field="*{lastname}"/>-->
+<!--                                </div>-->
+                                <div class="md-form">
+
+                                    <input class="form-control" type="text" id="title" placeholder="Job Title"
+                                           th:field="*{title}"/>
+                                </div>
+                                <div class="md-form">
+
+                                    <input class="form-control" type="password" id="password" placeholder="Password"
+                                           th:field="*{password}"/>
+                                </div>
+
+                                <!--                                <div class="md-form">-->
+                                <!--                                    <label for="photo"></label>-->
+                                <!--                                    <input th:field="*{photo}" class="form-control" type="text" id="photo" value=""/><input type="submit"/>-->
+
+                                <!--                                </div>-->
+
+
+                                <div class="text-center">
+                                    <button class="btn btn-indigo">Send</button>
+                                </div>
+
+                            </form>
+                            <!-- Form -->
+
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+        </div>
+        <!-- Content -->
+
+    </div>
+    <!-- Mask & flexbox options-->
+
+</div>
+
+<script>
+    function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        let profile = googleUser.getBasicProfile();
+        let firstName = profile.getName().split(' ').slice(0, -1).join(' ');
+        let lastName = profile.getName().split(' ').slice(-1).join(' ');
+        var username = profile.getEmail().substring(0, profile.getEmail().lastIndexOf("@"));
+        var id_token = googleUser.getAuthResponse().id_token;
+
+        document.getElementById("email").value = profile.getEmail();
+        document.getElementById("username").value = username;
+        document.getElementById("photo").value = profile.getImageUrl();
+        document.getElementById("password").value = id_token;
+        document.getElementById("title").value = "New Member";
+        // user: email, username, first last title photo
+        document.getElementById("signUpForm").submit();
+    }
+
+    function signOut() {
+        let auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+
+</script>
+<script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../../static/js/bootstrap.js"></script>
+<!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
+<!--</th:block>-->
+<th:block th:replace="fragments/footer">
+</th:block>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+
+    <style>
+        .jtext {
+
+            color: #FFFFFF;
+            font-weight: bolder;
+            /*background-color:#3F51B5;*/
+
+        }
+
+        .bg{
+            background:#F1F3F4;
+
+        }
+        td{background-color:white;}
+
+        /*.cbg{*/
+        /*    background: #343A3F;*/
+        /*}*/
+
+        .jHead{
+            /*padding-top: 100px;*/
+
+
+        }
+
+        .curve{
+            background: linear-gradient(110deg, #3F51B5 40%, #FFFFFF 20%);
+
+        }
+
+
+
+        #line:after {
+
+            content:' ';
+            display:block;
+            border:1px solid white;
+            width: 35%;
+        }
+    </style>
+
+    <th:block th:replace="fragments/header :: my-header('Posts')">
+    </th:block>
+<!--    <link th:rel="stylesheet" th:href="@{'/css/post.css'}" />-->
+
+
+</head>
+
+
+
+<body class="bg">
+<th:block th:replace="fragments/navbar :: top-nav" />
+
+
+<div class="container cbg">
+
+    <div class="row jHead curve" >
+        <div class="col-6 col-md-6 jmargin jHead">
+            <h1 id="line" th:text="${forum.name}" class=" jtext display-4"></h1>
+            <p class="jtext lead">See what the community is talking about</p>
+        </div>
+        <div class="col-6 col-md-6">
+            <img th:src="@{'/picture/posts.png'}" style="height:350px;width:500px;"/>
+        </div>
+    </div>
+
+
+<!--    <div class="jumbo jumbotron jumbotron-fluid">-->
+<!--        <div class="container">-->
+<!--            <h1 id="line" th:text="${forum.name}" class="display-4 jtext"></h1>-->
+<!--            <p class=" jtext lead">See what the community is talking about</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--<div class="container bg">-->
+
+<!--    <th:block th:replace="fragments/navbar :: top-nav" />-->
+
+
+
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th >Title</th>
+            <th >Author</th>
+
+            <th >Posted</th>
+            <th >Comments</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}">
+
+            <!--<div th:each="post : ${posts}">-->
+            <td th:text="${post.title}"></td>
+            <td th:Text="${post.owner.username}"></td>
+            <td th:Text="${post.getCreatedAt().getMonth()}+'/'+${post.getCreatedAt().getDay()} + '/2019'"></td>
+            <td><span th:Text="${post.comments.size()}+ ' ' "> </span>
+
+
+
+
+            </td>
+            <td> <a class="btn btn-indigo" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+            </td>
+
+        </tr>
+        </tbody>
+        <tfoot class="thead-dark">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th >Posted</th>
+            <th >Comments</th>
+            <th > </th>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+
+
+
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
+</body>
+</html>

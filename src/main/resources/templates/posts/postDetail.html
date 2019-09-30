@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:replace="fragments/header :: my-header('Posts')">
+    </th:block>
+    <style>
+        .img-thumbnail {
+
+        }
+        .marginTop {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: top-nav" />
+
+<div class="container">
+    <div class="row marginTop">
+        <div class="col-lg-10">
+            <div class="card border-0">
+                <h6 th:text="${post.title}"></h6>
+                <form th:action="@{'/posts/'+ ${post.id} +'/favorite'}" th:method="post">
+                    <button class="btn btn-link btn-sm">Add to Favorites </button>
+                </form>
+                <hr/>
+                <!--                <div class="card-header p-3 mb-2 bg-info text-white" th:text="${post.title}">-->
+                <!--                </div>-->
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <div class="text" th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava(post.body),'\n','&lt;br /&gt;'))}">
+                            <p th:text="${post.body}"></p>
+                        </div>
+                        <br/>
+                        <footer class="blockquote-footer" th:text="${post.owner.username}">username</footer>
+                        <footer class="blockquote-footer" th:text="${post.owner.title}"></footer>
+                        <footer class="blockquote-footer" th:text="${post.createdAt}"></footer>
+
+                        <br/>
+
+                        <!-- Button trigger modal -->
+<!--                        <div class="container" sec:authorize="isAuthenticated()">-->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Comment
+                            </button>
+<!--                        </div>-->
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Say something helpful!</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form th:action="@{/posts/comment}" method="post" th:object="${comment}">
+                                            <input type="hidden" name="post.id" th:value="${post.id}"/>
+                                            <textarea class="form-control" aria-label="With textarea" rows="16" cols="16" th:field="*{body}"></textarea>
+                                            <br/>
+                                            <button type="submit" class="btn btn-primary">Comment</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </blockquote>
+                    <!--                    <hr/>-->
+                    <br/>
+                    <h6>Comments</h6>
+                    <hr/>
+                    <!--                    <div class="card-header p-3 mb-2 bg-info text-white">-->
+                    <!--                        Comments-->
+                    <!--                    </div>-->
+                    <div class="row">
+                        <div class="container">
+                            <div th:each="comment : ${comments}">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div th:text="${comment.user.username}"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-lg-2"><img th:src="${comment.user.photo}" class="img-thumbnail"/><br/>
+                                        <div th:text="'likes: ' + ${comment.ratingTota()}"></div>
+                                        <div sec:authorize="isAuthenticated()">
+                                            <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
+                                                <input type="hidden" name="vote" th:value="1"/>
+                                                <input type="hidden" name="comment.id" th:value="${comment.id}"/>
+                                                <button class="btn btn-link"> Like</button>
+                                            </form>
+                                            <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
+                                                <input type="hidden" name="vote" th:value="0"/>
+                                                <input type="hidden" name="comment.id" th:value="${comment.id}"/>
+                                                <button class="btn btn-link"> Unlike</button>
+                                            </form>
+                                        </div>
+                                        <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
+                                            <ul class="nav nav-pills">
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+                                                    <div class="dropdown-menu">
+                                                        <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
+                                                            <button class="btn btn-link btn-sm">Edit</button>
+                                                        </form>
+                                                        <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="post" th:object="${comment}">
+                                                            <button class="btn btn-link btn-sm">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10" th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava(comment.body),'\n','&lt;br /&gt;'))}"><br/></div>
+                                </div>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="card border-0">
+                <!--                <div class="card-header card-header p-3 mb-2 bg-info text-white">-->
+                <!--                    Languages-->
+                <!--                </div>-->
+                <h6>Languages</h6>
+                <hr/>
+                <ul class="list-group list-group-flush">
+                    <div th:each="forum : ${forums}">
+                        <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+                            <li class="list-group-item"><a class="btn btn-lg btn-indigo" th:href="@{/forums/{forumId}(forumId = ${forum.id})}" th:text="${forum.name}" style="font-size: 15px;"></a></li>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--comments-->
+
+
+
+
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
+</body>
+</html>
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    &lt;!&ndash; Bootstrap core css &ndash;&gt;-->
+<!--    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>-->
+<!--    &lt;!&ndash; Material Design Bootstrap &ndash;&gt;-->
+<!--    <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>-->
+<!--    &lt;!&ndash; Your custom styles (optional) &ndash;&gt;-->
+<!--    <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>-->
+<!--    <th:block th:replace="fragments/header :: my-header('Posts')">-->
+<!--    </th:block>-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>-->
+<!--    <script src="https://pagecdn.io/lib/ace/1.4.5/ace.js"-->
+<!--            integrity="sha256-5Xkhn3k/1rbXB+Q/DX/2RuAtaB4dRRyQvMs83prFjpM=" crossorigin="anonymous"></script>-->
+<!--    <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>-->
+
+<!--    <style>-->
+<!--        body{-->
+<!--            background-color: #a1a2a5;-->
+<!--        }-->
+<!--        .objects {-->
+<!--            background-color: white;-->
+<!--            margin-top: 2%;-->
+<!--            width: 50%;-->
+<!--            margin-left: auto;-->
+<!--            margin-right: auto;-->
+<!--            position: relative;-->
+<!--            border-radius: 25px;-->
+<!--            border: 2px solid darkorange;-->
+<!--        }-->
+<!--        .card {-->
+<!--            margin-top: 7%;-->
+<!--            width: 50%;-->
+<!--            margin-left: auto;-->
+<!--            margin-right: auto;-->
+<!--            position: relative;-->
+<!--            border-radius: 25px;-->
+<!--            border: 2px solid #0c2839;-->
+<!--        }-->
+<!--        img {-->
+<!--        max-width: 400px;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<th:block th:replace="fragments/navbar :: top-nav"/>-->
+
+
+<!--    <div class="card">-->
+<!--        <div class="card-header" th:text="${post.title}"></div>-->
+<!--        <div class="card-body">-->
+
+<!--            <blockquote class="blockquote mb-0">-->
+<!--                <p th:text="${post.body}"></p>-->
+<!--                <div class="container">-->
+<!--                    <div class="row justify-content-center">-->
+<!--                        <div class="col-7">-->
+<!--                            <img th:if="${post.photo != null}" th:src="${post.photo}"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <footer class="blockquote-footer" th:text="${post.owner.username}">username</footer>-->
+<!--                <footer class="blockquote-footer" th:text="${post.owner.title}"></footer>-->
+<!--                <footer class="blockquote-footer" th:text="${post.getCreatedAt().getMonth()}+'/'+${post.getCreatedAt().getDay()} + '/2019'"></footer>-->
+<!--            </blockquote>-->
+
+
+<!--            &lt;!&ndash; modal button&ndash;&gt;-->
+<!--            <div sec:authorize="isAuthenticated()">-->
+<!--                <button id="commentBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
+<!--                    Add Comment-->
+<!--                </button>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Modal &ndash;&gt;-->
+<!--            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--                <div class="modal-dialog" role="document">-->
+<!--                    <div class="modal-content">-->
+<!--                        <div class="modal-header">-->
+<!--                            <h5 class="modal-title" id="exampleModalLabel">Say Something Helpful!</h5>-->
+<!--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                                <span aria-hidden="true">&times;</span>-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                        <div class="modal-body">-->
+<!--                            &lt;!&ndash;                    <div class="container" sec:authorize="isAuthenticated()">&ndash;&gt;-->
+<!--                            <form th:action="@{/posts/comment}" method="post" th:object="${comment}">-->
+<!--                                <div class="input-group">-->
+<!--                                    <div class="input-group-prepend"></div>-->
+<!--                                    <textarea class="form-control" th:field="*{body}" aria-label="With textarea"></textarea>-->
+<!--                                    <input type="hidden" name="post.id" th:value="${post.id}"/>-->
+<!--                                    <button type="submit">Comment</button>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                            &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--<div class="objects">&lt;!&ndash;comments&ndash;&gt;-->
+<!--    <br/>-->
+<!--    <div class="container">-->
+<!--        <div th:each="comment : ${comments}">-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-8">-->
+<!--                    <div th:text="${comment.user.username}"></div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col col-lg-2">-->
+<!--                    <img th:if="${comment.user.photo != null}" th:src="${comment.user.photo}" class="img-thumbnail"/>-->
+<!--                    <br/></div>-->
+<!--                <div class="col-lg-8" th:text="${comment.body}"><br/></div>-->
+<!--                <div class="col">-->
+<!--                    <div th:text="${comment.ratingTota()} + ' likes'"></div>-->
+<!--                    <div sec:authorize="isAuthenticated()">-->
+<!--                        <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">-->
+<!--                            <input type="hidden" name="vote" th:value="1"/>-->
+<!--                            <input type="hidden" name="comment.id" th:value="${comment.id}"/>-->
+<!--                            <button class="btn btn-link"> Like</button>-->
+<!--                        </form>-->
+<!--                        <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">-->
+<!--                            <input type="hidden" name="vote" th:value="0"/>-->
+<!--                            <input type="hidden" name="comment.id" th:value="${comment.id}"/>-->
+<!--                            <button class="btn btn-link"> Unlike</button>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                    <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${comment.user.id}"-->
+<!--                         class="field is-grouped">-->
+<!--                        <ul class="nav nav-pills">-->
+<!--                            <li class="nav-item dropdown">-->
+<!--                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"-->
+<!--                                   aria-haspopup="true" aria-expanded="false">More</a>-->
+<!--                                <div class="dropdown-menu">-->
+<!--                                    <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get"-->
+<!--                                          th:object="${comment}">-->
+<!--                                        <button class="btn btn-link btn-sm">Edit</button>-->
+<!--                                    </form>-->
+<!--                                    <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="post"-->
+<!--                                          th:object="${comment}">-->
+<!--                                        <button class="btn btn-link btn-sm">Delete</button>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <br/>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash;    <div id="editor" style="width: 100%; height: 500px;">&ndash;&gt;-->
+<!--&lt;!&ndash;        function foo(items) {&ndash;&gt;-->
+<!--&lt;!&ndash;        var x = "All this is syntax highlighted";&ndash;&gt;-->
+<!--&lt;!&ndash;        return x;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+
+<!--<script>-->
+<!--    // var editor = ace.edit("editor");-->
+<!--    // editor.setTheme("ace/theme/monokai");-->
+<!--    // editor.session.setMode("ace/mode/javascript");-->
+<!--    var aceEditor = ace.edit("editor");-->
+
+<!--    // defines the style of the editor-->
+<!--    aceEditor.setTheme("ace/theme/monokai");-->
+<!--    // hides line numbers (widens the area occupied by error and warning messages)-->
+<!--    aceEditor.renderer.setOption("showLineNumbers", false);-->
+<!--    // ensures proper autocomplete, validation and highlighting of JavaScript code-->
+<!--    aceEditor.getSession().setMode("ace/mode/javascript_expression");-->
+
+
+<!--</script>-->
+
+<!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
+<!--</th:block>-->
+<!--</body>-->
+<!--</html>-->

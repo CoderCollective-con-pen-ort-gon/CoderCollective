@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+
+
+
+    <style>
+        .jtext {
+
+            color: #FFFFFF;
+            font-weight: bolder;
+            /*background-color:#3F51B5;*/
+
+        }
+
+        .bg{
+            background:#F1F3F4;
+        }
+
+
+        .cbg{
+            background: white;
+        }
+
+        .jmargin{
+            margin-top: 150px;
+
+
+        }
+
+        .jmarginImg{
+            margin-top:40px;
+
+        }
+
+        .curve{
+            background: linear-gradient(110deg, #3F51B5 40%, #FFFFFF 20%);
+            height:360px;
+
+        }
+
+
+
+        #line:after {
+
+            content:' ';
+            display:block;
+            border:1px solid white;
+            width: 35%;
+        }
+    </style>
+
+
+
+
+</head>
+
+
+
+<body class="bg">
+<th:block th:replace="fragments/navbar :: top-nav" />
+
+
+<div class="container cbg">
+
+    <div class="row jHead curve" >
+        <div class="col-6 col-md-6 jmargin jHead">
+            <h1 id="line" class=" jtext display-4">Results</h1>
+        </div>
+        <div class="col-6 col-md-6">
+            <img class="jmarginImg" th:src="@{'/picture/searching.png'}" style="height:335px;width:500px;"/>
+        </div>
+    </div>
+
+
+
+
+
+
+
+<th:block th:if="${searched != null}">
+    <h1 th:text="'Search:' + ${searched}"></h1>
+    <div th:each="post : ${posts}">
+        <h1 th:text="${post.title}"></h1>
+        <p th:Text="${post.owner.username}"></p>
+        <p th:Text="${post.createdAt}"></p>
+        <a th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+    </div>
+</th:block>
+
+
+
+</div>
+
+
+
+<th:block th:replace="fragments/footer">
+
+</th:block>
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
+
+
+<script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../../static/js/bootstrap.js"></script>
+
+
+</body>
+</html>

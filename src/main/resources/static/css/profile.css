@@ -1,0 +1,52 @@
+
+/*.profile {*/
+
+
+/*    width: 15.07%;*/
+/*    height:100%;*/
+/*    background-color: #0b51c5;*/
+/*    display: inline-block;*/
+
+/*}*/
+/*.content {*/
+
+/*}*/
+
+/*.posts {*/
+/*    background-color: yellow;*/
+/*    display: inline-block;*/
+
+/*    width: 84.5%;*/
+/*}*/
+
+
+
+
+.object {
+    display: flex;
+    margin-top: 5.1%;
+    height: 100%;
+}
+
+.left {
+    width: 25%; /* or leave it undefined */
+}
+
+.right {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+/* some styling */
+
+.left {background: white}
+.right {background: darkorange}
+
+.rightcontent {
+    width: 65%;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    background-color: lightgray;
+}
