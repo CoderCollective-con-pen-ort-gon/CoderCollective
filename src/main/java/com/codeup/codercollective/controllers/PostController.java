@@ -51,7 +51,9 @@ public class PostController {
 //        vModel.addAttribute("user", loggedIn);
         Post postId = postDao.findOne(id);
         Iterable<Comment> comments = postId.getComments();
+        Iterable<Forum> forums = forumDao.findAll();
         vModel.addAttribute("comments", comments);
+        vModel.addAttribute("forums", forums);
         vModel.addAttribute("post", postDao.findOne(id));
         vModel.addAttribute("comment", new Comment());
         vModel.addAttribute("rating", new Rating());
