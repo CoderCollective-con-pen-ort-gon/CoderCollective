@@ -47,7 +47,7 @@
                             <button class="nav-link" type="submit" onclick="signOut();">Logout</button>
                         </form>
                     </li>
-                    <li class="nav-item active" sec:authorize="isAuthenticated()">
+                    <li class="nav-item active" sec:authorize="!isAuthenticated()">
                         <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
                             <label for="searched"></label>
                             <input class="form-control mr-sm-2" name="searched" type="text" id="searched"
