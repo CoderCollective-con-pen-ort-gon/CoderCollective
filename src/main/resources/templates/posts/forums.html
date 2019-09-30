@@ -27,14 +27,20 @@
             background: white;
         }
 
-        .jHead{
-            padding-top: 100px;
+        .jmarginImg{
+            margin-top:40px;
+
+        }
+
+        .jmargin{
+            margin-top: 150px;
 
 
         }
 
         .curve{
             background: linear-gradient(110deg, #3F51B5 40%, #FFFFFF 20%);
+            height:360px;
 
         }
 
@@ -63,12 +69,12 @@
 <div class="container cbg">
 
     <div class="row jHead curve" >
-        <div class="col-6 col-md-6  jHead">
+        <div class="col-6 col-md-6 jmargin jHead">
             <h1 id="line" class=" jtext display-4">Forums</h1>
             <p class="jtext lead">See what the community is talking about</p>
         </div>
         <div class="col-6 col-md-6">
-            <img th:src="@{/picture/forum.png}" style="height:350px;width:500px"/>
+            <img class="jmarginImg" th:src="@{/picture/forum.png}" style="height:350px;width:500px"/>
         </div>
     </div>
 
