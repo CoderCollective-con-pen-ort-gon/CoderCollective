@@ -120,11 +120,11 @@
     function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         let profile = googleUser.getBasicProfile();
-        let firstName = profile.getName().split(' ').slice(0, -1).join(' ');
-        let lastName = profile.getName().split(' ').slice(-1).join(' ');
+        // let firstName = profile.getName().split(' ').slice(0, -1).join(' ');
+        // let lastName = profile.getName().split(' ').slice(-1).join(' ');
         var username = profile.getEmail().substring(0, profile.getEmail().lastIndexOf("@"));
         var id_token = googleUser.getAuthResponse().id_token;
-
+console.log(profile);
         document.getElementById("email").value = profile.getEmail();
         document.getElementById("username").value = username;
         // document.getElementById("firstname").value = firstName;
