@@ -71,6 +71,21 @@
 
 
         </div>
+
+
+    <h1>Favorites</h1>
+    <div th:each= "post : ${favPosts}">
+
+        <a th:href="@{/posts/{postId}(postId = ${post.id})}" th:text="${post.body}"></a>
+
+        <form th:action="@{'/favorite/'+ ${post.id} +'/delete'}" th:method="post">
+            <button class="btn btn-warning">remove favorite</button>
+        </form>
+
+    </div>
+
+
+
 </div>
 </div>
 </div>

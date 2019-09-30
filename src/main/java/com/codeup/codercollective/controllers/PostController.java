@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Controller
 public class PostController {
@@ -193,6 +195,50 @@ public class PostController {
 //        Comment comment=rating.getComment();
 //        System.out.println(comment);
         return "redirect:/posts/" + postId;
+    }
+
+    @PostMapping("/posts/{id}/favorite")
+    public String returnEditPost(@PathVariable long id){
+        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        long userId=userSession.getId();
+        User user=userDao.findOne(userId);
+
+        Post post=postDao.findOne(id);
+
+        List<Post> posts=user.getFavoritepost();
+
+        posts.add(post);
+
+        user.setFavoritepost(posts);
+        userDao.save(user);
+
+
+        return "redirect:/posts/" + id;
+    }
+
+    @PostMapping("/favorite/{id}/delete")
+    public String deleteFavPost(@PathVariable long id){
+        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println("this is the id" +id);
+        long userId=userSession.getId();
+        User user=userDao.findOne(userId);
+
+        Post post=postDao.findOne(id);
+
+        List<Post> posts=user.getFavoritepost();
+
+//        long w=posts.indexOf(post);
+//        System.out.println("this is the index of the post "+ w);
+        posts.remove(post);
+        user.setFavoritepost(posts);
+
+
+        userDao.save(user);
+
+
+
+        return "redirect:/profile";
     }
 
 

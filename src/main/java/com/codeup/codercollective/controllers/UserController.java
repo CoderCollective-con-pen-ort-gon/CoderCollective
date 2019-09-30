@@ -40,7 +40,8 @@ public class UserController {
         User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser= userDao.findOne(userSession.getId());
 
-
+        Iterable<Post> favPosts=currentUser.getFavoritepost();
+        vModel.addAttribute("favPosts", favPosts);
 
         Iterable<Forum> forums = forumDao.findAll();
         vModel.addAttribute("forums", forums);
