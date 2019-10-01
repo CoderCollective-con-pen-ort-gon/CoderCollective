@@ -50,7 +50,7 @@
                         <button th:onclick="${'javascript:signOut()'}" class="nav-link" data-theme="dark">Sign out</button>
                     </form>
                 </li>
-                <li class="nav-item active" sec:authorize="!isAuthenticated()">
+                <li class="nav-item active">
                     <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
                         <label for="searched"></label>
                         <input class="form-control mr-sm-2" name="searched" type="text" id="searched"
