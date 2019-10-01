@@ -15,7 +15,7 @@
 
         }
 
-        .bg{
+        .card-body{
             background:#F1F3F4;
 
         }
@@ -53,6 +53,15 @@
         #headerImage {
 
         }
+        .btn-link, .dropdown-toggle {
+            text-align: left;
+            padding: 0px;
+            margin: 0px;
+        }
+        #textBody {
+            font-family: sans-serif;
+            font-size: medium;
+        }
     </style>
 </head>
 <body class="bg">
@@ -76,19 +85,20 @@
     <div class="row">
         <div class="col-lg-10">
             <div class="card border-0">
-                <h6 class="text-center" th:text="${post.title}"></h6>
-                <hr width="30%"/>
                 <!--                <div class="card-header p-3 mb-2 bg-info text-white" th:text="${post.title}">-->
                 <!--                </div>-->
                 <div class="card-body">
+                    <h1 class="text-center" th:text="${post.title}"></h1>
+                    <br/>
                     <blockquote class="blockquote mb-0">
                         <div class="row justify-content-center">
                             <div class="alignCenter">
                                 <img id="commentPhoto" th:if="${post.photo != null}" th:src="${post.photo}"/>
                             </div>
                         </div>
-                        <div class="text" th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava(post.body),'\n','&lt;br /&gt;'))}">
-                            <p th:text="${post.body}"></p>
+                        <br/>
+                        <div id="textBody" th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava(post.body),'\n','&lt;br /&gt;'))}">
+                            <div th:text="${post.body}"></div>
                         </div>
                         <br/>
                         <footer class="blockquote-footer" th:text="${post.owner.username}">username</footer>
@@ -103,7 +113,7 @@
                         <br/>
 
                         <!-- Button trigger modal -->
-                        <div class="container" sec:authorize="isAuthenticated()">
+                        <div sec:authorize="isAuthenticated()">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                 Comment
                             </button>
@@ -132,19 +142,16 @@
                             </div>
                         </div>
                     </blockquote>
-                    <!--                    <hr/>-->
                     <br/>
-                    <h6>Comments</h6>
+                    <h6>Comments:</h6>
                     <hr/>
-                    <!--                    <div class="card-header p-3 mb-2 bg-info text-white">-->
-                    <!--                        Comments-->
-                    <!--                    </div>-->
                     <div class="row">
                         <div class="container">
                             <div th:each="comment : ${comments}">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div th:text="${comment.user.username}"></div>
+                                        <br/>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -156,18 +163,18 @@
                                             <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
                                                 <input type="hidden" name="vote" th:value="1"/>
                                                 <input type="hidden" name="comment.id" th:value="${comment.id}"/>
-                                                <button class="btn btn-link"> Like</button>
-                                            </form>
-                                            <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
-                                                <input type="hidden" name="vote" th:value="0"/>
-                                                <input type="hidden" name="comment.id" th:value="${comment.id}"/>
-                                                <button class="btn btn-link"> Unlike</button>
+                                                <button class="btn btn-link">Like</button>
                                             </form>
                                             <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
                                                 <ul class="nav nav-pills">
                                                     <li class="nav-item dropdown">
                                                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
                                                         <div class="dropdown-menu">
+                                                            <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
+                                                                <input type="hidden" name="vote" th:value="0"/>
+                                                                <input type="hidden" name="comment.id" th:value="${comment.id}"/>
+                                                                <button class="btn btn-link">Remove like</button>
+                                                            </form>
                                                             <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
                                                                 <button class="btn btn-link btn-sm">Edit</button>
                                                             </form>
@@ -190,9 +197,7 @@
         </div>
         <div class="col-lg-2">
             <div class="card border-0">
-                <!--                <div class="card-header card-header p-3 mb-2 bg-info text-white">-->
-                <!--                    Languages-->
-                <!--                </div>-->
+
                 <h6 class="text-center">Languages</h6>
                 <ul class="list-group list-group-flush">
                     <div th:each="forum : ${forums}">
