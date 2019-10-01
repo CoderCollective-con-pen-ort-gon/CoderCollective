@@ -86,21 +86,27 @@
 
 
 <div class="row">
+<!--    <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">-->
 
-    <div class="card col-2 col-sm-2 col-md-2  shadow-none " style="width:25rem;height:30rem; margin-top:20px;" th:each="forum : ${forums}">
+    <div class="card col-3 col-sm-3 col-md-3  shadow-none " style="width:18rem;height:22rem; margin-top:20px;" th:each="forum : ${forums}">
+        <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">
+
 
         <img th:src= "@{'/pics/' +${forum.name} +'.png'}" style="height:12rem;"/>
         <div class="card-body">
             <h5 class="card-title" th:text="${forum.name}"></h5>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item" th:Text="'Contributions '+ ${forum.getPosts().size()}" > </li>
+            <li class="list-group-item" th:Text="'Posts '+ ${forum.getPosts().size()}" > </li>
         </ul>
-        <div class="card-body">
-            <a class="btn btn-indigo text-white" th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View </a>
-        </div>
-    </div>
+<!--        <div class="card-body">-->
+<!--            <a class="btn btn-indigo text-white" th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View </a>-->
+<!--
 
+</div>-->
+        </a>
+    </div>
+<!--    </a>-->
 </div>
 </div>
 
