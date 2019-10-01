@@ -41,6 +41,23 @@
             document.getElementById("mySidenav").style.width = "0";
             document.getElementById("main").style.marginLeft = "0";
         }
+
+
+        function signOut(e) {
+            // e.preventDefault();
+            // Get `GoogleAuth` instance
+            // var auth2 = gapi.auth2.getAuthInstance();
+            // // Sign-Out
+            // auth2.signOut()
+            //     .then(changeProfile);
+            // GoogleAuth.signOut();
+            // GoogleAuth.disconnect()
+            gapi.auth.signOut();
+                $("#logOut").submit();
+            document.getElementById("logOut").submit();
+
+        }
+
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
