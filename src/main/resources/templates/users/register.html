@@ -140,7 +140,14 @@
         let auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             console.log('User signed out.');
+            // document.getElementById("logOut").submit();
+
         })
+    }
+    function onLoad() {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
     }
 
 
@@ -163,6 +170,8 @@
 </script>
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
+<script src="https://apis.google.com/js/platform.js?onload=onLoad"></script>
+
 
 
 <!--https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin-->

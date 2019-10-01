@@ -11,6 +11,13 @@
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
     <link th:rel="stylesheet" th:href="@{'/css/profile.css'}"/>
+    <meta name="google-signin-client_id"
+          content="772446032988-lngdrhm681gigpfn5j3f36eon1a7nclq.apps.googleusercontent.com"/>
+
+
+    <meta name="google-signin-scope" content="profile email"/>
+    <meta name="google-signin-client_id"
+          content="772446032988-lngdrhm681gigpfn5j3f36eon1a7nclq.apps.googleusercontent.com"/>
 
 
 
@@ -100,10 +107,19 @@
         let auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             console.log('User signed out.');
+            // document.getElementById("logOut").submit();
+
         })
+    }
+    function onLoad() {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
     }
 
 </script>
+<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+<script src="https://apis.google.com/js/platform.js?onload=onLoad"></script>
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 </body>
