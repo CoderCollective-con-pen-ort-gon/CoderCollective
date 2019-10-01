@@ -3,6 +3,12 @@
 <head>
     <th:block th:replace="fragments/header :: my-header('Posts')">
     </th:block>
+
+    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
     <style>
         .jtext {
 
@@ -194,7 +200,7 @@
                 <ul class="list-group list-group-flush">
                     <div th:each="forum : ${forums}">
                         <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
-                            <li class="list-group-item text-center"><a class="btn btn-lg btn-indigo" th:href="@{/forums/{forumId}(forumId = ${forum.id})}" th:text="${forum.name}" style="font-size: 15px;"></a></li>
+                            <li class="list-group-item text-center"><a  th:href="@{/forums/{forumId}(forumId = ${forum.id})}" th:text="${forum.name}" style="font-size: 15px;"></a></li>
                         </div>
                     </div>
                 </ul>
