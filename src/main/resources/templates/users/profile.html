@@ -91,19 +91,12 @@
                             <a th:href="@{/posts/{postId}(postId = ${post.id})}" id="title" th:text="${post.title}"></a>
                         </li>
                         <li class="list-group-item">
-                            <ul class="nav nav-pills">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
-                                    <div class="dropdown-menu">
-                                        <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
-                                            <button class="btn btn-link btn-sm">Edit Post</button>
-                                        </form>
-                                        <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
-                                            <button class="btn btn-link btn-sm" type="submit">Delete Post</button>
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
+                            <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
+                                <button class="btn btn-link btn-sm">Edit Post</button>
+                            </form>
+                            <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
+                                <button class="btn btn-link btn-sm" type="submit">Delete Post</button>
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -136,7 +129,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
@@ -166,3 +158,6 @@
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 </body>
 </html>
+
+
+
