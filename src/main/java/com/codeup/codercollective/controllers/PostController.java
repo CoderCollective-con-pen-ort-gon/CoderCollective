@@ -123,18 +123,25 @@ public class PostController {
 //        long forumId = forum.getId();
         System.out.println(id);
 
-        if (favDao.findFavByPost_Id(id) != null) {
-            favDao.deleteFavByPost_Id(id);
-        }
-        System.out.println("fav");
-        if (commentDao.findAllByPost_Id(id) != null) {
-            commentDao.deleteAllByPost_Id(id);
-        }
-        System.out.println("comment");
+
+            for(Comment comment:   commentDao.findAll()){
+                if (comment.getPost().getId()==id){
+                    commentDao.delete(comment);
+                }
+            }
+//        favDao.deleteFavByPost_Id(id);
+
+//        if (favDao.findFavByPost_Id(id) != null) {
+//            favDao.deleteFavByPost_Id(id);
+//        }
+//        System.out.println("fav");
+//        if (commentDao.findAllByPost_Id(id) != null) {
+//            commentDao.deleteAllByPost_Id(id);
+//        }
+//        System.out.println("comment");
 
         postDao.delete(id);
         return "redirect:/profile";
-//        return "/forums/" + forumId;
     }
 
 

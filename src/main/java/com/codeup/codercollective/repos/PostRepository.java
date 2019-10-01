@@ -14,10 +14,15 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 
     Iterable<Post> findByOwner(User user);
 
+
+
 //    List<Post> findAllByBodyOrTitle(String searchedOne, String searchedTwo);
 
 
-    @Query(value = "SELECT * from cc_db.posts c where c.body like CONCAT('%', :searched, '%') OR c.title like CONCAT(:searched, '%')", nativeQuery = true)
+//    @Query(value = "SELECT * from cc_db.posts c where c.body like CONCAT('%', :searched, '%') OR c.title like CONCAT(:searched, '%')", nativeQuery = true)
+//    List<Post> findAllByBodyOrTitle (@Param(("searched")) String searched);
+
+    @Query(value = "SELECT * from codercollective_db.posts c where c.body like CONCAT('%', :searched, '%') OR c.title like CONCAT('%',:searched, '%')", nativeQuery = true)
     List<Post> findAllByBodyOrTitle (@Param(("searched")) String searched);
 
 }

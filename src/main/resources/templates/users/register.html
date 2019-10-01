@@ -46,13 +46,17 @@
                 margin-top: 80px;
                 width: 40%;
             }
+
+            body{
+                background-image: url('/picture/blue.jpg'); background-repeat: no-repeat; background-size: cover;"
+            }
         }
     </style>
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav"/>
 <div class="view2"
-     style="background-image: url('https://images.pexels.com/photos/908284/pexels-photo-908284.jpeg'); background-repeat: no-repeat; background-size: cover;">
+     style="background-image: url('/picture/blue.jpg'); background-repeat: no-repeat; background-size: cover;">
     <div class=" rgba-black-light d-flex justify-content-center">
 
         <div class="container">
@@ -61,7 +65,7 @@
                     <h3 class="dark-grey-text text-center">
                         <strong>Create Account</strong>
                     </h3>
-                    <form th:action="@{/register}" method="post" th:object="${user}">
+                    <form id="signUpForm" th:action="@{/register}" method="post" th:object="${user}">
                         <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">Fill in form</div>
                         <div onclick="signOut();" class="g-signout2" data-theme="dark">Sign out</div>
 
@@ -120,16 +124,15 @@
     function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         let profile = googleUser.getBasicProfile();
-        let firstName = profile.getName().split(' ').slice(0, -1).join(' ');
-        let lastName = profile.getName().split(' ').slice(-1).join(' ');
+        // let firstName = profile.getName().split(' ').slice(0, -1).join(' ');
+        // let lastName = profile.getName().split(' ').slice(-1).join(' ');
         var username = profile.getEmail().substring(0, profile.getEmail().lastIndexOf("@"));
         var id_token = googleUser.getAuthResponse().id_token;
-
         document.getElementById("email").value = profile.getEmail();
         document.getElementById("username").value = username;
         // document.getElementById("firstname").value = firstName;
         // document.getElementById("lastname").value = lastName;
-        document.getElementById("photo").value = profile.getImageUrl();
+        // document.getElementById("photo").value = profile.getImageUrl();
         document.getElementById("password").value = id_token;
         document.getElementById("title").value = "New Member";
         // user: email, username, first last title photo
@@ -140,6 +143,7 @@
         let auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             console.log('User signed out.');
+            gapi.auth.signOut();
         });
     }
 

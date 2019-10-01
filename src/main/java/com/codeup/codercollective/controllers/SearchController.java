@@ -24,7 +24,7 @@ public class SearchController {
 
 
     @GetMapping("/search")
-    public String showPosts(Model vModel){
+    public String showPosts(){
 //        vModel.addAttribute("searched", null);
 //        vModel.addAttribute("posts", null);
         return "posts/search";
@@ -32,8 +32,8 @@ public class SearchController {
 
     @PostMapping("/search")
     public String show(@RequestParam(value = "searched", required = false) String searched, Model vModel) {
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("UserId = " + loggedIn.getId());
+//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        System.out.println("UserId = " + loggedIn.getId());
         List<Post> postsSearched;
         postsSearched = postDao.findAllByBodyOrTitle(searched);
 
