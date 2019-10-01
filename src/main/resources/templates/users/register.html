@@ -62,12 +62,12 @@
                     <h3 class="dark-grey-text text-center">
                         <strong>Create Account</strong>
                     </h3>
-                    <form id="signUpForm" th:action="@{/register}" method="post" th:object="${user}">
-                        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">Fill in form</div>
-                        <form id="logOut" th:action="@{/logout}" th:method="post">
-                            <button onclick="signOut();" type="submit" class="g-signout" data-theme="dark">Sign out</button>
-                        </form>
+                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">Fill in form</div>
+                    <form id="logOut" th:action="@{/logout}" th:method="post">
+                        <button th:onclick="${'javascript:signOut()'}" type="submit" class="g-signout" data-theme="dark">Sign out</button>
+                    </form>
 
+                    <form id="signUpForm" th:action="@{/register}" method="post" th:object="${user}">
                         <div class="md-form">
 
                             <input class="form-control" id="email" name="email" placeholder="Email"

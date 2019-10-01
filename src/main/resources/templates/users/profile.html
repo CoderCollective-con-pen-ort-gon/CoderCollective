@@ -95,14 +95,12 @@
 <th:block th:replace="fragments/footer">
 </th:block>
 <script>
+
     function signOut() {
         let auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             console.log('User signed out.');
-            gapi.auth.signOut();
-            document.getElementById("logOut").submit();
-
-        });
+        })
     }
 
 </script>
