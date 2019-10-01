@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <th:block th:replace="fragments/header :: my-header('Profile')">
+    </th:block>
+
+
     <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
     <!-- Material Design Bootstrap -->
     <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
-    <link th:rel="stylesheet" th:href="@{'/css/profile.css'}" />
+    <link th:rel="stylesheet" th:href="@{'/css/profile.css'}"/>
+    <meta name="google-signin-client_id"
+          content="772446032988-lngdrhm681gigpfn5j3f36eon1a7nclq.apps.googleusercontent.com"/>
 
+
+    <meta name="google-signin-scope" content="profile email"/>
+    <meta name="google-signin-client_id"
+          content="772446032988-lngdrhm681gigpfn5j3f36eon1a7nclq.apps.googleusercontent.com"/>
 
     <th:block th:replace="fragments/header :: my-header('Profile')">
     </th:block>
@@ -23,9 +33,6 @@
         .container {
             background:#F1F3F4;
         }
-
-
-
     </style>
 
 </head>
@@ -34,7 +41,7 @@
 
 <div id="marginTop"></div>
 <div class="container body">
-    <div class="container">
+    <div class="container headerInfo">
         <div class="row">
             <div class="col-lg-12">
                 <h5 th:text="'Hello, ' + ${user.username} + '!'"></h5>
@@ -132,14 +139,29 @@
 
 </div>
 
-
-
-
-
-
-
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>
+<th:block th:replace="fragments/footer">
+</th:block>
+<script>
+
+    function signOut() {
+        let auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+            // document.getElementById("logOut").submit();
+
+        })
+    }
+    function onLoad() {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
+    }
+
+</script>
+<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+<script src="https://apis.google.com/js/platform.js?onload=onLoad"></script>
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 </body>
