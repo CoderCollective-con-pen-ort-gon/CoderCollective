@@ -43,7 +43,7 @@
         }
 
 
-        function signOut(e) {
+        function signOut() {
             // e.preventDefault();
             // Get `GoogleAuth` instance
             // var auth2 = gapi.auth2.getAuthInstance();
@@ -52,10 +52,11 @@
             //     .then(changeProfile);
             // GoogleAuth.signOut();
             // GoogleAuth.disconnect()
-            gapi.auth.signOut();
-                $("#logOut").submit();
-            document.getElementById("logOut").submit();
+            let auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
 
+            })
         }
 
     </script>

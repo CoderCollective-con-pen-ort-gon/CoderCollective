@@ -15,8 +15,9 @@
         .view2 {
             overflow: auto;
         }
+
         div .card1 {
-            background-color: white ;
+            background-color: white;
         }
 
         div .container {
@@ -63,7 +64,9 @@
                     </h3>
                     <form id="signUpForm" th:action="@{/register}" method="post" th:object="${user}">
                         <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">Fill in form</div>
-                        <div onclick="signOut();" class="g-signout" data-theme="dark">Sign out</div>
+                        <form id="logOut" th:action="@{/logout}" th:method="post">
+                            <button onclick="signOut();" type="submit" class="g-signout" data-theme="dark">Sign out</button>
+                        </form>
 
                         <div class="md-form">
 
@@ -75,16 +78,16 @@
                             <input class="form-control" id="username" name="username" placeholder="Username"
                                    th:field="*{username}"/>
                         </div>
-<!--                        <div class="md-form">-->
+                        <!--                        <div class="md-form">-->
 
-<!--                            <input class="form-control" id="firstname" name="firstname" placeholder="Firstname"-->
-<!--                                   th:field="*{firstname}"/>-->
-<!--                        </div>-->
-<!--                        <div class="md-form">-->
+                        <!--                            <input class="form-control" id="firstname" name="firstname" placeholder="Firstname"-->
+                        <!--                                   th:field="*{firstname}"/>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="md-form">-->
 
-<!--                            <input class="form-control" id="lastname" name="lastname" placeholder="Lastname"-->
-<!--                                   th:field="*{lastname}"/>-->
-<!--                        </div>-->
+                        <!--                            <input class="form-control" id="lastname" name="lastname" placeholder="Lastname"-->
+                        <!--                                   th:field="*{lastname}"/>-->
+                        <!--                        </div>-->
                         <div class="md-form">
 
                             <input class="form-control" id="title" name="title" placeholder="Job Title"
@@ -99,8 +102,6 @@
                         <!--Image via FileStack-->
 
                         <!---->
-
-
 
 
                         <button type="submit" class="btn btn-primary">Register</button>
@@ -139,11 +140,9 @@
         let auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             console.log('User signed out.');
-            gapi.auth.signOut();
-            document.getElementById("logOut").submit();
-
-        });
+        })
     }
+
 
 </script>
 
