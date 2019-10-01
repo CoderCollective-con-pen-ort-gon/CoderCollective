@@ -4,9 +4,6 @@
     <th:block th:replace="fragments/header :: my-header('Posts')">
     </th:block>
     <style>
-        .img-thumbnail {
-
-        }
         .jtext {
 
             color: #FFFFFF;
@@ -14,28 +11,20 @@
             /*background-color:#3F51B5;*/
 
         }
-
-        .card-body{
-            background:#F1F3F4;
+        .bg{
+            background:#FFF;
 
         }
-
         .cbg{
-            background: white;
+            background:#F1F3F4;
         }
         .jmargin{
-            margin-top:150px;
-
-        }
-
-        .jHead{
-            /*padding-top: 100px;*/
-
+            margin-top: 80px;
         }
         .curve{
-            background: linear-gradient(110deg, #3F51B5 40%, #FFFFFF 20%);
-            height: 360px;
-
+            /*background: linear-gradient(110deg, #375087 40%, #323E77 20%);*/
+            height:200px;
+            background-image:url("/picture/blue.jpg");
         }
         #line:after {
 
@@ -44,15 +33,17 @@
             border:1px solid white;
             width: 35%;
         }
+        .card-body{
+            background:#F1F3F4;
+
+        }
         #commentPhoto {
             max-width: 750px;
         }
         .alignCenter {
             align-content: center;
         }
-        #headerImage {
 
-        }
         .btn-link, .dropdown-toggle {
             text-align: left;
             padding: 0px;
@@ -68,13 +59,14 @@
 <th:block th:replace="fragments/navbar :: top-nav" />
 
 <div class="container cbg">
+
     <div class="row jHead curve" >
-        <div class="col-6 col-md-6  jmargin jHead">
-            <h1 id="line" class=" jtext display-4">Learn</h1>
-            <p class="jtext lead">Contribute to the conversation!</p>
+        <div class="col-6 col-md-6 jmargin jHead">
+            <h1 id="line" class=" jtext display-4" th:text="${post.title}"></h1>
+            <p class="jtext lead">Add to the conversation!</p>
         </div>
         <div class="col-6 col-md-6">
-            <img id="headerImage" th:src="@{/picture/detailedPost.png}" style="height:350px;width:500px"/>
+            <!--            <img class="jmarginImg" th:src="@{/picture/forum.png}" style="height:350px;width:500px"/>-->
         </div>
     </div>
 </div>
