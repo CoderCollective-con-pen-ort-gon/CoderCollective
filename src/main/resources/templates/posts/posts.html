@@ -18,23 +18,26 @@
         }
 
         .bg{
-            background:#F1F3F4;
+            background:#FFF;
 
         }
         td{background-color:white;}
 
-        /*.cbg{*/
-        /*    background: #343A3F;*/
-        /*}*/
-
-        .jHead{
-            /*padding-top: 100px;*/
+        .cbg{
+            background:#F1F3F4;
+        }
 
 
+
+
+        .jmargin{
+            padding:100px;
         }
 
         .curve{
-            background: linear-gradient(110deg, #3F51B5 40%, #FFFFFF 20%);
+            /*background: linear-gradient(110deg, #14449A 40%, #FFFFFF 20%);*/
+            height:300px;
+            background-image:url("/picture/blue.jpg");
 
         }
 
@@ -70,7 +73,7 @@
             <p class="jtext lead">See what the community is talking about</p>
         </div>
         <div class="col-6 col-md-6">
-            <img th:src="@{'/picture/posts.png'}" style="height:350px;width:500px;"/>
+            <img th:src="@{'/pics/' +${forum.name} +'.png'}" style="height:200px;width:250px; margin-top:75px;"/>
         </div>
     </div>
 
@@ -87,46 +90,67 @@
 
 
 
+    <div class="row">
 
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th >Title</th>
-            <th >Author</th>
+        <div class="card col-3 col-sm-3 col-md-3 p-3 m-1 shadow-none " style="width:25rem;height:20rem; margin-top:50px;" th:each="post : ${posts}">
 
-            <th >Posted</th>
-            <th >Comments</th>
-            <th> </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="post : ${posts}">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${post.title}"></h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:text="'Author: ' + ${post.owner.username}"></li>
+                <li class="list-group-item" th:text="'Created: ' + ${post.getCreatedAt().getMonth()} + '/' + ${post.getCreatedAt().getDay()} + '/2019'"></li>
 
-            <!--<div th:each="post : ${posts}">-->
-            <td th:text="${post.title}"></td>
-            <td th:Text="${post.owner.username}"></td>
-            <td th:Text="${post.getCreatedAt().getMonth()}+'/'+${post.getCreatedAt().getDay()} + '/2019'"></td>
-            <td><span th:Text="${post.comments.size()}+ ' ' "> </span>
+                <li class="list-group-item" th:Text="'Comments: ' + ${post.comments.size()}" > </li>
+            </ul>
+            <div class="card-body">
+                <a class="btn btn-indigo text-white" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+            </div>
+        </div>
 
+    </div>
 
 
 
-            </td>
-            <td> <a class="btn btn-indigo" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
-            </td>
+<!--    <table class="table">-->
+<!--        <thead class="thead-dark">-->
+<!--        <tr>-->
+<!--            <th >Title</th>-->
+<!--            <th >Author</th>-->
 
-        </tr>
-        </tbody>
-        <tfoot class="thead-dark">
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th >Posted</th>
-            <th >Comments</th>
-            <th > </th>
-        </tr>
-        </tfoot>
-    </table>
+<!--            <th >Posted</th>-->
+<!--            <th >Comments</th>-->
+<!--            <th> </th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="post : ${posts}">-->
+
+<!--            &lt;!&ndash;<div th:each="post : ${posts}">&ndash;&gt;-->
+<!--            <td th:text="${post.title}"></td>-->
+<!--            <td th:Text="${post.owner.username}"></td>-->
+<!--            <td th:Text="${post.getCreatedAt().getMonth()}+'/'+${post.getCreatedAt().getDay()} + '/2019'"></td>-->
+<!--            <td><span th:Text="${post.comments.size()}+ ' ' "> </span>-->
+
+
+
+
+<!--            </td>-->
+<!--            <td> <a class="btn btn-indigo" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>-->
+<!--            </td>-->
+
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--        <tfoot class="thead-dark">-->
+<!--        <tr>-->
+<!--            <th>Title</th>-->
+<!--            <th>Author</th>-->
+<!--            <th >Posted</th>-->
+<!--            <th >Comments</th>-->
+<!--            <th > </th>-->
+<!--        </tr>-->
+<!--        </tfoot>-->
+<!--    </table>-->
 </div>
 
 

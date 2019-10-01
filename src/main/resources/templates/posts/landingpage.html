@@ -74,7 +74,14 @@ html {
 
 
 <div class="view full-page-intro"
-     style="background-image: url('https://images.pexels.com/photos/908284/pexels-photo-908284.jpeg'); background-repeat: no-repeat; background-size: cover;">
+     style="background-image: url('https://images.all-free-download.com/images/graphiclarge/blue_3d_geometric_abstract_background_6815669.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+
+<!--    <div class="view full-page-intro"-->
+<!--         style="background-color:#1D63DC;-->
+
+<!--">-->
+
 
     <!-- Mask & flexbox options-->
     <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
@@ -108,9 +115,11 @@ html {
                             produced.</strong>
                     </p>
 
-                    <input type="button" value="Learn More" class="btn btn-indigo btn-lg" onclick="document.getElementById('middle').scrollIntoView();"/>
+                    <input type="button" value="Learn More" class="btn btn-white btn-lg" onclick="document.getElementById('middle').scrollIntoView();"/>
+                    <form th:method="Get" th:action="@{/forums}">
+                    <input type="submit" value="Browse" class="btn btn-deep-orange btn-lg"/>
                         <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
-
+                    </form>
                 </div>
                 <!--Grid column-->
 

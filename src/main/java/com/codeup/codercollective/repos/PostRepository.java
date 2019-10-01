@@ -14,6 +14,8 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 
     Iterable<Post> findByOwner(User user);
 
+
+
 //    List<Post> findAllByBodyOrTitle(String searchedOne, String searchedTwo);
 
 
