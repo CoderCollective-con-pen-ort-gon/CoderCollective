@@ -11,84 +11,133 @@
 
     <th:block th:replace="fragments/header :: my-header('Profile')">
     </th:block>
+    <style>
+        #marginTop {
+            margin-top: 75px;
+        }
+        #removeFav, #titleFav, .dropdown-toggle, .card-body, .list-group-item {
+            text-align: left;
+            padding: 0px;
+            margin: 0px;
+        }
+        .container {
+            background:#F1F3F4;
+        }
 
+
+
+    </style>
 
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
-<div class="object">
-        <div class="left">
-            <div class="content">
-            <div >
 
-
-
-            <img class="rounded-circle z-depth-2" th:if="${user.photo != null }" th:src= "${user.photo}" alt="profile image"/>
-                <img class="rounded-circle z-depth-2" th:if="${user.photo == null }" th:src= "@{image/usericon.png}" alt="profile image"/>
-
-            </div>
-<!--            <h1><span th:text="${user.firstname}"></span></h1>-->
-            <p th:text="${user.email}"></p>
-            <p th:text="${user.username}"></p>
-            <p th:text="${user.title}"></p>
-            <a th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>
+<div id="marginTop"></div>
+<div class="container body">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h5 th:text="'Hello, ' + ${user.username} + '!'"></h5>
             </div>
         </div>
-
-
-
-        <div class="right" >
-<div class="rightcontent">
-        <h3 class="text-center">Create a Post</h3>
-        <form th:action=" @{/profile/create}" method="post" th:object="${posts}">
-            <select class="form-control" name="forum_id" th:field="*{forums.id}" th:value="${forums}">
-                <option th:each="forum : ${forums}" name="forum_id" th:value="${forum.id}" th:text="${forum.name}"></option>
-            </select>
-            <input class="form-control" name="title" th:field="*{title}"  type="text" placeholder="Title"/>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Post body</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="body" th:field="*{body}"></textarea>
+        <div class="row">
+            <div class="col col-lg-2">
+                <img th:if="${user.photo != null }" th:src= "${user.photo}" class="img-thumbnail"/>
+                <img th:if="${user.photo == null }" th:src= "@{image/usericon.png}" class="img-thumbnail"/>
+                <br/>
             </div>
-            <button type="submit" class="btn btn-primary ">Submit</button>
-        </form>
-
-        <h3>Here are your created post</h3>
-        <div th:each="post : ${userPosts}">
-            <p th:text="${post.title}"></p>
-            <p th:text="${post.body}"></p>
-            <p th:text="${post.createdAt}"></p>
-            <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
-                <button class="btn btn-warning">Edit Post</button>
-            </form>
-
-            <th:block th:if="${user.getId() == post.owner.getId()}">
-                <h1>Delete Post</h1>
-                <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
-                    <button type="submit">Delete Post</button>
-                </form>
-            </th:block>
-
-
-
+            <div class="col-lg-6">
+                <h6>Personal Data:</h6>
+                <div th:text="'Email: ' + ${user.email}"></div>
+                <div th:text="'Title: ' + ${user.title}"></div>
+                <a th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>
+                <br/>
+            </div>
+            <div class="col">
+                <h6>Activity:</h6>
+                <div th:text="'Posts: ' + ${user.post.size()}"></div>
+                <div th:text="'Comments: ' + ${user.comments.size()}"></div>
+                <div th:text="'Favorites: ' + ${user.favoritepost.size()}"></div>
+            </div>
+            <div class="col">
+                <h3 class="text-center">Contributions:</h3>
+                <h1 class="text-center" th:text="${user.post.size() + user.comments.size() + user.favoritepost.size()}"></h1>
+            </div>
         </div>
+    </div>
+</div>
 
-
-    <h1>Favorites</h1>
-    <div th:each= "post : ${favPosts}">
-
-        <a th:href="@{/posts/{postId}(postId = ${post.id})}" th:text="${post.body}"></a>
-
-        <form th:action="@{'/favorite/'+ ${post.id} +'/delete'}" th:method="post">
-            <button class="btn btn-warning">remove favorite</button>
-        </form>
-
+<div class="container">
+    <br/>
+    <hr/>
+    <h1 class="text-center">Your Posts!</h1>
+    <div class="container">
+        <div class="row">
+            <div class="card col-2 col-sm-2 col-md-2 shadow-none d-flex" style="width: 18rem;" th:each="post : ${userPosts}">
+                <img class="row justify-content-center" th:src= "@{'/pics/' +${post.getForums().getName()} +'.png'}" style="height:12rem;"/>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <br/>
+                            <label for="title">Title:</label>
+                            <br/>
+                            <a th:href="@{/posts/{postId}(postId = ${post.id})}" id="title" th:text="${post.title}"></a>
+                        </li>
+                        <li class="list-group-item">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+                                    <div class="dropdown-menu">
+                                        <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
+                                            <button class="btn btn-link btn-sm">Edit Post</button>
+                                        </form>
+                                        <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
+                                            <button class="btn btn-link btn-sm" type="submit">Delete Post</button>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <br/>
+
+    <h1 class="text-center">Favorites!</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="card col-2 col-sm-2 col-md-2 border-0 shadow-none d-flex" style="width: 18rem;" th:each="post : ${favPosts}">
+                <img class="row justify-content-center" th:src= "@{'/pics/' +${post.getForums().getName()} +'.png'}" style="height:12rem;"/>
+                <div class="card-body text-left">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <br/>
+                            <label for="titleFav">Title:</label><br/>
+                            <a th:href="@{/posts/{postId}(postId = ${post.id})}" id="titleFav" th:text="${post.title}"></a>
+                        </li>
+                        <li class="list-group-item">
+                            <form th:action="@{'/favorite/'+ ${post.id} +'/delete'}"  th:method="post">
+                                <button class="btn btn-link btn-sm" id="removeFav">Remove favorite</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
-</div>
-</div>
-</div>
+
+
+
+
+
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
