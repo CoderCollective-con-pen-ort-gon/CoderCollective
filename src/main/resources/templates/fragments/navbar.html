@@ -58,10 +58,6 @@
                         <button class="btn btn-outline-orange my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </li>
-                <li>
-                    <button th:onclick="${'javascript:signOut()'}" class="nav-link" data-theme="dark">Sign out</button>
-
-                </li>
                 <!--                <li class="nav-item">-->
                 <!--                    <a class="nav-link" th:action="@{/logout}" href="/logout" sec:authorize="isAuthenticated()" th:method="post">Logout</a>-->
                 <!--                </li>-->
@@ -77,23 +73,10 @@
 
 <script>
 
-    function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        let profile = googleUser.getBasicProfile();
-        var username = profile.getEmail().substring(0, profile.getEmail().lastIndexOf("@"));
-        var id_token = googleUser.getAuthResponse().id_token;
-
-        document.getElementById("username").value = username;
-        document.getElementById("password").value = id_token;
-        // document.getElementById("loginForm").submit();
-    }
-
     function signOut() {
         let auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             console.log('User signed out.');
-            // document.getElementById("logOut").submit();
-
         })
     }
     function onLoad() {
