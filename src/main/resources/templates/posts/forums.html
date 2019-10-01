@@ -18,29 +18,27 @@
         }
 
         .bg{
-            background:#F1F3F4;
+            background:#FFF;
 
         }
 
 
         .cbg{
-            background: white;
+            background:#F1F3F4;
         }
 
-        .jmarginImg{
-            margin-top:39px;
 
-        }
 
         .jmargin{
-            margin-top: 150px;
+            margin-top: 80px;
 
 
         }
 
         .curve{
-            background: linear-gradient(110deg, #3F51B5 40%, #FFFFFF 20%);
-            height:360px;
+            /*background: linear-gradient(110deg, #375087 40%, #323E77 20%);*/
+            height:200px;
+            background-image:url("/picture/blue.jpg");
 
         }
 
@@ -70,11 +68,11 @@
 
     <div class="row jHead curve" >
         <div class="col-6 col-md-6 jmargin jHead">
-            <h1 id="line" class=" jtext display-4">Forums</h1>
-            <p class="jtext lead">See what the community is talking about</p>
+            <h1 id="line" class=" jtext display-4">Languages</h1>
+            <p class="jtext lead">See what the community is talking about...</p>
         </div>
         <div class="col-6 col-md-6">
-            <img class="jmarginImg" th:src="@{/picture/forum.png}" style="height:350px;width:500px"/>
+<!--            <img class="jmarginImg" th:src="@{/picture/forum.png}" style="height:350px;width:500px"/>-->
         </div>
     </div>
 
@@ -88,8 +86,8 @@
 
 
 <div class="row">
-    <div class="card col-2 col-sm-2 col-md-2 border-0 shadow-none" style="width:20rem; height:30rem; margin-top:50px;" th:each="forum : ${forums}">
 
+    <div class="card col-2 col-sm-2 col-md-2  shadow-none " style="width:25rem;height:30rem; margin-top:20px;" th:each="forum : ${forums}">
 
         <img th:src= "@{'/pics/' +${forum.name} +'.png'}" style="height:12rem;"/>
         <div class="card-body">
