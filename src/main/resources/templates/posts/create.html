@@ -36,6 +36,12 @@
                 width:40%;
             }
         }
+        #marginTop {
+            margin-top: 75px;
+        }
+        h1 {
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -43,8 +49,9 @@
 <th:block th:replace="fragments/navbar :: top-nav" />
 
 
+<div id="marginTop"></div>
 
-<h3>Create a Post</h3>
+<h1>Create a Post</h1>
 
 <div class="container">
     <form th:action=" @{/posts/create}" method="post" th:object="${posts}">
@@ -56,7 +63,7 @@
         <input class="form-control" name="title" id="title" th:field="*{title}"  type="text" placeholder="Title"/>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Post body</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="11" name="body" th:field="*{body}" placeholder="Description"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="body" th:field="*{body}" placeholder="Description"></textarea>
         </div>
         <div class="md-form">
             <input class="form-control" placeholder="Upload Image" th:field="*{photo}" type="text" id="photo" value=""/>
