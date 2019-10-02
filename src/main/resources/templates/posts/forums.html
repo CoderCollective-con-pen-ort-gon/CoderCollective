@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <th:block th:replace="fragments/header :: my-header('Posts')">
+    </th:block>
     <!-- Bootstrap core css -->
     <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
     <!-- Material Design Bootstrap -->
@@ -55,8 +57,8 @@
 
 
 
-    <th:block th:replace="fragments/header :: my-header('Posts')">
-    </th:block>
+<!--    <th:block th:replace="fragments/header :: my-header('Posts')">-->
+<!--    </th:block>-->
 <!--    <link th:rel="stylesheet" th:href="@{'/css/post.css'}" />-->
 
 </head>
