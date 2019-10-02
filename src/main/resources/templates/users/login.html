@@ -46,6 +46,8 @@
             }
         }
     </style>
+<!--    <META HTTP-EQUIV="Refresh" CONTENT="5;URL= http://localhost:8080/login"/>-->
+
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav"/>
@@ -55,18 +57,27 @@
         <div th:if="${param.error}" >
             Invalid Username and Password.
             <script>
-                function signOut() {
-                    gapi.auth2.init();
+                window.addEventListener('DOMContentLoaded', (event) => {
                     let auth2 = gapi.auth2.getAuthInstance();
+                    auth2.disconnect();
                     auth2.signOut().then(function () {
                         console.log('User signed out.');
-                    })
-                }
+                    });
+                });
             </script>
 
         </div>
         <div th:if="${param.logout}">
             You have been logged out.
+            <script>
+                window.addEventListener('DOMContentLoaded', (event) => {
+                    let auth2 = gapi.auth2.getAuthInstance();
+                    auth2.disconnect();
+                    auth2.signOut().then(function () {
+                        console.log('User signed out.');
+                    });
+                });
+            </script>
 
         </div>
 
@@ -124,6 +135,7 @@
                         function signOut() {
                             gapi.auth2.init();
                             let auth2 = gapi.auth2.getAuthInstance();
+                            auth2.disconnect();
                             auth2.signOut().then(function () {
                                 console.log('User signed out.');
                             })
@@ -137,6 +149,9 @@
         </div>
     </div>
 </div>
+<script>
+
+</script>
 <script src="https://apis.google.com/js/platform.js?onload=onLoad"></script>
 <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
