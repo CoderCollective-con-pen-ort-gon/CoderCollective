@@ -33,7 +33,7 @@ public class ForumController {
     @GetMapping("/forums/{id}")
     public String show(@PathVariable long id, Model vModel) {
         Forum forumId = forumDao.findOne(id);
-        List <Post> posts=forumId.getPosts();
+        Iterable <Post> posts=postDao.findAllByForumsOrderByIdDesc(forumId);
         vModel.addAttribute("forum", forumId);
         vModel.addAttribute("posts", posts);
         return "posts/posts";
