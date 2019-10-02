@@ -6,21 +6,33 @@
     <script type="text/javascript">
         /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
         function openNav() {
-            document.getElementById("mySidenav").style.width = "100%";
+            document.getElementById("mySidenav").style.width = "500px";
             document.getElementById("mySidenav").style.height = "450px";
             // document.getElementById("main").style.marginLeft = "30%";
             document.getElementById("editorContainer").style.width = "50%";
             document.getElementById("editorContainer").style.height = "20%";
             document.getElementById("editor").style.width = "100%";
             document.getElementById("editor").style.height = "100%";
-            // document.getElementById("editor").style.position = "absolute";
+            document.getElementById("editor").style.position = "absolute";
 
             // var editor = ace.edit("editor");
             // editor.setTheme("ace/theme/monokai");
             // editor.session.setMode("ace/mode/javascript");
             var aceEditor = ace.edit("editor", {
-                // autoScrollEditorIntoView: false,
+                autoScrollEditorIntoView: false,
             });
+
+/*
+            var cursorLeft = editor.renderer.$cursorLayer.getPixelPosition(0).left;
+//gets distance between cursor and left side of textarea in pixels
+            var scrollerWidth = editor.renderer.$size.scrollerWidth;
+//gets the width of the text area (that can be seen)
+            aceEditor.renderer.scrollToX(cursorLeft - scrollerWidth/2);
+//moves the scroller so that the left side i at the same point as the cursor minus half the width of the area that can be seen
+            aceEditor.setShowPrintMargin(false);
+*/
+
+
 
             // defines the style of the editor
             aceEditor.setTheme("ace/theme/monokai");
@@ -46,14 +58,6 @@
 
 
         function signOut() {
-            // e.preventDefault();
-            // Get `GoogleAuth` instance
-            // var auth2 = gapi.auth2.getAuthInstance();
-            // // Sign-Out
-            // auth2.signOut()
-            //     .then(changeProfile);
-            // GoogleAuth.signOut();
-            // GoogleAuth.disconnect()
             let auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
                 console.log('User signed out.');
