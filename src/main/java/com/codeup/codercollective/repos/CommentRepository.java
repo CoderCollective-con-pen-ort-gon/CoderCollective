@@ -24,6 +24,10 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
     void deleteComsByPost_Id(@Param("post_id") Long post_id);
 
 
+
+
+    Iterable <Comment> findAllByPostOrderByIdDesc(Post post);
+
 }
 
 

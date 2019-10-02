@@ -11,6 +11,15 @@
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
     <style>
+        body {
+            background-color: #F1F3F4;
+        }
+       #con {
+           width: 40%;
+           text-align: center;
+       }
+
+
         div .container {
             margin-top: 80px;
             width: 80%
@@ -36,6 +45,12 @@
                 width:40%;
             }
         }
+        #marginTop {
+            margin-top: 75px;
+        }
+        h1 {
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -43,10 +58,11 @@
 <th:block th:replace="fragments/navbar :: top-nav" />
 
 
+<div id="marginTop"></div>
 
-<h3>Create a Post</h3>
 
-<div class="container">
+<div id ="con" class="container">
+<h1>Create a Post</h1>
     <form th:action=" @{/posts/create}" method="post" th:object="${posts}">
         <label for="forum">Select Forum</label>
         <select class="form-control" name="forum_id" id="forum" th:field="*{forums.id}" th:value="${forums}">
@@ -56,13 +72,13 @@
         <input class="form-control" name="title" id="title" th:field="*{title}"  type="text" placeholder="Title"/>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Post body</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="11" name="body" th:field="*{body}" placeholder="Description"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="body" th:field="*{body}" placeholder="Description"></textarea>
         </div>
         <div class="md-form">
             <input class="form-control" placeholder="Upload Image" th:field="*{photo}" type="text" id="photo" value=""/>
             <button type="button" id="open">Open Picker</button>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-indigo">Submit</button>
     </form>
 </div>
 

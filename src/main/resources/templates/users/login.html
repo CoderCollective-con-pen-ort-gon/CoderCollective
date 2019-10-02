@@ -95,7 +95,7 @@
                 }
             </script>
 
-        </div>
+<!--        </div>-->
 
         <div class="container1">
             <div class="card">
@@ -103,13 +103,20 @@
                     <h3 class="dark-grey-text text-center">
                         <strong>Sign In</strong>
                     </h3>
+                    <div th:if="${param.error}">
+                        Invalid Username and Password.
+                    </div>
+                    <div th:if="${param.logout}">
+                        You have been logged out.
+
+                    </div>
                     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 
-                    <!--                    <form id="logOut" th:action="@{/logout}" th:method="post">-->
-                    <!--                        <button th:onclick="${'javascript:signOut()'}" type="submit" class="g-signout"-->
-                    <!--                                data-theme="dark">Sign out-->
-                    <!--                        </button>-->
-                    <!--                    </form>-->
+                    <form id="logOut" th:action="@{/logout}" th:method="post" style="display:none;">
+                        <button th:onclick="${'javascript:signOut()'}" type="submit" class="g-signout"
+                                data-theme="dark">Sign out
+                        </button>
+                    </form>
 
                     <form th:action="@{/login}" id="loginForm" method="post">
                         <div class="md-form">

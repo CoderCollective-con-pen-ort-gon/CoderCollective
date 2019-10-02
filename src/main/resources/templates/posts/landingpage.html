@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
 
@@ -107,19 +107,14 @@
                         <strong></strong>
                     </p>
 
-                    <p class="mb-4 d-none d-md-block">
-                        <strong>Coding Collective is a site for people to meet, interact, learn the basics of
-                            coding,
-                            and discover popular resources that others use. Coding Collective is a community-driven
-                            site, with the community vetting and ensuring the quality of recommendations and
-                            materials
-                            produced.</strong>
-                    </p>
+                    <h4 class="mb-4 d-none d-md-block text-warning">
+                        <strong>Connect, Discover, Contribute.</strong>
+                    </h4>
 
                     <input type="button" value="Learn More" class="btn btn-white btn-lg"
                            onclick="document.getElementById('middle').scrollIntoView();"/>
                     <form th:method="Get" th:action="@{/forums}">
-                        <input type="submit" value="Browse" class="btn btn-deep-orange btn-lg"/>
+                    <input type="submit" value="Browse   " class="btn btn-deep-orange btn-lg" style="width:176px;"/>
                         <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
                     </form>
                 </div>
@@ -129,7 +124,7 @@
                 <div class="col-md-6 col-xl-5 mb-4">
 
                     <!--Card-->
-                    <div class="card">
+                    <div sec:authorize="!isAuthenticated()" class="card">
 
                         <!--Card content-->
                         <div class="card-body">
@@ -138,9 +133,9 @@
                             <!-- Form -->
                             <form th:action="@{/register}" id="signUpForm" method="post" th:object="${user}">
                                 <!-- Heading -->
-                                <h3 class="dark-grey-text text-center">
+                                <h4 class="dark-grey-text text-center">
                                     <strong>Sign Up</strong>
-                                </h3>
+                                </h4>
                                 <div th:if="${param.error}" >
                                     Invalid Username or Email.
                                     <script>
@@ -234,13 +229,17 @@
 <div id="middle" class="view full-page-intro">
 
 
+
+
+
+
     <div class="flex-item shadow rounded">
         <div class="imagec">
-            <img th:src="@{image/undraw_collecting_fjjl.png}" height="80" width="80"/>
+            <img th:src="@{image/connect.png}" height="80" width="80"/>
         </div>
-        <h3>Collect</h3>
+        <h3>Connect</h3>
         <br/>
-        <p>(a sentence for collect)</p>
+        <p>Interact and have discussions with others</p>
     </div>
 
     <div class="flex-item shadow rounded">
@@ -249,16 +248,16 @@
         </div>
         <h3>Discover</h3>
         <br/>
-        <p>(a sentence for discover)</p>
-    </div>
+        <p>Search popular resources and tools others use. </p>
+     </div>
 
     <div class="flex-item shadow rounded">
         <div class="imagec2">
             <img th:src="@{image/undraw_developer_activity_bv83.png}" height="80" width="80"/>
         </div>
-        <h3>Contribute</h3>
-        <br/>
-        <p>(a sentence for contribute)</p>
+    <h3>Contribute</h3>
+    <br/>
+    <p>Post information to help other developers. </p>
     </div>
 </div>
 

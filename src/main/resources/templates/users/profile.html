@@ -18,9 +18,6 @@
     <meta name="google-signin-scope" content="profile email"/>
     <meta name="google-signin-client_id"
           content="772446032988-lngdrhm681gigpfn5j3f36eon1a7nclq.apps.googleusercontent.com"/>
-
-    <th:block th:replace="fragments/header :: my-header('Profile')">
-    </th:block>
     <style>
         #marginTop {
             margin-top: 75px;
@@ -30,7 +27,7 @@
             padding: 0px;
             margin: 0px;
         }
-        .container {
+        .body {
             background:#F1F3F4;
         }
     </style>
@@ -54,27 +51,23 @@
                 <br/>
             </div>
             <div class="col-lg-6">
-                <h6>Personal Data:</h6>
+                <h6><strong>Personal Data:</strong></h6>
                 <div th:text="'Email: ' + ${user.email}"></div>
                 <div th:text="'Title: ' + ${user.title}"></div>
                 <a th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>
                 <br/>
             </div>
             <div class="col">
-                <h6>Activity:</h6>
+                <h6><strong>Activity:</strong></h6>
                 <div th:text="'Posts: ' + ${user.post.size()}"></div>
                 <div th:text="'Comments: ' + ${user.comments.size()}"></div>
                 <div th:text="'Favorites: ' + ${user.favoritepost.size()}"></div>
-            </div>
-            <div class="col">
-                <h3 class="text-center">Contributions:</h3>
-                <h1 class="text-center" th:text="${user.post.size() + user.comments.size() + user.favoritepost.size()}"></h1>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container">
+<div class="container body">
     <br/>
     <hr/>
     <h1 class="text-center">Your Posts!</h1>
@@ -91,19 +84,12 @@
                             <a th:href="@{/posts/{postId}(postId = ${post.id})}" id="title" th:text="${post.title}"></a>
                         </li>
                         <li class="list-group-item">
-                            <ul class="nav nav-pills">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
-                                    <div class="dropdown-menu">
-                                        <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
-                                            <button class="btn btn-link btn-sm">Edit Post</button>
-                                        </form>
-                                        <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
-                                            <button class="btn btn-link btn-sm" type="submit">Delete Post</button>
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
+                            <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
+                                <button class="btn btn-link btn-sm">Edit Post</button>
+                            </form>
+                            <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
+                                <button class="btn btn-link btn-sm" type="submit">Delete Post</button>
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -136,7 +122,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
@@ -165,3 +150,6 @@
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 </body>
 </html>
+
+
+

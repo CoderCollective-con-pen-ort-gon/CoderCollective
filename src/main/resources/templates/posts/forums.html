@@ -41,15 +41,15 @@
             background-image:url("/picture/blue.jpg");
 
         }
-
-
-
         #line:after {
 
             content:' ';
             display:block;
             border:1px solid white;
             width: 35%;
+        }
+        .lead {
+            color: #FDBB34;
         }
     </style>
 
@@ -69,7 +69,7 @@
     <div class="row jHead curve" >
         <div class="col-6 col-md-6 jmargin jHead">
             <h1 id="line" class=" jtext display-4">Languages</h1>
-            <p class="jtext lead">See what the community is talking about...</p>
+            <p class="jtext lead">See what the community is talking about....</p>
         </div>
         <div class="col-6 col-md-6">
 <!--            <img class="jmarginImg" th:src="@{/picture/forum.png}" style="height:350px;width:500px"/>-->
@@ -97,13 +97,12 @@
 <div class="row">
 <!--    <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">-->
 
-
-
-    <div class="card col-3 col-sm-3 col-md-3  shadow-none " style="width:18rem;height:22rem; margin-top:20px;" th:each="forum : ${forums}">
+    <div class="card col-3 col-sm-3 col-md-3  shadow-none "
+         th:each="forum : ${forums}">
         <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">
 
 
-        <img th:src= "@{'/pics/' +${forum.name} +'.png'}" style="height:12rem;"/>
+        <img th:src= "@{'/pics/' +${forum.name} +'.png'}" style="height:12rem;" class="justify-content-center"/>
         <div class="card-body">
             <h5 class="card-title" th:text="${forum.name}"></h5>
         </div>

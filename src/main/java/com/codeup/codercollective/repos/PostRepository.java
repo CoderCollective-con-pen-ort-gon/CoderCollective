@@ -1,5 +1,6 @@
 package com.codeup.codercollective.repos;
 
+import com.codeup.codercollective.model.Forum;
 import com.codeup.codercollective.model.Post;
 import com.codeup.codercollective.model.User;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +16,6 @@ public interface PostRepository extends CrudRepository<Post, Long> {
     Iterable<Post> findByOwner(User user);
 
 
-
 //    List<Post> findAllByBodyOrTitle(String searchedOne, String searchedTwo);
 
 
@@ -23,6 +23,8 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 //    List<Post> findAllByBodyOrTitle (@Param(("searched")) String searched);
 
     @Query(value = "SELECT * from cc_db.posts c where c.body like CONCAT('%', :searched, '%') OR c.title like CONCAT('%',:searched, '%')", nativeQuery = true)
-    List<Post> findAllByBodyOrTitle (@Param(("searched")) String searched);
+    List<Post> findAllByBodyOrTitle(@Param(("searched")) String searched);
 
+
+    Iterable<Post> findAllByForumsOrderByIdDesc(Forum forum);
 }
