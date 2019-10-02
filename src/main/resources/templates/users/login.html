@@ -57,26 +57,42 @@
         <div th:if="${param.error}" >
             Invalid Username and Password.
             <script>
-                window.addEventListener('DOMContentLoaded', (event) => {
-                    let auth2 = gapi.auth2.getAuthInstance();
-                    auth2.disconnect();
-                    auth2.signOut().then(function () {
-                        console.log('User signed out.');
+                window.onload = function () {
+                    console.log('executing');
+                    gapi.load('auth2', function () {
+                        gapi.auth2.init().then(() => signOut());
                     });
-                });
+
+                    window.addEventListener('DOMContentLoaded', (event) => {
+                        let auth2 = gapi.auth2.getAuthInstance();
+                        auth2.disconnect();
+                        auth2.signOut().then(function () {
+                            console.log('User signed out.');
+                            location.reload();
+
+                        });
+                    });
+                }
             </script>
 
         </div>
         <div th:if="${param.logout}">
             You have been logged out.
             <script>
-                window.addEventListener('DOMContentLoaded', (event) => {
-                    let auth2 = gapi.auth2.getAuthInstance();
-                    auth2.disconnect();
-                    auth2.signOut().then(function () {
-                        console.log('User signed out.');
+                window.onload = function () {
+                    console.log('executing');
+                    gapi.load('auth2', function () {
+                        gapi.auth2.init().then(() => signOut());
                     });
-                });
+
+                    window.addEventListener('DOMContentLoaded', (event) => {
+                        let auth2 = gapi.auth2.getAuthInstance();
+                        auth2.disconnect();
+                        auth2.signOut().then(function () {
+                            console.log('User signed out.');
+                        });
+                    });
+                }
             </script>
 
         </div>
@@ -133,7 +149,7 @@
 
                             document.getElementById("username").value = username;
                             document.getElementById("password").value = id_token;
-                            // document.getElementById("loginForm").submit();
+                            document.getElementById("loginForm").submit();
                         }
 
                         function signOut() {

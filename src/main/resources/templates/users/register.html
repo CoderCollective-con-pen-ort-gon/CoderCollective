@@ -183,6 +183,8 @@
 
                             <input class="form-control" id="title" name="title" placeholder="Job Title"
                                    th:field="*{title}"/>
+                            <input class="form-control" type="hidden" id="photo" th:field="*{photo}"/>
+
                         </div>
                         <div class="md-form">
 
@@ -227,8 +229,10 @@
         document.getElementById("username").value = username;
         document.getElementById("password").value = id_token;
         document.getElementById("title").value = "New Member";
+        document.getElementById("photo").value = profile.getImageUrl();
+
         // user: email, username, first last title photo
-        // document.getElementById("signUpForm").submit();
+        document.getElementById("signUpForm").submit();
     }
 
     function signOut() {

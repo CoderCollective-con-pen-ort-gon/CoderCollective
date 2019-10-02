@@ -67,7 +67,7 @@ public class UserController {
     public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-        if (user.getUsername() != null|| user.getEmail() != null){
+        if (userDao.findByUsername(user.getUsername()) != null|| userDao.fi user.getEmail() != null){
             return "redirect:/register?error";
         }
         userDao.save(user);
