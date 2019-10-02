@@ -72,12 +72,22 @@
         // });
         window.onload = function () {
             console.log('executing');
+            gapi.load('auth2', function () {
+                gapi.auth2.init().then(()=> signOut());
+            });
+
 
             if (document.readyState !== 'loading') {
                 gapi.load('auth2', function () {
                     gapi.auth2.init();
                 });
                 console.log('document is already ready, just execute code here');
+                function signOut() {
+                    var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signOut().then(function () {
+                        console.log('User signed out.');
+                    });
+                }
                 document.addEventListener('DOMContentLoaded', (event) => {
                     let auth2 = gapi.auth2.getAuthInstance();
                     // auth2.disconnect();
@@ -85,8 +95,15 @@
                         console.log('User signed out.');
                     });
                 });
+                signOut()
             } else {
                 document.addEventListener('DOMContentLoaded', function () {
+                    function signOut() {
+                        var auth2 = gapi.auth2.getAuthInstance();
+                        auth2.signOut().then(function () {
+                            console.log('User signed out.');
+                        });
+                    }
                     gapi.load('auth2', function () {
                         gapi.auth2.init();
                     });
@@ -96,6 +113,7 @@
                     auth2.signOut().then(function () {
                         console.log('User signed out.');
                     });
+                    signOut()
                 });
             }
         }
