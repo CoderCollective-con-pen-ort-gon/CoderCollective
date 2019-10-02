@@ -80,11 +80,9 @@
 
 
 
-<!--<div class="container-fluid" id="main">-->
 
-<!--    <th:block th:replace="fragments/navbar :: top-nav" />-->
 
-<!--    <th:block th:replace="fragments/sidebar"/>-->
+    <th:block th:replace="fragments/sidebar"/>
     <button type="button" onclick="openNav()" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Extra large modal</button>
 
     <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -92,12 +90,11 @@
             <div class="modal-content" style="height: 500px; width: 500px">
                 <th:block th:replace="fragments/sidebar"/>
              </div>
-            </div>
         </div>
     </div>
 
+
 <div class="row">
-<!--    <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">-->
 
     <div class="card col-3 col-sm-3 col-md-3  shadow-none "
          th:each="forum : ${forums}">
@@ -111,14 +108,10 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item" th:Text="'Posts '+ ${forum.getPosts().size()}" > </li>
         </ul>
-<!--        <div class="card-body">-->
-<!--            <a class="btn btn-indigo text-white" th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View </a>-->
-<!--
 
-</div>-->
         </a>
     </div>
-<!--    </a>-->
+</div>
 </div>
 
 
