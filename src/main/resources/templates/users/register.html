@@ -55,6 +55,19 @@
     </style>
 </head>
 <body>
+<th:block th:if="${param.error}" >
+    Invalid Username or Email.
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            let auth2 = gapi.auth2.getAuthInstance();
+            auth2.disconnect();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        });
+    </script>
+</th:block>
+
 <th:block th:replace="fragments/navbar :: top-nav"/>
 <div class="view2"
      style="background-image: url('/picture/blue.jpg'); background-repeat: no-repeat; background-size: cover;">
@@ -64,13 +77,26 @@
             <div class="card1">
                 <div class="card-body">
                     <h3 class="dark-grey-text text-center">
+
                         <strong>Create Account</strong>
                     </h3>
+                    <div th:if="${param.error}" >
+                        Invalid Username or Email.
+                        <script>
+                            window.addEventListener('DOMContentLoaded', (event) => {
+                                let auth2 = gapi.auth2.getAuthInstance();
+                                auth2.disconnect();
+                                auth2.signOut().then(function () {
+                                    console.log('User signed out.');
+                                });
+                            });
+                        </script>
+                    </div>
+
                     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">Fill in form</div>
 <!--                    <form id="logOut" th:action="@{/logout}" th:method="post">-->
 <!--                        <button th:onclick="${'javascript:signOut()'}" type="submit" class="g-signout" data-theme="dark">Sign out</button>-->
 <!--                    </form>-->
-
                     <form id="signUpForm" th:action="@{/register}" method="post" th:object="${user}">
                         <div class="md-form">
 
