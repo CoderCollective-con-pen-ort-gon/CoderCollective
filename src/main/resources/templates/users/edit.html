@@ -4,7 +4,12 @@
     <th:block th:replace="fragments/header :: my-header('Edit Profile')">
     </th:block>
 
-
+    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+    <link th:rel="stylesheet" th:href="@{'/css/profile.css'}"/>
     <style>
         .bg{
             background-color:#F1F3F4 ;
@@ -25,6 +30,11 @@
 
 
 <body class="bg">
+<th:block th:replace="fragments/navbar :: top-nav" />
+
+
+
+
 <div class="container">
     <div class=" fm col-4" >
 <form  th:action=" @{'/profile/' + ${user.id} + '/edit'}" method="post" th:object="${user}">
@@ -39,6 +49,9 @@
     <div class="md-form">
 
         <label for="photo">Photo</label>
+        <br/>
+
+
         <input class="form-control" placeholder="Profile Picture" th:field="*{photo}" type="text"
                id="photo" value=""/>
         <button type="button" class="btn-outline-secondary" id="open">Open Picker</button>

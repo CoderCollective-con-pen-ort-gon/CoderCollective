@@ -51,21 +51,17 @@
                 <br/>
             </div>
             <div class="col-lg-6">
-                <h6>Personal Data:</h6>
+                <h6><strong>Personal Data:</strong></h6>
                 <div th:text="'Email: ' + ${user.email}"></div>
                 <div th:text="'Title: ' + ${user.title}"></div>
                 <a th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>
                 <br/>
             </div>
             <div class="col">
-                <h6>Activity:</h6>
+                <h6><strong>Activity:</strong></h6>
                 <div th:text="'Posts: ' + ${user.post.size()}"></div>
                 <div th:text="'Comments: ' + ${user.comments.size()}"></div>
                 <div th:text="'Favorites: ' + ${user.favoritepost.size()}"></div>
-            </div>
-            <div class="col">
-                <h3 class="text-center">Contributions:</h3>
-                <h1 class="text-center" th:text="${user.post.size() + user.comments.size() + user.favoritepost.size()}"></h1>
             </div>
         </div>
     </div>
