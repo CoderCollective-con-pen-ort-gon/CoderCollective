@@ -11,60 +11,62 @@
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
 
+    <th:block th:replace="fragments/header :: my-header('Register')" />
+
+    <style>
+        div .imagec {
+
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        div .imaged {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        div .imagec2 {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .flex-item {
+            float: none;
+        }
 
 
-<style>
-    div .imagec{
+        .view {
+            background-color: #F1F3F4;
 
-        display: flex;
-        justify-content: center;
-        margin: 10px;
-        padding: 10px;
-    }
+            text-align: center;
+        }
 
-    div .imaged{
-        display: flex;
-        justify-content: center;
-        margin: 10px;
-        padding: 10px;
-    }
+        .flex-item {
+            margin-top: 10%;
+            box-sizing: border-box;
 
-    div .imagec2 {
-        display: flex;
-        justify-content: center;
-        margin: 10px;
-        padding: 10px;
-    }
+            background-color: white;
+            display: inline-block;
+            width: 20%;
+            height: 65%;
+        }
 
-html {
-    scroll-behavior: smooth;
-}
-    .flex-item {
-        float: none;
-    }
+        .flex-item + .flex-item {
+            margin-top: 10%;
+            margin-left: 5%;
+        }
 
-
-    .view {
-    background-color: #F1F3F4;
-
-        text-align: center;
-    }
-    .flex-item {
-        margin-top: 10%;
-        box-sizing: border-box;
-
-        background-color: white;
-        display: inline-block;
-        width: 20%;
-        height: 65%;
-    }
-    .flex-item + .flex-item {
-        margin-top: 10%;
-        margin-left: 5%;
-    }
-
-</style>
-
+    </style>
 
 
 </head>
@@ -77,10 +79,10 @@ html {
      style="background-image: url('https://images.all-free-download.com/images/graphiclarge/blue_3d_geometric_abstract_background_6815669.jpg'); background-repeat: no-repeat; background-size: cover;">
 
 
-<!--    <div class="view full-page-intro"-->
-<!--         style="background-color:#1D63DC;-->
+    <!--    <div class="view full-page-intro"-->
+    <!--         style="background-color:#1D63DC;-->
 
-<!--">-->
+    <!--">-->
 
 
     <!-- Mask & flexbox options-->
@@ -99,7 +101,6 @@ html {
                     <h1 class="display-4 font-weight-bold">Collective</h1>
 
 
-
                     <hr class="hr-light"/>
 
                     <p>
@@ -110,7 +111,8 @@ html {
                         <strong>Connect, Discover, Contribute.</strong>
                     </h4>
 
-                    <input type="button" value="Learn More" class="btn btn-white btn-lg" onclick="document.getElementById('middle').scrollIntoView();"/>
+                    <input type="button" value="Learn More" class="btn btn-white btn-lg"
+                           onclick="document.getElementById('middle').scrollIntoView();"/>
                     <form th:method="Get" th:action="@{/forums}">
                     <input type="submit" value="Browse   " class="btn btn-deep-orange btn-lg" style="width:176px;"/>
                         <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
@@ -128,15 +130,27 @@ html {
                         <div class="card-body">
 
 
-
                             <!-- Form -->
-                            <form th:action="@{/register}" method="post" th:object="${user}">
+                            <form th:action="@{/register}" id="signUpForm" method="post" th:object="${user}">
                                 <!-- Heading -->
                                 <h4 class="dark-grey-text text-center">
                                     <strong>Sign Up</strong>
                                 </h4>
+                                <div th:if="${param.error}" >
+                                    Invalid Username or Email.
+                                    <script>
+                                        window.addEventListener('DOMContentLoaded', (event) => {
+                                            let auth2 = gapi.auth2.getAuthInstance();
+                                            auth2.disconnect();
+                                            auth2.signOut().then(function () {
+                                                console.log('User signed out.');
+                                            });
+                                        });
+                                    </script>
+                                </div>
                                 <hr/>
-
+                                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                                <hr/>
                                 <div class="md-form">
 
                                     <input type="text" class="form-control" id="email" placeholder="Email"
@@ -147,19 +161,20 @@ html {
                                     <input type="text" class="form-control" id="username" placeholder="Username"
                                            th:field="*{username}"/>
                                 </div>
-<!--                                <div class="md-form">-->
-<!--                                    <input type="text" class="form-control" id="firstname" placeholder="Firstname"-->
-<!--                                           th:field="*{firstname}"/>-->
-<!--                                </div>-->
-<!--                                <div class="md-form">-->
+                                <!--                                <div class="md-form">-->
+                                <!--                                    <input type="text" class="form-control" id="firstname" placeholder="Firstname"-->
+                                <!--                                           th:field="*{firstname}"/>-->
+                                <!--                                </div>-->
+                                <!--                                <div class="md-form">-->
 
-<!--                                    <input type="text" class="form-control" id="lastname" placeholder="Lastname"-->
-<!--                                           th:field="*{lastname}"/>-->
-<!--                                </div>-->
+                                <!--                                    <input type="text" class="form-control" id="lastname" placeholder="Lastname"-->
+                                <!--                                           th:field="*{lastname}"/>-->
+                                <!--                                </div>-->
                                 <div class="md-form">
 
                                     <input class="form-control" type="text" id="title" placeholder="Job Title"
                                            th:field="*{title}"/>
+                                    <input class="form-control" type="hidden" id="photo" th:field="*{photo}"/>
                                 </div>
                                 <div class="md-form">
 
@@ -179,6 +194,17 @@ html {
                                 </div>
 
                             </form>
+                            <div th:if="${param.error}">
+                                <script>
+
+                                    var auth2 = gapi.auth2.getAuthInstance();
+                                    auth2.signOut().then(function () {
+                                    });
+                                    auth2.disconnect();
+
+                                </script>
+
+                            </div>
                             <!-- Form -->
 
                         </div>
@@ -236,11 +262,6 @@ html {
 </div>
 
 
-
-
-
-
-
 <script>
     function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
@@ -271,8 +292,7 @@ html {
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 <!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
 <!--</th:block>-->
-<th:block th:replace="fragments/footer">
-</th:block>
+<th:block th:replace="fragments/footer"/>
 
 </body>
 
