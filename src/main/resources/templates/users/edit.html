@@ -13,6 +13,8 @@
     <style>
         .bg{
             background-color:#F1F3F4 ;
+            margin-top: 75px;
+
         }
 
         .fm{
@@ -23,6 +25,11 @@
             border-bottom-color:#3F51B5;
 
 
+        }
+
+        .con {
+            width: 40%;
+            text-align: center;
         }
     </style>
 
@@ -35,9 +42,11 @@
 
 
 
-<div class="container">
-    <div class=" fm col-4" >
-<form  th:action=" @{'/profile/' + ${user.id} + '/edit'}" method="post" th:object="${user}">
+<div class="container con">
+    <div >
+        <h1>Edit Profile</h1>
+
+        <form  th:action=" @{'/profile/' + ${user.id} + '/edit'}" method="post" th:object="${user}">
     <label for="username">Username</label>
     <input id="username" class="form-control" name="username" th:field="*{username}"  type="text" placeholder="Username"/>
 
@@ -59,7 +68,7 @@
     </div>
     <input type="hidden"  name="password" th:field="*{password}"/>
 
-    <button type="submit" class="btn btn-primary">Submit Edit</button>
+    <button type="submit" class="btn btn-indigo">Submit Edit</button>
 
 </form>
 
