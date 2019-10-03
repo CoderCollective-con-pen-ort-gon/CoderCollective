@@ -10,10 +10,15 @@
     <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
 
 
 <style>
+    .row1 {
+       display: inline-block;
+        /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
+
+    }
     div .imagec{
 
         display: flex;
@@ -109,12 +114,12 @@ html {
                     <h4 class="mb-4 d-none d-md-block text-warning">
                         <strong>Connect, Discover, Contribute.</strong>
                     </h4>
+                    <div class="row1">
+                        <form th:method="Get" th:action="@{/forums}">
+                            <input type="submit" value="Browse   " class="btn btn-deep-orange btn-lg" style="width:176px;" /><input type="button" value="Learn More" class="btn btn-white btn-lg" onclick="document.getElementById('middle').scrollIntoView();"/>
 
-                    <input type="button" value="Learn More" class="btn btn-white btn-lg" onclick="document.getElementById('middle').scrollIntoView();"/>
-                    <form th:method="Get" th:action="@{/forums}">
-                    <input type="submit" value="Browse   " class="btn btn-deep-orange btn-lg" style="width:176px;"/>
-                        <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
-                    </form>
+                        </form>
+                    </div>
                 </div>
                 <!--Grid column-->
 
@@ -235,11 +240,7 @@ html {
     </div>
 </div>
 
-
-
-
-
-
+<th:block th:replace="fragments/thefooter :: the-foot"/>
 
 <script>
     function onSignIn(googleUser) {
