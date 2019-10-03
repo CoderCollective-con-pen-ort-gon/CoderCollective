@@ -30,6 +30,14 @@
         .body {
             background:#F1F3F4;
         }
+
+    </style>
+    <style th:inline="text">
+        #addimghere {
+            background: url([[@{/pics/${post.getForums().getName()}.png]])
+            no-repeat center center;
+        }
+
     </style>
 
 </head>
@@ -153,9 +161,9 @@
     <div class="container">
         <div class="row">
             <div class="card col-2 col-sm-2 col-md-2 border-0 shadow-none d-flex" style="width: 18rem;" th:each="post : ${favPosts}">
-                <img class="row justify-content-center" th:src= "@{'/pics/' +${post.getForums().getName()} +'.png'}" style="height:12rem;"/>
-                <div class="card-body text-left">
-                    <ul class="list-group list-group-flush">
+                <div class="card-body text-left" id="addimghere" style="background-image: url("@{'/pics/' +${post.getForums().getName()} +'.png'}"")>
+                    <img class="row justify-content-center" th:src= "@{'/pics/' +${post.getForums().getName()} +'.png'}" style="height:12rem; z-index: -1"/>
+                    <ul class="list-group list-group-flush" >
                         <li class="list-group-item">
                             <br/>
                             <label for="titleFav">Title:</label><br/>
