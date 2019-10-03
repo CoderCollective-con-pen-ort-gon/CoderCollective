@@ -39,9 +39,13 @@
 <div id="marginTop"></div>
 <div class="container body">
     <div class="container headerInfo">
+        <h2 class="indigo-text" th:text="'Hello, ' + ${user.username} + '!'"></h2>
+
         <div class="row">
+<!--            <h6 th:text="'Hello, ' + ${user.username} + '!'"></h6>-->
+
             <div class="col-lg-12">
-                <h5 th:text="'Hello, ' + ${user.username} + '!'"></h5>
+<!--                <h6 th:text="'Hello, ' + ${user.username} + '!'"></h6>-->
             </div>
         </div>
         <div class="row">
@@ -71,31 +75,76 @@
     <br/>
     <hr/>
     <h1 class="text-center">Your Posts!</h1>
-    <div class="container">
-        <div class="row">
-            <div class="card col-2 col-sm-2 col-md-2 shadow-none d-flex" style="width: 18rem;" th:each="post : ${userPosts}">
-                <img class="row justify-content-center" th:src= "@{'/pics/' +${post.getForums().getName()} +'.png'}" style="height:12rem;"/>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <br/>
-                            <label for="title">Title:</label>
-                            <br/>
-                            <a th:href="@{/posts/{postId}(postId = ${post.id})}" id="title" th:text="${post.title}"></a>
-                        </li>
-                        <li class="list-group-item">
-                            <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
-                                <button class="btn btn-link btn-sm">Edit Post</button>
-                            </form>
-                            <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
-                                <button class="btn btn-link btn-sm" type="submit">Delete Post</button>
-                            </form>
-                        </li>
-                    </ul>
+
+    <div class="row">
+
+        <div class="card col-3 mb-3" style="width: 18rem; height:25rem;" th:each="post : ${userPosts}">
+            <div class="card-header text-orange font-weight-bold" th:text="${post.title}"></div>
+            <div class="card-body " style=" overflow-x: hidden;">
+                <p >Description:</p>
+
+                <p class="card-text" th:text="${post.body}"></p>
+            </div>
+            <div class="text-align-center">
+                <p class="card-body" th:Text="'Comments: ' + ${post.comments.size()}"></p>
+<!--                <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">-->
+<!--                <button type="submit" class="btn btn-link btn-sm">Edit Post</button>-->
+<!--            </form>-->
+<!--                <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">-->
+<!--                    <button class="btn btn-link text-danger" type="submit">Delete Post</button>-->
+<!--                </form>-->
+                <a class="btn btn-lg btn-block btn-indigo text-white mx-auto" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+                <div class="row">
+                    <div class="col-6">
+                    <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
+                        <button type="submit" class="btn btn-block btn-link btn-sm">Edit</button>
+                    </form>
+                    </div>
+                    <div class="col-6">
+
+                    <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
+                        <button class="btn btn-block btn-link btn-sm text-danger" type="submit">Delete</button>
+                    </form>
+                    </div>
+
                 </div>
+
+
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="card col-2 col-sm-2 col-md-2 shadow-none d-flex" style="width: 18rem;" th:each="post : ${userPosts}">-->
+<!--                <img class="row justify-content-center" th:src= "@{'/pics/' +${post.getForums().getName()} +'.png'}" style="height:12rem;"/>-->
+<!--                <div class="card-body">-->
+<!--                    <ul class="list-group list-group-flush">-->
+<!--                        <li class="list-group-item">-->
+<!--                            <br/>-->
+<!--&lt;!&ndash;                            <label for="title">Title:</label>&ndash;&gt;-->
+<!--                            <br/>-->
+<!--                            <a th:href="@{/posts/{postId}(postId = ${post.id})}" id="title" th:text="${post.title}"></a>-->
+<!--                        </li>-->
+<!--                        <li class="list-group-item">-->
+<!--                            <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">-->
+<!--                                <button class="btn btn-link btn-sm">Edit Post</button>-->
+<!--                            </form>-->
+<!--                            <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">-->
+<!--                                <button class="btn btn-link btn-sm" type="submit">Delete Post</button>-->
+<!--                            </form>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <br/>
 
@@ -124,8 +173,10 @@
     </div>
 </div>
 
-<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
-</th:block>
+
+
+
+
 <th:block th:replace="fragments/footer">
 </th:block>
 <script>
@@ -143,11 +194,17 @@
         });
     }
 
+
+
 </script>
+<!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
+<!--</th:block>-->
 <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
 <script src="https://apis.google.com/js/platform.js?onload=onLoad"></script>
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
+<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
+</th:block>
 </body>
 </html>
 

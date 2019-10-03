@@ -52,7 +52,8 @@ public class PostController {
 //        System.out.println("UserId = " + loggedIn.getId());
 //        vModel.addAttribute("user", loggedIn);
         Post postId = postDao.findOne(id);
-        Iterable<Comment> comments = postId.getComments();
+        Iterable<Comment> comments = commentDao.findAllByPostOrderByIdDesc(postId);
+
         Iterable<Forum> forums = forumDao.findAll();
         vModel.addAttribute("comments", comments);
         vModel.addAttribute("forums", forums);
@@ -124,11 +125,28 @@ public class PostController {
         System.out.println(id);
 
 
+
+       List<User> users= postDao.findOne(id).getPostfavorites();
+
+        
+//
+        for(User user : users){
+            List<Post> posts=user.getFavoritepost();
+
+            posts.remove(postDao.findOne(id));
+            user.setFavoritepost(posts);
+            userDao.save(user);
+
+        }
+//
+//
             for(Comment comment:   commentDao.findAll()){
                 if (comment.getPost().getId()==id){
                     commentDao.delete(comment);
                 }
             }
+
+
 //        favDao.deleteFavByPost_Id(id);
 
 //        if (favDao.findFavByPost_Id(id) != null) {

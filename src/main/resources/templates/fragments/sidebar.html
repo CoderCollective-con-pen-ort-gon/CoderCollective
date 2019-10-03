@@ -3,7 +3,7 @@
 <head>
     <th:block th:replace="fragments/header">
     </th:block>
-    <style type="text/css" media="screen">
+    <style type="text/css">
         #editor {
             /*margin: 0;*/
             /*margin-top: 10%;*/
@@ -12,11 +12,12 @@
             bottom: 0;
             left: 0;
             right: 0;
-            min-height: 50px;
+            min-height: 200px;
         }
 
         .ace_content {
-            margin-left: 50px !important;
+            margin-left: 30px !important;
+            width: 100%;
             /*transform: none;*/
 
         }
@@ -26,22 +27,29 @@
 
 </head>
 <body>
-
-
 <nav th:fragment="sidebar">
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn toggler" onclick="closeNav()">&times;</a>
-        <div id="editorContainer">
-            <div id="editor" class="ace_editor" style="top: 10%; right: 0;">function foo(items) {
-                var x = "All this is syntax highlighted";
-                return x;
-                }
+    <button style="margin-top: 20%; z-index: 1; position: fixed; width: 7%; font-size: .75rem" type="button" onclick="openNav()" class="btn btn-secondary fixed-left" data-toggle="modal" data-target=".bd-example-modal-xl">Open Editor</button>
+
+    <div class="btn-group-vertical">
+        <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl" style="width: 100%;">
+                <div class="modal-content" id="editorContainer" style="height: 500px; width: 100%">
+                    <div id="mySidenav" class="sidenav">
+                        <!--        <a href="javascript:void(0)" class="closebtn toggler" onclick="closeNav()">&times;</a>-->
+                        <div id="editor" class="ace_editor" style="top: 10%; right: 0;">function title(items) {
+var x = "This is a Javascript function.";
+return x;
+}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Use any element to open the sidenav -->
-    <button onclick="openNav()">open</button>
+    <!--    <button onclick="openNav()">open</button>-->
 
 </nav>
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">

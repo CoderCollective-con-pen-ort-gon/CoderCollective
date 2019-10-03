@@ -10,9 +10,17 @@
     <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
+=======
 
+    <th:block th:replace="fragments/header :: my-header('Register')" />
+>>>>>>> 517adbdf7b2cc5729696ab807dcdd359ea2b48a2
 
+    <style>
+        div .imagec {
+
+<<<<<<< HEAD
 <style>
     .row1 {
        display: inline-block;
@@ -20,56 +28,64 @@
 
     }
     div .imagec{
+=======
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            padding: 10px;
+        }
+>>>>>>> 517adbdf7b2cc5729696ab807dcdd359ea2b48a2
 
-        display: flex;
-        justify-content: center;
-        margin: 10px;
-        padding: 10px;
-    }
+        div .imaged {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            padding: 10px;
+        }
 
-    div .imaged{
-        display: flex;
-        justify-content: center;
-        margin: 10px;
-        padding: 10px;
-    }
+        div .imagec2 {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            padding: 10px;
+        }
 
-    div .imagec2 {
-        display: flex;
-        justify-content: center;
-        margin: 10px;
-        padding: 10px;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-html {
-    scroll-behavior: smooth;
-}
-    .flex-item {
-        float: none;
-    }
+        .flex-item {
+            float: none;
+        }
 
 
-    .view {
-    background-color: #F1F3F4;
+        .view {
+            background-color: #F1F3F4;
 
-        text-align: center;
-    }
-    .flex-item {
-        margin-top: 10%;
-        box-sizing: border-box;
+            text-align: center;
+        }
 
-        background-color: white;
-        display: inline-block;
-        width: 20%;
-        height: 65%;
-    }
-    .flex-item + .flex-item {
-        margin-top: 10%;
-        margin-left: 5%;
-    }
+        .flex-item {
+            margin-top: 10%;
+            box-sizing: border-box;
 
-</style>
+            background-color: white;
+            display: inline-block;
+            width: 20%;
+            height: 65%;
+        }
 
+        .flex-item + .flex-item {
+            margin-top: 10%;
+            margin-left: 5%;
+        }
+        #cardOne {
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+
+    </style>
 
 
 </head>
@@ -82,10 +98,10 @@ html {
      style="background-image: url('https://images.all-free-download.com/images/graphiclarge/blue_3d_geometric_abstract_background_6815669.jpg'); background-repeat: no-repeat; background-size: cover;">
 
 
-<!--    <div class="view full-page-intro"-->
-<!--         style="background-color:#1D63DC;-->
+    <!--    <div class="view full-page-intro"-->
+    <!--         style="background-color:#1D63DC;-->
 
-<!--">-->
+    <!--">-->
 
 
     <!-- Mask & flexbox options-->
@@ -104,7 +120,6 @@ html {
                     <h1 class="display-4 font-weight-bold">Collective</h1>
 
 
-
                     <hr class="hr-light"/>
 
                     <p>
@@ -114,18 +129,32 @@ html {
                     <h4 class="mb-4 d-none d-md-block text-warning">
                         <strong>Connect, Discover, Contribute.</strong>
                     </h4>
+<<<<<<< HEAD
                     <div class="row1">
                         <form th:method="Get" th:action="@{/forums}">
                             <input type="submit" value="Browse   " class="btn btn-deep-orange btn-lg" style="width:176px;" /><input type="button" value="Learn More" class="btn btn-white btn-lg" onclick="document.getElementById('middle').scrollIntoView();"/>
 
                         </form>
                     </div>
+=======
+                    <div class="row">
+                        <input type="button" value="Learn More" class="btn btn-white btn-lg"
+                               onclick="document.getElementById('middle').scrollIntoView();"/>
+                        <form th:method="Get" th:action="@{/forums}">
+                            <input type="submit" value="Browse   " class="btn btn-deep-orange btn-lg" style="width:176px;"/>
+                            <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
+                        </form>
+                    </div>
+
+>>>>>>> 517adbdf7b2cc5729696ab807dcdd359ea2b48a2
                 </div>
                 <!--Grid column-->
 
                 <!--Grid column-->
                 <div class="col-md-6 col-xl-5 mb-4">
-
+                    <div sec:authorize="isAuthenticated()" style="height:25rem; width: 25rem;">
+                        <img th:src="@{/image/HeadLogo.png}" style="height:100%; width: 100%; align-content: end"/>
+                    </div>
                     <!--Card-->
                     <div sec:authorize="!isAuthenticated()" class="card">
 
@@ -133,15 +162,27 @@ html {
                         <div class="card-body">
 
 
-
                             <!-- Form -->
-                            <form th:action="@{/register}" method="post" th:object="${user}">
+                            <form th:action="@{/register}" id="signUpForm" method="post" th:object="${user}">
                                 <!-- Heading -->
                                 <h4 class="dark-grey-text text-center">
                                     <strong>Sign Up</strong>
                                 </h4>
+                                <div th:if="${param.error}" >
+                                    Invalid Username or Email.
+                                    <script>
+                                        window.addEventListener('DOMContentLoaded', (event) => {
+                                            let auth2 = gapi.auth2.getAuthInstance();
+                                            auth2.disconnect();
+                                            auth2.signOut().then(function () {
+                                                console.log('User signed out.');
+                                            });
+                                        });
+                                    </script>
+                                </div>
                                 <hr/>
-
+                                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                                <hr/>
                                 <div class="md-form">
 
                                     <input type="text" class="form-control" id="email" placeholder="Email"
@@ -152,19 +193,20 @@ html {
                                     <input type="text" class="form-control" id="username" placeholder="Username"
                                            th:field="*{username}"/>
                                 </div>
-<!--                                <div class="md-form">-->
-<!--                                    <input type="text" class="form-control" id="firstname" placeholder="Firstname"-->
-<!--                                           th:field="*{firstname}"/>-->
-<!--                                </div>-->
-<!--                                <div class="md-form">-->
+                                <!--                                <div class="md-form">-->
+                                <!--                                    <input type="text" class="form-control" id="firstname" placeholder="Firstname"-->
+                                <!--                                           th:field="*{firstname}"/>-->
+                                <!--                                </div>-->
+                                <!--                                <div class="md-form">-->
 
-<!--                                    <input type="text" class="form-control" id="lastname" placeholder="Lastname"-->
-<!--                                           th:field="*{lastname}"/>-->
-<!--                                </div>-->
+                                <!--                                    <input type="text" class="form-control" id="lastname" placeholder="Lastname"-->
+                                <!--                                           th:field="*{lastname}"/>-->
+                                <!--                                </div>-->
                                 <div class="md-form">
 
                                     <input class="form-control" type="text" id="title" placeholder="Job Title"
                                            th:field="*{title}"/>
+                                    <input class="form-control" type="hidden" id="photo" th:field="*{photo}"/>
                                 </div>
                                 <div class="md-form">
 
@@ -184,6 +226,17 @@ html {
                                 </div>
 
                             </form>
+                            <div th:if="${param.error}">
+                                <script>
+
+                                    var auth2 = gapi.auth2.getAuthInstance();
+                                    auth2.signOut().then(function () {
+                                    });
+                                    auth2.disconnect();
+
+                                </script>
+
+                            </div>
                             <!-- Form -->
 
                         </div>
@@ -212,14 +265,27 @@ html {
 
 
 
+<!--    <div class="flex-item shadow rounded">-->
+<!--        <div class="imagec">-->
+<!--            <img th:src="@{image/connect.png}" height="80" width="80"/>-->
+<!--        </div>-->
+<!--        <h3>Connect</h3>-->
+<!--        <br/>-->
+<!--        <p>Interact and have discussions with others.</p>-->
+<!--    </div>-->
+
+
     <div class="flex-item shadow rounded">
         <div class="imagec">
             <img th:src="@{image/connect.png}" height="80" width="80"/>
         </div>
         <h3>Connect</h3>
         <br/>
-        <p>Interact and have discussions with others</p>
+        <p id="cardOne">Interact and have discussions with others.</p>
     </div>
+
+
+
 
     <div class="flex-item shadow rounded">
         <div class="imaged">
@@ -240,7 +306,10 @@ html {
     </div>
 </div>
 
+<<<<<<< HEAD
 <th:block th:replace="fragments/thefooter :: the-foot"/>
+=======
+>>>>>>> 517adbdf7b2cc5729696ab807dcdd359ea2b48a2
 
 <script>
     function onSignIn(googleUser) {
@@ -272,8 +341,7 @@ html {
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 <!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
 <!--</th:block>-->
-<th:block th:replace="fragments/footer">
-</th:block>
+<th:block th:replace="fragments/footer"/>
 
 </body>
 

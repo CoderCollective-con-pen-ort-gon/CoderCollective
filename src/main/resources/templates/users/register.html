@@ -10,6 +10,8 @@
 
     <th:block th:replace="fragments/header :: my-header('Register')">
     </th:block>
+    <meta name="google-signin-client_id"
+          content="772446032988-lngdrhm681gigpfn5j3f36eon1a7nclq.apps.googleusercontent.com"/>
     <style>
 
 
@@ -46,13 +48,78 @@
                 width: 40%;
             }
 
-            body{
-                background-image: url('/picture/blue.jpg'); background-repeat: no-repeat; background-size: cover;"
+            body {
+                background-image: url('/picture/blue.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+            "
             }
         }
     </style>
 </head>
 <body>
+<th:block th:if="${param.error}">
+    <script>
+        // window.addEventListener('DOMContentLoaded', (event) => {
+        //         gapi.auth2.init();
+        //     let auth2 = gapi.auth2.getAuthInstance();
+        //     auth2.signOut().then(function () {
+        //         auth2.disconnect();
+        //         console.log('User signed out.');
+        //     });
+        // });
+        window.onload = function () {
+            console.log('executing');
+            gapi.load('auth2', function () {
+                gapi.auth2.init().then(()=> signOut());
+            });
+
+
+            if (document.readyState !== 'loading') {
+                gapi.load('auth2', function () {
+                    gapi.auth2.init();
+                });
+                console.log('document is already ready, just execute code here');
+                function signOut() {
+                    var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signOut().then(function () {
+                        console.log('User signed out.');
+                    });
+                }
+                document.addEventListener('DOMContentLoaded', (event) => {
+                    let auth2 = gapi.auth2.getAuthInstance();
+                    // auth2.disconnect();
+                    auth2.signOut().then(function () {
+                        console.log('User signed out.');
+                    });
+                });
+                signOut()
+            } else {
+                document.addEventListener('DOMContentLoaded', function () {
+                    function signOut() {
+                        var auth2 = gapi.auth2.getAuthInstance();
+                        auth2.signOut().then(function () {
+                            console.log('User signed out.');
+                        });
+                    }
+                    gapi.load('auth2', function () {
+                        gapi.auth2.init();
+                    });
+                    console.log('document was not ready, place code here');
+                    let auth2 = gapi.auth2.getAuthInstance();
+                    // auth2.disconnect();
+                    auth2.signOut().then(function () {
+                        console.log('User signed out.');
+                    });
+                    signOut()
+                });
+            }
+        }
+
+
+    </script>
+</th:block>
+
 <th:block th:replace="fragments/navbar :: top-nav"/>
 <div class="view full-page-intro"
      style="background-image: url('/picture/blue.jpg'); background-repeat: no-repeat; background-size: cover;">
@@ -62,13 +129,33 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="dark-grey-text text-center">
+
                         <strong>Create Account</strong>
                     </h3>
-                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">Fill in form</div>
-<!--                    <form id="logOut" th:action="@{/logout}" th:method="post">-->
-<!--                        <button th:onclick="${'javascript:signOut()'}" type="submit" class="g-signout" data-theme="dark">Sign out</button>-->
-<!--                    </form>-->
+                    <div th:if="${param.error}">
+                        Invalid Username or Email.
+<!--                        <script>-->
+<!--                            // window.addEventListener('DOMContentLoaded', (event) => {-->
+<!--                            //     let auth2 = gapi.auth2.getAuthInstance();-->
+<!--                            //     auth2.disconnect();-->
+<!--                            //     auth2.signOut().then(function () {-->
+<!--                            //         console.log('User signed out.');-->
+<!--                            //     });-->
+<!--                            // });-->
+<!--                            window.addEventListener('DOMContentLoaded', (event) => {-->
+<!--                                let auth2 = gapi.auth2.getAuthInstance();-->
+<!--                                auth2.disconnect();-->
+<!--                                auth2.signOut().then(function () {-->
+<!--                                    console.log('User signed out.');-->
+<!--                                });-->
+<!--                            });-->
+<!--                        </script>-->
+                    </div>
 
+                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">Fill in form</div>
+                    <!--                    <form id="logOut" th:action="@{/logout}" th:method="post">-->
+                    <!--                        <button th:onclick="${'javascript:signOut()'}" type="submit" class="g-signout" data-theme="dark">Sign out</button>-->
+                    <!--                    </form>-->
                     <form id="signUpForm" th:action="@{/register}" method="post" th:object="${user}">
                         <div class="md-form">
 
@@ -94,6 +181,8 @@
 
                             <input class="form-control" id="title" name="title" placeholder="Job Title"
                                    th:field="*{title}"/>
+                            <input class="form-control" type="hidden" id="photo" th:field="*{photo}"/>
+
                         </div>
                         <div class="md-form">
 
@@ -108,6 +197,18 @@
 
                         <button type="submit" class="btn btn-primary">Register</button>
                     </form>
+<!--                    <div th:if="${param.error}">-->
+<!--                        <script>-->
+
+<!--                            var auth2 = gapi.auth2.getAuthInstance();-->
+<!--                            auth2.signOut().then(function () {-->
+<!--                            });-->
+<!--                            auth2.disconnect();-->
+
+<!--                        </script>-->
+
+<!--                    </div>-->
+
                 </div>
             </div>
         </div>
@@ -126,6 +227,8 @@
         document.getElementById("username").value = username;
         document.getElementById("password").value = id_token;
         document.getElementById("title").value = "New Member";
+        document.getElementById("photo").value = profile.getImageUrl();
+
         // user: email, username, first last title photo
         document.getElementById("signUpForm").submit();
     }
@@ -137,8 +240,9 @@
 
         })
     }
+
     function onLoad() {
-        gapi.load('auth2', function() {
+        gapi.load('auth2', function () {
             gapi.auth2.init();
         });
     }
@@ -162,13 +266,14 @@
     });
 </script>
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 <script src="https://apis.google.com/js/platform.js?onload=onLoad"></script>
 
 
-
 <!--https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin-->
 
+<th:block th:replace="fragments/footer"/>
 
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>

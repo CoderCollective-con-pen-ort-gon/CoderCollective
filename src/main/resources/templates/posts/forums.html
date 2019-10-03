@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <th:block th:replace="fragments/header :: my-header('Posts')">
+    </th:block>
     <!-- Bootstrap core css -->
     <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
     <!-- Material Design Bootstrap -->
@@ -51,25 +53,39 @@
         .lead {
             color: #FDBB34;
         }
+        #centerImage {
+            margin: 0px;
+            padding-right: 0px;
+
+        }
+        .card {
+            margin: 0px;
+            padding-right: 0px;
+        }
+        #imageId {
+            max-width: 207px;
+            padding-left: 15px;
+        }
     </style>
 
 
 
-    <th:block th:replace="fragments/header :: my-header('Posts')">
-    </th:block>
+<!--    <th:block th:replace="fragments/header :: my-header('Posts')">-->
+<!--    </th:block>-->
 <!--    <link th:rel="stylesheet" th:href="@{'/css/post.css'}" />-->
 
 </head>
 <body class="bg">
 <th:block th:replace="fragments/navbar :: top-nav" />
 
+<th:block th:replace="fragments/sidebar" />
 
 <div class="container cbg">
 
     <div class="row jHead curve" >
         <div class="col-6 col-md-6 jmargin jHead">
             <h1 id="line" class=" jtext display-4">Languages</h1>
-            <p class="jtext lead">See what the community is talking about....</p>
+            <p class="jtext lead">See what the community is talking about!</p>
         </div>
         <div class="col-6 col-md-6">
 <!--            <img class="jmarginImg" th:src="@{/picture/forum.png}" style="height:350px;width:500px"/>-->
@@ -78,36 +94,33 @@
 
 
 
-<!--<div class="container-fluid" id="main">-->
 
-<!--    <th:block th:replace="fragments/navbar :: top-nav" />-->
 
-<!--    <th:block th:replace="fragments/sidebar"/>-->
+<!--    <button type="button" onclick="openNav()" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Extra large modal</button>-->
+
 
 
 <div class="row">
-<!--    <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">-->
 
     <div class="card col-3 col-sm-3 col-md-3  shadow-none "
          th:each="forum : ${forums}">
         <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">
 
+            <div class="row" id="centerImage">
+                <div class="col">
+                    <img th:src= "@{'/pics/' +${forum.name} +'.png'}" style="height:12rem;" id="imageId"/>
 
-        <img th:src= "@{'/pics/' +${forum.name} +'.png'}" style="height:12rem;" class="justify-content-center"/>
+                </div>
+            </div>
         <div class="card-body">
             <h5 class="card-title" th:text="${forum.name}"></h5>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item" th:Text="'Posts '+ ${forum.getPosts().size()}" > </li>
         </ul>
-<!--        <div class="card-body">-->
-<!--            <a class="btn btn-indigo text-white" th:href="@{/forums/{forumId}(forumId = ${forum.id})}">View </a>-->
-<!--
 
-</div>-->
         </a>
     </div>
-<!--    </a>-->
 </div>
 </div>
 

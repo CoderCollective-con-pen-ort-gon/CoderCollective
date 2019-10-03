@@ -69,13 +69,14 @@
 </head>
 <body class="bg">
 <th:block th:replace="fragments/navbar :: top-nav" />
+<th:block th:replace="fragments/sidebar" />
 
 <div class="container cbg">
 
     <div class="row jHead curve" >
         <div class="col-6 col-md-6 jmargin jHead">
-            <h1 id="line" class="display-4" th:text="${post.title}"></h1>
-            <p class="jtext lead">Add to the conversation!</p>
+<!--            <h1 id="line" class="display-4" th:text="${post.title}"></h1>-->
+<!--            <p class="jtext lead">Add to the conversation!</p>-->
         </div>
         <div class="col-6 col-md-6">
             <!--            <img class="jmarginImg" th:src="@{/picture/forum.png}" style="height:350px;width:500px"/>-->
@@ -85,15 +86,17 @@
 
 <br/>
 
+
+
 <div class="container">
+    <a th:href="@{/forums/{forumId}(forumId=${post.forums.getId()})}" th:text="'⬅ ️Back to ' + ${post.forums.getName()}"></a>
     <div class="row">
         <div class="col-lg-10">
             <div class="card border-0">
                 <!--                <div class="card-header p-3 mb-2 bg-info text-white" th:text="${post.title}">-->
                 <!--                </div>-->
                 <div class="card-body">
-                    <h1 class="text-center" th:text="${post.title}"></h1>
-                    <br/>
+️                    <br/>
                     <blockquote class="blockquote mb-0">
                         <div class="row justify-content-center">
                             <div class="alignCenter">
@@ -110,7 +113,7 @@
                         <footer class="blockquote-footer" th:text="${post.createdAt}"></footer>
                         <div sec:authorize="isAuthenticated()">
                             <form th:action="@{'/posts/'+ ${post.id} +'/favorite'}" th:method="post">
-                                <button class="btn btn-link btn-sm">Add to Favorites </button>
+                                <button class="btn btn-link btn-sm text-primary">Add to Favorites </button>
                             </form>
                         </div>
 
@@ -167,7 +170,7 @@
                                             <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
                                                 <input type="hidden" name="vote" th:value="1"/>
                                                 <input type="hidden" name="comment.id" th:value="${comment.id}"/>
-                                                <button class="btn btn-link">Like</button>
+                                                <button class="btn text-primary btn-link" style="font-size: 40px">👍</button>
                                             </form>
                                             <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
                                                 <ul class="nav nav-pills">
@@ -177,13 +180,13 @@
                                                             <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
                                                                 <input type="hidden" name="vote" th:value="0"/>
                                                                 <input type="hidden" name="comment.id" th:value="${comment.id}"/>
-                                                                <button class="btn btn-link">Remove like</button>
+                                                                <button class="btn btn-sm btn-link">Remove like</button>
                                                             </form>
                                                             <form th:action="@{'/comment/' + ${comment.id} + '/edit'}" th:method="get" th:object="${comment}">
                                                                 <button class="btn btn-link btn-sm">Edit</button>
                                                             </form>
                                                             <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" th:method="post" th:object="${comment}">
-                                                                <button class="btn btn-link btn-sm">Delete</button>
+                                                                <button class="btn text-danger btn-link btn-sm">Delete</button>
                                                             </form>
                                                         </div>
                                                     </li>
