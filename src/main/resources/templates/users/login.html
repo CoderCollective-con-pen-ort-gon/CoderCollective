@@ -106,6 +106,7 @@
                         <h3 class="dark-grey-text text-center">
                             <strong>Sign In</strong>
                         </h3>
+                        <h6 class="text-center">Login with Google</h6>
                         <div th:if="${param.error}">
                             Invalid Username and Password.
                         </div>
@@ -113,14 +114,17 @@
                             You have been logged out.
 
                         </div>
+                        <div style="justify-content: center; display: flex" class="text-center">
                         <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                        </div>
 
                         <form id="logOut" th:action="@{/logout}" th:method="post" style="display:none;">
                             <button th:onclick="${'javascript:signOut()'}" type="submit" class="g-signout"
                                     data-theme="dark">Sign out
                             </button>
                         </form>
-
+                        <br/>
+                        <h6 class="text-center">OR</h6>
                         <form th:action="@{/login}" id="loginForm" method="post">
                             <div class="md-form">
                                 <input type="text" class="form-control" id="username" name="username"
@@ -131,7 +135,9 @@
                                 <input type="password" class="form-control" id="password" name="password"
                                        placeholder="Password"/>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div style="justify-content: center; display: flex" class="text-center">
+                                <button  type="submit" class="btn btn-block btn-indigo text-white">Submit</button>
+                            </div>
                         </form>
                         <div th:if="${param.logout}">
                             <script>
