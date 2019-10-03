@@ -82,9 +82,9 @@
 
 <!--    <div th:if="${searched != null}">-->
 
-    <div class="row" th:if="${searched != null}">
+    <div class="row " th:if="${searched != null}">
 
-        <div class="card col-3 mb-3" style="width: 18rem; height:25rem;" th:each="post : ${posts}">
+        <div class="card col-6 col-sm-6 col-md-6 col-lg-3 col-3 mb-3" style="width: 18rem; height:25rem;" th:each="post : ${posts}">
             <div class="card-header text-orange font-weight-bold" th:text="${post.title}"></div>
             <div class="card-body" style=" overflow-x: hidden;">
                 <p >Description:</p>
@@ -95,7 +95,7 @@
             </div>
             <div>
                 <p class="card-body" th:Text="'Comments: ' + ${post.comments.size()}"></p>
-                <a class="btn btn-indigo text-white" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+                <a class="btn btn-indigo text-white" style="justify-content: center; display: flex;" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
             </div>
         </div>
     </div>
