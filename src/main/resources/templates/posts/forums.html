@@ -98,10 +98,9 @@
 <!--    <button type="button" onclick="openNav()" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Extra large modal</button>-->
 
 
+    <th:block th:replace="fragments/sidebar" />
 
 <div class="row">
-    <th:block th:replace="fragments/sidebar" />
-gi
     <div class="card col-3 col-sm-3 col-md-3  shadow-none "
          th:each="forum : ${forums}">
         <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">
