@@ -129,7 +129,9 @@
 
                 <!--Grid column-->
                 <div class="col-md-6 col-xl-5 mb-4">
-
+                    <div sec:authorize="isAuthenticated()" style="height:25rem; width: 25rem;">
+                        <img th:src="@{/image/HeadLogo.png}" style="height:100%; width: 100%; align-content: end"/>
+                    </div>
                     <!--Card-->
                     <div sec:authorize="!isAuthenticated()" class="card">
 
