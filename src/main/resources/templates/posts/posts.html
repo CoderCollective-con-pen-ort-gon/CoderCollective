@@ -52,6 +52,12 @@
             color: #FDBB34;
         }
         td{background-color:white;}
+        .card {
+            padding-left: 0px;
+        }
+
+
+
 
     </style>
 
@@ -104,7 +110,10 @@
         </div>
         <div>
         <p class="card-body" th:Text="'Comments: ' + ${post.comments.size()}"></p>
-        <a class="btn btn-indigo text-white" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+<!--            <form th:action="@{/posts/{postId}(postId = ${post.id})}" th:method="post">-->
+<!--                <button class="btn btn-lg btn-block btn-indigo text-white">View Post</button>-->
+<!--            </form>-->
+                <a class="btn btn-lg btn-block btn-indigo text-white" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
         </div>
     </div>
 

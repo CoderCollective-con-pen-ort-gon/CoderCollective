@@ -65,6 +65,11 @@
             margin-top: 10%;
             margin-left: 5%;
         }
+        #cardOne {
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
 
     </style>
 
@@ -110,13 +115,15 @@
                     <h4 class="mb-4 d-none d-md-block text-warning">
                         <strong>Connect, Discover, Contribute.</strong>
                     </h4>
+                    <div class="row">
+                        <input type="button" value="Learn More" class="btn btn-white btn-lg"
+                               onclick="document.getElementById('middle').scrollIntoView();"/>
+                        <form th:method="Get" th:action="@{/forums}">
+                            <input type="submit" value="Browse   " class="btn btn-deep-orange btn-lg" style="width:176px;"/>
+                            <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
+                        </form>
+                    </div>
 
-                    <input type="button" value="Learn More" class="btn btn-white btn-lg"
-                           onclick="document.getElementById('middle').scrollIntoView();"/>
-                    <form th:method="Get" th:action="@{/forums}">
-                    <input type="submit" value="Browse   " class="btn btn-deep-orange btn-lg" style="width:176px;"/>
-                        <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
-                    </form>
                 </div>
                 <!--Grid column-->
 
@@ -233,14 +240,27 @@
 
 
 
+<!--    <div class="flex-item shadow rounded">-->
+<!--        <div class="imagec">-->
+<!--            <img th:src="@{image/connect.png}" height="80" width="80"/>-->
+<!--        </div>-->
+<!--        <h3>Connect</h3>-->
+<!--        <br/>-->
+<!--        <p>Interact and have discussions with others.</p>-->
+<!--    </div>-->
+
+
     <div class="flex-item shadow rounded">
         <div class="imagec">
             <img th:src="@{image/connect.png}" height="80" width="80"/>
         </div>
         <h3>Connect</h3>
         <br/>
-        <p>Interact and have discussions with others</p>
+        <p id="cardOne">Interact and have discussions with others.</p>
     </div>
+
+
+
 
     <div class="flex-item shadow rounded">
         <div class="imaged">
