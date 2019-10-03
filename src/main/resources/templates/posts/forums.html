@@ -112,10 +112,10 @@
 
                 </div>
             </div>
-        <div class="card-body">
+        <div style="justify-content: center; display: flex" class="card-body text-center">
             <h5 class="card-title" th:text="${forum.name}"></h5>
         </div>
-        <ul class="list-group list-group-flush">
+        <ul style="justify-content: center; display: flex" class="list-group list-group-flush text-center">
             <li class="list-group-item" th:Text="'Posts '+ ${forum.getPosts().size()}" > </li>
         </ul>
 
