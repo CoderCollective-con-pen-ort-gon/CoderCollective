@@ -78,7 +78,7 @@
 
     <div class="row">
 
-        <div class="card text-align-center justify-content-center col-3 mb-3" style="width: 18rem; height:25rem;" th:each="post : ${userPosts}">
+        <div class="card col-3 mb-3" style="width: 18rem; height:25rem;" th:each="post : ${userPosts}">
             <div class="card-header text-orange font-weight-bold" th:text="${post.title}"></div>
             <div class="card-body " style=" overflow-x: hidden;">
                 <p >Description:</p>

@@ -3,11 +3,46 @@
 <head>
     <th:block th:replace="fragments/header :: my-header('Edit Comment')">
     </th:block>
-</head>
-<body>
-<h1>Edit Post</h1>
 
-<div class="container">
+    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+    <link th:rel="stylesheet" th:href="@{'/css/profile.css'}"/>
+    <style>
+        .bg{
+            background-color:#F1F3F4 ;
+            margin-top: 75px;
+
+        }
+
+
+
+
+        .con{
+            width: 40%;
+            text-align: center;
+        }
+    </style>
+
+
+
+
+
+
+</head>
+
+
+
+<body class="bg">
+<th:block th:replace="fragments/navbar :: top-nav" />
+
+
+<div class="container con">
+    <div>
+    <h1>Edit Post</h1>
+
     <form th:action=" @{'/post/' + ${post.id} + '/edit'}" method="post" th:object="${post}">
         <!--    <select class="form-control" name="forum_id" th:field="*{forums.id}" th:value="${forums}">-->
         <!--        <option th:each="forum : ${forums}" name="forum_id" th:value="${forum.id}" th:text="${forum.name}"></option>-->
@@ -20,10 +55,10 @@
         <div class="md-form">
             <input class="form-control" placeholder="Post Picture" th:field="*{photo}" type="text"
                    id="photo" value=""/>
-            <button type="button" id="open">Open Picker</button>
+            <button type="button" class="btn-outline-secondary" id="open">Open Picker</button>
         </div>
 
-        <button type="submit" class="btn btn-primary">Edit Post</button>
+        <button type="submit" class="btn btn-indigo">Edit Post</button>
     </form>
 </div>
 
@@ -45,8 +80,9 @@
 </script>
 
 
-
+</div>
 <th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
 </th:block>
+
 </body>
 </html>
