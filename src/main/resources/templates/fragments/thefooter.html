@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <style>
+        #horizontal{
+            display: flex;
+        }
+
+    </style>
+</head>
+<body>
+<footer id="footer" th:fragment="the-foot">
+    <div class="view full-page-intro mask"
+         style="background-color:#F57D00; background-repeat: no-repeat; background-size: cover;">
+        <div class="table" style="display: table">
+        <ul id="horizontal" style="list-style-type: none; display: flex; justify-content: center">
+            <li class="nav-item">
+                <a style="color: white" class="nav-link" href="/">Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="https://www.facebook.com/Cody-Coll-107086154032061/" class="nav-link" target="_blank">
+                    <i style="color: white" class="fab fa-facebook-f"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a style="color: white" href="https://github.com/CoderCollective-con-pen-ort-gon/CoderCollective" class="nav-link" target="_blank">
+                    <i class="fab fa-github"></i>GitHub
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="https://twitter.com/CoderCollectiv1" class="nav-link" target="_blank">
+                    <i style="color: white" class="fab fa-twitter"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a style="color: white" class="nav-link" href="/aboutus">About Us
+                </a>
+            </li>
+        </ul>
+    <h6 style="color: white"> © Copyright 2019 ○ All Rights Reserved</h6>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

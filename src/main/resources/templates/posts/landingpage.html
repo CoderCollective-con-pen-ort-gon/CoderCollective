@@ -11,16 +11,33 @@
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
+
+
     <th:block th:replace="fragments/header :: my-header('Register')" />
 
-    <style>
-        div .imagec {
+
+
+
+
+
+    <th:block th:replace="fragments/header :: my-header('Register')" />
+
+
+<style>
+    .row1 {
+       display: inline-block;
+        /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
+
+    }
+    div .imagec{
 
             display: flex;
             justify-content: center;
             margin: 10px;
             padding: 10px;
         }
+
 
         div .imaged {
             display: flex;
@@ -115,6 +132,7 @@
                     <h4 class="mb-4 d-none d-md-block text-warning">
                         <strong>Connect, Discover, Contribute.</strong>
                     </h4>
+
                     <div class="row">
                         <input type="button" value="Learn More" class="btn btn-white btn-lg"
                                onclick="document.getElementById('middle').scrollIntoView();"/>
@@ -123,6 +141,7 @@
                             <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
                         </form>
                     </div>
+
 
                 </div>
                 <!--Grid column-->
@@ -282,6 +301,9 @@
     <p>Post information to help other developers. </p>
     </div>
 </div>
+
+
+<th:block th:replace="fragments/thefooter :: the-foot"/>
 
 
 <script>
