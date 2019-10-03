@@ -78,7 +78,6 @@
 <body class="bg">
 <th:block th:replace="fragments/navbar :: top-nav" />
 
-<th:block th:replace="fragments/sidebar" />
 
 <div class="container cbg">
 
@@ -101,7 +100,8 @@
 
 
 <div class="row">
-
+    <th:block th:replace="fragments/sidebar" />
+gi
     <div class="card col-3 col-sm-3 col-md-3  shadow-none "
          th:each="forum : ${forums}">
         <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">
