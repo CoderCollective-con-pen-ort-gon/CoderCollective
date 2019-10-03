@@ -83,7 +83,7 @@
 
         <div class="card col-12 col-sm-6 col-md-3 mb-3 mx-auto" style="width: 18rem; height:25rem;" th:each="post : ${userPosts}">
             <div class="text-align-center mx-auto">
-                <label for="titleFav">Language:</label>
+                <label for="titleFav">Language</label> <br/>
                 <a class="mx-auto" th:href="@{/posts/{postId}(postId = ${post.id})}" id="Language"
                    th:text="${post.getForums().getName()}"></a>
             </div>
@@ -164,8 +164,8 @@
                         <img th:src="@{'/pics/' +${post.getForums().getName()} +'.png'}"
                              style="height:12rem; width: 12rem;" class="mx-auto d-block"/>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <label for="titleFav">Language:</label><br/>
+                            <li class="list-group-item mx-auto">
+                                <label for="titleFav">Language</label><br/>
                                 <a th:href="@{/posts/{postId}(postId = ${post.id})}" id="Language"
                                    th:text="${post.getForums().getName()}"></a>
                             </li>
