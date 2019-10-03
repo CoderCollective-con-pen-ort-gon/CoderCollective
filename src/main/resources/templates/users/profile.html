@@ -93,7 +93,7 @@
 <!--                <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">-->
 <!--                    <button class="btn btn-link text-danger" type="submit">Delete Post</button>-->
 <!--                </form>-->
-                <a class="btn btn-lg btn-block btn-indigo text-white" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+                <a class="btn btn-lg btn-block btn-indigo text-white mx-auto" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
                 <div class="row">
                     <div class="col-6">
                     <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
