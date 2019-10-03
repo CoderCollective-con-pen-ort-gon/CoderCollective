@@ -28,7 +28,16 @@
 </head>
 <body>
 <nav th:fragment="sidebar">
-    <button style="margin-top: 20%; z-index: 1; position: fixed; width: 7%; font-size: .75rem" type="button" onclick="openNav()" class="btn btn-secondary fixed-left" data-toggle="modal" data-target=".bd-example-modal-xl">Open Editor</button>
+<!--    <button style="margin-top: 20%; z-index: 1; position: fixed; width: 7%; font-size: .75rem" type="button"-->
+<!--            onclick="openNav()" class="btn btn-secondary fixed-left" data-toggle="modal"-->
+<!--            data-target=".bd-example-modal-xl">Open Editor-->
+<!--    </button>-->
+    <button style="width: 7%; font-size: .75rem" type="button"
+            onclick="openNav()" class="btn btn-secondary fixed-left" data-toggle="modal"
+            data-target=".bd-example-modal-xl">Open Editor
+    </button>
+    <input class="form-control" type="text" id="mode" placeholder="Javascript"/>
+
 
     <div class="btn-group-vertical">
         <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
@@ -38,9 +47,9 @@
                     <div id="mySidenav" class="sidenav">
                         <!--        <a href="javascript:void(0)" class="closebtn toggler" onclick="closeNav()">&times;</a>-->
                         <div id="editor" class="ace_editor" style="top: 10%; right: 0;">function title(items) {
-var x = "This is a Javascript function.";
-return x;
-}
+                            var x = "This is a Javascript function.";
+                            return x;
+                            }
                         </div>
                     </div>
                 </div>

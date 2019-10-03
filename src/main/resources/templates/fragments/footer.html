@@ -21,21 +21,35 @@
             var aceEditor = ace.edit("editor", {
                 autoScrollEditorIntoView: false,
             });
+            aceEditor.setOptions({
+                fontFamily: "tahoma",
+                fontSize: "1.2rem"
+            });
+            $('#mode').on('change', function () {
+                console.log("Changed registered");
+                var newMode = $("#mode").val();
+                if (newMode === "") {
+                    newMode = "Javascript"
+                }
+                aceEditor.session.setMode("ace/mode/" + newMode);
+                console.log("ace/mode/" + newMode);
 
-/*
-            var cursorLeft = editor.renderer.$cursorLayer.getPixelPosition(0).left;
-//gets distance between cursor and left side of textarea in pixels
-            var scrollerWidth = editor.renderer.$size.scrollerWidth;
-//gets the width of the text area (that can be seen)
-            aceEditor.renderer.scrollToX(cursorLeft - scrollerWidth/2);
-//moves the scroller so that the left side i at the same point as the cursor minus half the width of the area that can be seen
-            aceEditor.setShowPrintMargin(false);
-*/
+            });
 
+
+            /*
+                        var cursorLeft = editor.renderer.$cursorLayer.getPixelPosition(0).left;
+            //gets distance between cursor and left side of textarea in pixels
+                        var scrollerWidth = editor.renderer.$size.scrollerWidth;
+            //gets the width of the text area (that can be seen)
+                        aceEditor.renderer.scrollToX(cursorLeft - scrollerWidth/2);
+            //moves the scroller so that the left side i at the same point as the cursor minus half the width of the area that can be seen
+                        aceEditor.setShowPrintMargin(false);
+            */
 
 
             // defines the style of the editor
-            aceEditor.setTheme("ace/theme/monokai");
+            aceEditor.setTheme("ace/theme/Dreamweaver");
             // hides line numbers (widens the area occupied by error and warning messages)
             // aceEditor.renderer.setOption("showLineNumbers", false);
             // ensures proper autocomplete, validation and highlighting of JavaScript code
