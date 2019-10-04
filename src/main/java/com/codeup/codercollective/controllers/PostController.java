@@ -125,11 +125,28 @@ public class PostController {
         System.out.println(id);
 
 
+
+       List<User> users= postDao.findOne(id).getPostfavorites();
+
+        
+//
+        for(User user : users){
+            List<Post> posts=user.getFavoritepost();
+
+            posts.remove(postDao.findOne(id));
+            user.setFavoritepost(posts);
+            userDao.save(user);
+
+        }
+//
+//
             for(Comment comment:   commentDao.findAll()){
                 if (comment.getPost().getId()==id){
                     commentDao.delete(comment);
                 }
             }
+
+
 //        favDao.deleteFavByPost_Id(id);
 
 //        if (favDao.findFavByPost_Id(id) != null) {
@@ -175,10 +192,12 @@ public class PostController {
     @PostMapping("/post/{id}/edit")
     public String returnEditPost(@PathVariable long id,
                                  @RequestParam(name = "title") String title,
-                                 @RequestParam(name = "body") String body) {
+                                 @RequestParam(name = "body") String body,
+                                @RequestParam(name="photo") String photo) {
         Post updatePost = postDao.findOne(id);
         updatePost.setTitle(title);
         updatePost.setBody(body);
+        updatePost.setPhoto(photo);
         postDao.save(updatePost);
         long postId = updatePost.getId();
         return "redirect:/posts/" + postId;

@@ -4,6 +4,9 @@
     <meta charset="utf-8"/>
 
     <title>Home</title>
+
+    <th:block th:replace="fragments/header :: my-header('Register')" />
+
     <!-- Bootstrap core css -->
     <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
     <!-- Material Design Bootstrap -->
@@ -11,16 +14,33 @@
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
+
+
+<!--    <th:block th:replace="fragments/header :: my-header('Register')" />-->
+
+
+
+
+
+
     <th:block th:replace="fragments/header :: my-header('Register')" />
 
-    <style>
-        div .imagec {
+
+<style>
+    .row1 {
+       display: inline-block;
+        /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
+
+    }
+    div .imagec{
 
             display: flex;
             justify-content: center;
             margin: 10px;
             padding: 10px;
         }
+
 
         div .imaged {
             display: flex;
@@ -57,13 +77,18 @@
 
             background-color: white;
             display: inline-block;
-            width: 20%;
-            height: 65%;
+            width: 20rem;
+            height: 30rem;
         }
+
+
+
 
         .flex-item + .flex-item {
             margin-top: 10%;
-            margin-left: 5%;
+            margin-top: 10%;
+
+            /*margin-left: 5%;*/
         }
         #cardOne {
             padding-right: 10px;
@@ -81,26 +106,25 @@
 
 
 <div class="view full-page-intro"
-     style="background-image: url('https://images.all-free-download.com/images/graphiclarge/blue_3d_geometric_abstract_background_6815669.jpg'); background-repeat: no-repeat; background-size: cover;">
+     style="background-image: url('/picture/blue.jpg'); background-repeat: no-repeat; background-size: cover;">
 
 
-    <!--    <div class="view full-page-intro"-->
-    <!--         style="background-color:#1D63DC;-->
 
-    <!--">-->
 
 
     <!-- Mask & flexbox options-->
     <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
 
         <!-- Content -->
-        <div class="container">
+        <div class="container
+">
 
             <!--Grid row-->
             <div class="row wow fadeIn">
 
+
                 <!--Grid column-->
-                <div class="col-md-6 mb-4 white-text text-center text-md-left">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4 white-text text-center mx-auto text-sm-center text-md-left">
 
                     <h1 class="display-4 font-weight-bold">Coder</h1>
                     <h1 class="display-4 font-weight-bold">Collective</h1>
@@ -112,23 +136,25 @@
                         <strong></strong>
                     </p>
 
-                    <h4 class="mb-4 d-none d-md-block text-warning">
+                    <h3 class="mb-4 d-none d-md-block text-warning">
                         <strong>Connect, Discover, Contribute.</strong>
-                    </h4>
-                    <div class="row">
-                        <input type="button" value="Learn More" class="btn btn-white btn-lg"
+                    </h3>
+
+                    <div class="row mx-sm-auto">
+                        <input type="button" value="Learn More" class="btn btn-white text-dark btn-lg"
                                onclick="document.getElementById('middle').scrollIntoView();"/>
                         <form th:method="Get" th:action="@{/forums}">
-                            <input type="submit" value="Browse   " class="btn btn-deep-orange btn-lg" style="width:176px;"/>
-                            <!--                        <i class="fas fa-graduation-cap ml-2"></i>-->
+                            <input type="submit" value="Browse   " class="btn text-white btn-deep-orange btn-lg" style="width:176px;"/>
                         </form>
                     </div>
+
 
                 </div>
                 <!--Grid column-->
 
                 <!--Grid column-->
-                <div class="col-md-6 col-xl-5 mb-4">
+
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-5 mb-4 mx-auto">
                     <div sec:authorize="isAuthenticated()" style="height:25rem; width: 25rem;">
                         <img th:src="@{/image/HeadLogo.png}" style="height:100%; width: 100%; align-content: end"/>
                     </div>
@@ -170,18 +196,10 @@
                                     <input type="text" class="form-control" id="username" placeholder="Username"
                                            th:field="*{username}"/>
                                 </div>
-                                <!--                                <div class="md-form">-->
-                                <!--                                    <input type="text" class="form-control" id="firstname" placeholder="Firstname"-->
-                                <!--                                           th:field="*{firstname}"/>-->
-                                <!--                                </div>-->
-                                <!--                                <div class="md-form">-->
 
-                                <!--                                    <input type="text" class="form-control" id="lastname" placeholder="Lastname"-->
-                                <!--                                           th:field="*{lastname}"/>-->
-                                <!--                                </div>-->
                                 <div class="md-form">
 
-                                    <input class="form-control" type="text" id="title" placeholder="Job Title"
+                                    <input class="form-control" type="text" id="title" placeholder="Job Title (Opt.)"
                                            th:field="*{title}"/>
                                     <input class="form-control" type="hidden" id="photo" th:field="*{photo}"/>
                                 </div>
@@ -191,15 +209,11 @@
                                            th:field="*{password}"/>
                                 </div>
 
-                                <!--                                <div class="md-form">-->
-                                <!--                                    <label for="photo"></label>-->
-                                <!--                                    <input th:field="*{photo}" class="form-control" type="text" id="photo" value=""/><input type="submit"/>-->
 
-                                <!--                                </div>-->
 
 
                                 <div class="text-center">
-                                    <button class="btn btn-indigo">Send</button>
+                                    <button class="btn btn-block btn-indigo text-white">Send</button>
                                 </div>
 
                             </form>
@@ -224,6 +238,10 @@
                 </div>
                 <!--Grid column-->
 
+
+                </div>
+
+
             </div>
             <!--Grid row-->
 
@@ -233,55 +251,49 @@
     </div>
     <!-- Mask & flexbox options-->
 
-</div>
-
-<div id="middle" class="view full-page-intro">
+<div id="middle" class="view full-page-intro row ">
 
 
 
 
 
+    <div class="flex-item shadow rounded col-12 col-sm-12 col-md-12 col-lg-3 mx-lg-auto">
 
-<!--    <div class="flex-item shadow rounded">-->
-<!--        <div class="imagec">-->
-<!--            <img th:src="@{image/connect.png}" height="80" width="80"/>-->
-<!--        </div>-->
-<!--        <h3>Connect</h3>-->
-<!--        <br/>-->
-<!--        <p>Interact and have discussions with others.</p>-->
-<!--    </div>-->
-
-
-    <div class="flex-item shadow rounded">
         <div class="imagec">
-            <img th:src="@{image/connect.png}" height="80" width="80"/>
+            <img th:src="@{image/connect.png}" height="150" width="150"/>
         </div>
-        <h3>Connect</h3>
+        <h2>Connect</h2>
         <br/>
-        <p id="cardOne">Interact and have discussions with others.</p>
+        <h5 id="cardOne">Interact and have discussions with others.</h5>
     </div>
 
 
 
 
-    <div class="flex-item shadow rounded">
+    <div class="flex-item shadow rounded col-12 col-sm-12 col-md-12 col-lg-3 mx-lg-auto">
         <div class="imaged">
-            <img th:src="@{image/undraw_treasure_of9i.png}" height="80" width="80"/>
+            <img th:src="@{image/undraw_treasure_of9i.png}" height="150" width="150"/>
         </div>
-        <h3>Discover</h3>
+        <h2>Discover</h2>
         <br/>
-        <p>Search popular resources and tools others use. </p>
+        <h5>Search popular resources and tools others use. </h5>
      </div>
 
-    <div class="flex-item shadow rounded">
+    <div class="flex-item shadow rounded col-12 col-sm-12 col-md-12 col-lg-3 mx-lg-auto">
         <div class="imagec2">
-            <img th:src="@{image/undraw_developer_activity_bv83.png}" height="80" width="80"/>
+            <img th:src="@{image/undraw_developer_activity_bv83.png}" height="150" width="150"/>
         </div>
-    <h3>Contribute</h3>
+    <h2>Contribute</h2>
     <br/>
-    <p>Post information to help other developers. </p>
+    <h5>Post information to help other developers. </h5>
+
     </div>
+
+
 </div>
+
+        <th:block th:replace="fragments/thefooter :: the-foot"/>
+
 
 
 <script>
@@ -309,12 +321,17 @@
         });
     }
 
+
+
+
 </script>
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 <!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
 <!--</th:block>-->
-<th:block th:replace="fragments/footer"/>
+
+
+<!--<th:block th:replace="fragments/footer"/>-->
 
 </body>
 
