@@ -192,10 +192,12 @@ public class PostController {
     @PostMapping("/post/{id}/edit")
     public String returnEditPost(@PathVariable long id,
                                  @RequestParam(name = "title") String title,
-                                 @RequestParam(name = "body") String body) {
+                                 @RequestParam(name = "body") String body,
+                                @RequestParam(name="photo") String photo) {
         Post updatePost = postDao.findOne(id);
         updatePost.setTitle(title);
         updatePost.setBody(body);
+        updatePost.setPhoto(photo);
         postDao.save(updatePost);
         long postId = updatePost.getId();
         return "redirect:/posts/" + postId;

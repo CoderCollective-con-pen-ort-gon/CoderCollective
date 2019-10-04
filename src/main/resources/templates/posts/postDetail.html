@@ -9,6 +9,8 @@
     <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
     <!-- Your custom styles (optional) -->
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
+
     <style>
         .jtext {
 
@@ -124,7 +126,7 @@
 
 
 <div class="container">
-    <a th:href="@{/forums/{forumId}(forumId=${post.forums.getId()})}" th:text="'⬅ ️Back to ' + ${post.forums.getName()}"></a>
+    <a th:href="@{/forums/{forumId}(forumId=${post.forums.getId()})}"> <i class='far fa-hand-point-left'> <span th:text=" ${post.forums.getName()}"></span></i></a>
     <div class="row">
         <div class="col-lg-10">
             <div class="card border-0">
@@ -203,7 +205,7 @@
                                             <form th:action="@{'/comment/rate'}" th:method="post" th:object="${rating}">
                                                 <input type="hidden" name="vote" th:value="1"/>
                                                 <input type="hidden" name="comment.id" th:value="${comment.id}"/>
-                                                <button class="btn text-primary btn-link" style="font-size: 40px">👍</button>
+                                                <button class="btn text-primary btn-link" style="font-size: 40px"><i class="far fa-thumbs-up"></i></button>
                                             </form>
                                             <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${comment.user.id}" class="field is-grouped">
                                                 <ul class="nav nav-pills">
