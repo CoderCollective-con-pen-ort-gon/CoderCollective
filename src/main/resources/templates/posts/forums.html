@@ -77,6 +77,10 @@
             margin: 0!important;
 
         }
+        .btnText{
+            text-shadow: -.5px 0 black, 0 .5px black, .5px 0 black, 0 -.5px black;
+
+        }
 
     </style>
 
@@ -127,7 +131,7 @@
             </div>
         <ul class="list-group list-group-flush">
 
-            <li class="mx-auto list-group-item text-center text-capitalize LangTitle" style="font-size: .8rem; border-radius: 10px; margin-bottom: 1rem!important; margin-top: 1rem!important; background-color: orange!important;"
+            <li class="mx-auto list-group-item text-center text-capitalize LangTitle" style="font-size: .8rem; border-radius: 10px; margin-bottom: 1rem!important; margin-top: 1rem!important; background-color: #3f51b5 !important;"
                 th:Text="'Posts '+ ${forum.getPosts().size()}" > </li>
 <!--        <div style="justify-content: center; display: flex" class="card-body text-center">-->
 <!--            <h5 class="card-title" th:text="${forum.name}"></h5>-->
