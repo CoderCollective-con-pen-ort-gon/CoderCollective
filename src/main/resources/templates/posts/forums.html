@@ -66,6 +66,22 @@
             max-width: 207px;
             padding-left: 15px;
         }
+        .LangTitle{
+            background-color: royalblue!important;
+            color: whitesmoke;
+            font-size: 1.5rem;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            border-radius: 5px;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            margin: 0!important;
+
+        }
+        .btnText{
+            text-shadow: -.5px 0 black, 0 .5px black, .5px 0 black, 0 -.5px black;
+
+        }
+
     </style>
 
 
@@ -101,21 +117,24 @@
     <th:block th:replace="fragments/sidebar" />
 
 <div class="row">
-    <div class="card col-6 col-sm-6 col-md-6 col-lg-3  shadow-none "
-         th:each="forum : ${forums}">
+    <div class="card col-12 col-sm-6 col-md-5 col-lg-3 border-0 mb-3 shadow d-flex mx-auto" th:each="forum : ${forums}">
         <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">
-
-            <div class="row" id="centerImage">
-                <div class="col">
-                    <img th:src= "@{'/pics/' +${forum.name} +'.png'}" style="height:12rem;" id="imageId"/>
-
-                </div>
+            <div class="card-body">
+                <h5 class="card-title text-center text-capitalize LangTitle" th:text="${forum.name}"></h5>
             </div>
-        <div style="justify-content: center; display: flex" class="card-body text-center">
-            <h5 class="card-title" th:text="${forum.name}"></h5>
-        </div>
-        <ul style="justify-content: center; display: flex" class="list-group list-group-flush text-center">
-            <li class="list-group-item" th:Text="'Posts '+ ${forum.getPosts().size()}" > </li>
+
+            <div class="row mx-auto" id="centerImage">
+                    <img th:src= "@{'/pics/' +${forum.name} +'.png'}" class="mx-auto" style="height:12rem; padding: 0; display: block; border-radius: 15px;" id="imageId"/>
+            </div>
+        <ul class="list-group list-group-flush">
+
+            <li class="mx-auto list-group-item text-center text-capitalize LangTitle" style="font-size: .8rem; border-radius: 10px; margin-bottom: 1rem!important; margin-top: 1rem!important; background-color: #3f51b5 !important;"
+                th:Text="'Posts '+ ${forum.getPosts().size()}" > </li>
+<!--        <div style="justify-content: center; display: flex" class="card-body text-center">-->
+<!--            <h5 class="card-title" th:text="${forum.name}"></h5>-->
+<!--        </div>-->
+<!--        <ul style="justify-content: center; display: flex" class="list-group list-group-flush text-center">-->
+<!--            <li class="list-group-item" th:Text="'Posts '+ ${forum.getPosts().size()}" > </li>-->
         </ul>
 
         </a>
