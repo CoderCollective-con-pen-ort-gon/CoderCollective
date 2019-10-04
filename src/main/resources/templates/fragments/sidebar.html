@@ -28,21 +28,30 @@
 </head>
 <body>
 <nav th:fragment="sidebar">
-    <button style="margin-top: 20%; z-index: 1; position: fixed; width: 7%; font-size: .75rem" type="button" onclick="openNav()" class="btn btn-secondary fixed-left" data-toggle="modal" data-target=".bd-example-modal-xl">Open Editor</button>
+<!--    <button style="margin-top: 20%; z-index: 1; position: fixed; width: 7%; font-size: .75rem" type="button"-->
+<!--            onclick="openNav()" class="btn btn-secondary fixed-left" data-toggle="modal"-->
+<!--            data-target=".bd-example-modal-xl">Open Editor-->
+<!--    </button>-->
+    <button style="width: 100%; font-size: .75rem" type="button"
+            onclick="openNav()" class="btn btn-secondary btn-block" data-toggle="modal"
+            data-target=".bd-example-modal-xl">Open Editor
+    </button>
+    <input class="form-control text-center" type="text" id="mode" placeholder="Enter Editor Language"/>
 
     <div class="btn-group-vertical">
         <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-xl" style="width: 100%;">
-                <div class="modal-content" id="editorContainer" style="height: 500px; width: 100%">
+                <div class="modal-content" id="editorContainer" style="height: 600px; width: 100%">
                     <div id="mySidenav" class="sidenav">
                         <!--        <a href="javascript:void(0)" class="closebtn toggler" onclick="closeNav()">&times;</a>-->
                         <div id="editor" class="ace_editor" style="top: 10%; right: 0;">function title(items) {
 var x = "This is a Javascript function.";
 return x;
-}
-                        </div>
+}</div>
                     </div>
+                    <h3 style="text-align: center">Click Outside to Close</h3>
+
                 </div>
             </div>
         </div>

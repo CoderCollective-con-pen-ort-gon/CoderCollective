@@ -78,7 +78,6 @@
 <body class="bg">
 <th:block th:replace="fragments/navbar :: top-nav"/>
 
-<th:block th:replace="fragments/sidebar" />
 
 <div class="container cbg">
 
@@ -99,9 +98,9 @@
 <!--    <button type="button" onclick="openNav()" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Extra large modal</button>-->
 
 
+    <th:block th:replace="fragments/sidebar" />
 
 <div class="row">
-
     <div class="card col-6 col-sm-6 col-md-6 col-lg-3  shadow-none "
          th:each="forum : ${forums}">
         <a th:href="@{/forums/{forumId}(forumId = ${forum.id})}">
