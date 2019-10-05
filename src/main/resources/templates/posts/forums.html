@@ -11,10 +11,13 @@
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
 
     <style>
+        h3 {
+            color: white;
+        }
         .jtext {
 
             color: #FFFFFF;
-            font-weight: bolder;
+            /*font-weight: bolder;*/
             /*background-color:#3F51B5;*/
 
         }
@@ -100,7 +103,7 @@
     <div class="row jHead curve" >
         <div class="col-6 col-md-6 jmargin jHead">
             <h1 id="line" class=" jtext display-4">Languages</h1>
-            <p class="jtext lead">See what the community is talking about.</p>
+            <h3>See what the community is talking about.</h3>
         </div>
         <div class="col-6 col-md-6">
 <!--            <img class="jmarginImg" th:src="@{/picture/forum.png}" style="height:350px;width:500px"/>-->
@@ -129,7 +132,7 @@
         <ul class="list-group list-group-flush">
 
             <li class="mx-auto btn-block list-group-item text-center text-capitalize La"
-                th:Text="'Posts '+ ${forum.getPosts().size()}" > </li>
+                th:Text="${forum.getPosts().size()} + ' Posts'" style="font-size: 20px"> </li>
 <!--        <div style="justify-content: center; display: flex" class="card-body text-center">-->
 <!--            <h5 class="card-title" th:text="${forum.name}"></h5>-->
 <!--        </div>-->
