@@ -11,6 +11,9 @@
     <link href="../../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
 
     <style>
+        h3 {
+            color: white;
+        }
         .jtext {
 
             color: #FFFFFF;
@@ -80,7 +83,7 @@
     <div class="row jHead curve" >
         <div class="col-12 col-md-6 jmargin jHead">
             <h1 id="line" th:text="${forum.name}" class=" jtext display-4"></h1>
-            <p class="jtext lead">See what the community is talking about.</p>
+            <h3>See what the community is talking about.</h3>
         </div>
         <div class="col-6 col-md-6">
 <!--            <img th:src="@{'/pics/' +${forum.name} +'.png'}" style="height:200px;width:250px; margin-top:75px;"/>-->
@@ -102,7 +105,7 @@
     <div class="row">
 
     <div class="card col-6 col-sm-6 col-md-6 col-lg-3  mb-3" style="width: 18rem; height:25rem;" th:each="post : ${posts}">
-        <div class="card-header text-orange font-weight-bold" th:text="${post.title}" style="text-align: center; justify-content: center"></div>
+        <h4 class="card-header text-orange font-weight-bold" th:text="${post.title}" style="text-align: center; justify-content: center"></h4>
         <div class="card-body" style=" overflow-x: hidden;">
             <p >Description:</p>
 
@@ -112,7 +115,7 @@
         </div>
         <div>
             <div style="justify-content: center; display: flex">
-        <p style="justify-content: center; text-align: center" class="card-body" th:Text="'Comments: ' + ${post.comments.size()}"></p>
+        <p style="font-size: 20px; justify-content: center; text-align: center" class="card-body" th:Text="${post.comments.size()} + ' Comments'"></p>
             </div>
 <!--            <form th:action="@{/posts/{postId}(postId = ${post.id})}" th:method="post">-->
 <!--                <button class="btn btn-lg btn-block btn-indigo text-white">View Post</button>-->
