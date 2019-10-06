@@ -43,34 +43,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         ;
     }
 
-//    @Configuration
-//    public static class FaviconConfiguration
-//    {
-//        @Bean
-//        public SimpleUrlHandlerMapping myFaviconHandlerMapping()
-//        {
-//            SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
-//            mapping.setOrder(Integer.MIN_VALUE);
-//            mapping.setUrlMap(Collections.singletonMap("/favicon.ico",
-//                    myFaviconRequestHandler()));
-//            return mapping;
-//        }
-//
-//        @Autowired
-//        ApplicationContext applicationContext;
-//
-//        @Bean
-//        protected ResourceHttpRequestHandler myFaviconRequestHandler()
-//        {
-//            ResourceHttpRequestHandler requestHandler =
-//                    new ResourceHttpRequestHandler();
-//            requestHandler.setLocations(Arrays
-//                    .<Resource> asList(applicationContext.getResource("/")));
-//            requestHandler.setCacheSeconds(0);
-//            return requestHandler;
-//        }
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
