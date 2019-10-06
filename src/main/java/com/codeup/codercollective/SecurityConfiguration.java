@@ -9,6 +9,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
+import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
+
+import java.util.Collections;
 
 
 //@EnableOAuth2Sso
@@ -32,6 +36,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .userDetailsService(usersLoader) // How to find users by their username
                 .passwordEncoder(passwordEncoder()) // How to encode and verify passwords
         ;
+    }
+    @Configuration
+    public static class FaviconConfiguration {
+
+        @Bean
+        public SimpleUrlHandlerMapping faviconHandlerMapping() {
+            SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
+            mapping.setOrder(Integer.MIN_VALUE);
+            mapping.setUrlMap(Collections.singletonMap("mylocation/favicon.ico",
+                    faviconRequestHandler()));
+            return mapping;
+        }
+
+        @Bean
+        protected ResourceHttpRequestHandler faviconRequestHandler() {
+            ResourceHttpRequestHandler requestHandler = new ResourceHttpRequestHandler();
+            requestHandler.setLocations(Arrays
+                    .<Resource> asList(new ClassPathResource("/")));
+            return requestHandler;
+        }
     }
 
     @Override
