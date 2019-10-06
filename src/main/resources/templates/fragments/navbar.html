@@ -25,25 +25,25 @@
             <!--                Left-->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Home
+                    <a class="nav-link" href="/" style="font-size:18px;">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/forums">Languages<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/forums" style="font-size:18px;">Languages<span class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link" href="/profile">Profile<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/profile" style="font-size:18px;">Profile<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item" sec:authorize="!isAuthenticated()">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/login" style="font-size:18px;">Login</a>
                 </li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link" href="/posts/create">Create</a>
+                    <a class="nav-link" href="/posts/create" style="font-size:18px;">Create</a>
                 </li>
                 <li class="nav-item" sec:authorize="!isAuthenticated()">
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link" href="/register" style="font-size:18px;">Register</a>
                 </li>
             </ul>
 
