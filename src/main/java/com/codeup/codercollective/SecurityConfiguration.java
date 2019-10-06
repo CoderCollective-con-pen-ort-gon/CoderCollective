@@ -4,6 +4,8 @@ import com.codeup.codercollective.services.UserDetailsLoader;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 
@@ -44,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         public SimpleUrlHandlerMapping faviconHandlerMapping() {
             SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
             mapping.setOrder(Integer.MIN_VALUE);
-            mapping.setUrlMap(Collections.singletonMap("mylocation/favicon.ico",
+            mapping.setUrlMap(Collections.singletonMap("../image/flavicon.png",
                     faviconRequestHandler()));
             return mapping;
         }
