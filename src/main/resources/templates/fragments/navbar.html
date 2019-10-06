@@ -7,8 +7,8 @@
 <body>
 
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="background-color: rgba(0,0,0,.75)" th:fragment="top-nav">
-    <div class="container">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar justify-content-between" style="background-color: rgba(0,0,0,.75)" th:fragment="top-nav">
+<!--    <div class="container">-->
         <!--Brand / Logo-->
         <a class="navbar-brand" href="/">
             <img th:src="@{/image/largerLogo.png}" height="35" width="35"/>
@@ -45,19 +45,27 @@
                 <li class="nav-item" sec:authorize="!isAuthenticated()">
                     <a class="nav-link" href="/register">Register</a>
                 </li>
-                <li class="nav-item active" style="padding-left: 235px;">
-                    <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:method="POST">
+            </ul>
+
+
+<!--            <li class="nav-item" style="padding-left: 10px;" sec:authorize="isAuthenticated()">-->
+                    <form class="form-inline my-2 my-lg-0" sec:authorize="isAuthenticated()" id="logOut" th:action="@{/logout}" th:method="post">
+                        <button th:onclick="${'javascript:signOut()'}" class="btn btn-md btn-indigo text-white my-2 my-sm-0" style="font-size:14px;" data-theme="dark">Sign out</button>
+                    </form>
+<!--                </li>-->
+<!--                <li class="nav-item active align-content-end" style="padding-left: 235px;">-->
+                    <form class="form-inline my-2 my-lg-0 " th:action="@{/search}" th:method="POST">
                         <label for="searched"></label>
                         <input class="form-control mr-sm-2" name="searched" type="text" id="searched"
                                placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-outline-orange my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-warning text-dark btn-md font-weight-bold my-sm-0" style="font-size:14px;" type="submit">Search</button>
                     </form>
-                </li>
-                <li class="nav-item" style="padding-left: 10px;" sec:authorize="isAuthenticated()">
-                    <form class="form-inline my-2 my-lg-0" id="logOut" th:action="@{/logout}" th:method="post">
-                        <button th:onclick="${'javascript:signOut()'}" class="btn btn-warning my-2 my-sm-0" data-theme="dark">Sign out</button>
-                    </form>
-                </li>
+<!--                </li>-->
+<!--                <li class="nav-item" style="padding-left: 10px;" sec:authorize="isAuthenticated()">-->
+<!--                    <form class="form-inline my-2 my-lg-0" id="logOut" th:action="@{/logout}" th:method="post">-->
+<!--                        <button th:onclick="${'javascript:signOut()'}" class="btn btn-warning my-2 my-sm-0" data-theme="dark">Sign out</button>-->
+<!--                    </form>-->
+<!--                </li>-->
                 <!--                <li class="nav-item">-->
                 <!--                    <a class="nav-link" th:action="@{/logout}" href="/logout" sec:authorize="isAuthenticated()" th:method="post">Logout</a>-->
                 <!--                </li>-->
@@ -66,9 +74,9 @@
                 <!--                        <button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
                 <!--                    </form>-->
                 <!--                </li>-->
-            </ul>
+<!--            </ul>-->
         </div>
-    </div>
+<!--    </div>-->
 </nav>
 
 <script>

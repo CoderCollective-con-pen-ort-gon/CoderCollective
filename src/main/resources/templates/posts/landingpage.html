@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8"/>
 
-    <title>Home</title>
 
-    <th:block th:replace="fragments/header :: my-header('Register')" />
+    <th:block th:replace="fragments/header :: my-header('Home')" />
 
     <!-- Bootstrap core css -->
     <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
@@ -17,22 +16,16 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
 
 
-<!--    <th:block th:replace="fragments/header :: my-header('Register')" />-->
 
 
 
 
 
 
-    <th:block th:replace="fragments/header :: my-header('Register')" />
 
 
 <style>
-    .row1 {
-       display: inline-block;
-        /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
 
-    }
     div .imagec{
 
             display: flex;
@@ -86,7 +79,6 @@
 
         .flex-item + .flex-item {
             margin-top: 10%;
-            margin-top: 10%;
 
             /*margin-left: 5%;*/
         }
@@ -136,7 +128,7 @@
                         <strong></strong>
                     </p>
 
-                    <h3 class="mb-4 d-none d-md-block text-warning">
+                    <h3 class="mb-4 d-none d-md-block text-white">
                         <strong>Connect, Discover, Contribute.</strong>
                     </h3>
 
@@ -254,13 +246,13 @@
 <div id="middle" class="view full-page-intro row ">
 
 
+    <div class="container">
 
 
-
-    <div class="flex-item shadow rounded col-12 col-sm-12 col-md-12 col-lg-3 mx-lg-auto">
+    <div class="flex-item shadow rounded col-12 col-sm-12 col-md-12 col-lg-4">
 
         <div class="imagec">
-            <img th:src="@{image/connect.png}" height="150" width="150"/>
+            <img th:src="@{image/connected.png}" height="250" width="250"/>
         </div>
         <h2>Connect</h2>
         <br/>
@@ -270,18 +262,18 @@
 
 
 
-    <div class="flex-item shadow rounded col-12 col-sm-12 col-md-12 col-lg-3 mx-lg-auto">
+    <div class="flex-item shadow rounded col-12 col-sm-12 col-md-12 col-lg-4 ">
         <div class="imaged">
-            <img th:src="@{image/undraw_treasure_of9i.png}" height="150" width="150"/>
+            <img th:src="@{image/searching.png}" height="250" width="250"/>
         </div>
         <h2>Discover</h2>
         <br/>
-        <h5>Search popular resources and tools others use. </h5>
+        <h5>Search popular resources and tools programmers use. </h5>
      </div>
 
-    <div class="flex-item shadow rounded col-12 col-sm-12 col-md-12 col-lg-3 mx-lg-auto">
+    <div class="flex-item shadow rounded col-12 col-sm-12 col-md-12 col-lg-4 ">
         <div class="imagec2">
-            <img th:src="@{image/undraw_developer_activity_bv83.png}" height="150" width="150"/>
+            <img th:src="@{image/undraw_developer_activity_bv83.png}" height="250" width="250"/>
         </div>
     <h2>Contribute</h2>
     <br/>
@@ -289,6 +281,8 @@
 
     </div>
 
+
+</div>
 
 </div>
 
