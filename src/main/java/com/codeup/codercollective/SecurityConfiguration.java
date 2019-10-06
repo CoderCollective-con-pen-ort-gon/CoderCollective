@@ -47,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         public SimpleUrlHandlerMapping faviconHandlerMapping() {
             SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
             mapping.setOrder(Integer.MIN_VALUE);
-            mapping.setUrlMap(Collections.singletonMap("../image/flavicon.png",
+            mapping.setUrlMap(Collections.singletonMap("src/main/resources/static/flavicon.png",
                     faviconRequestHandler()));
             return mapping;
         }
