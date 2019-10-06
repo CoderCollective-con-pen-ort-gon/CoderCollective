@@ -40,6 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder()) // How to encode and verify passwords
         ;
     }
+
     @Configuration
     public static class FaviconConfiguration {
 
@@ -47,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         public SimpleUrlHandlerMapping faviconHandlerMapping() {
             SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
             mapping.setOrder(Integer.MIN_VALUE);
-            mapping.setUrlMap(Collections.singletonMap("src/main/resources/static/flavicon.png",
+            mapping.setUrlMap(Collections.singletonMap("images/favicon.ico",
                     faviconRequestHandler()));
             return mapping;
         }
@@ -56,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         protected ResourceHttpRequestHandler faviconRequestHandler() {
             ResourceHttpRequestHandler requestHandler = new ResourceHttpRequestHandler();
             requestHandler.setLocations(Arrays
-                    .<Resource> asList(new ClassPathResource("/")));
+                    .<Resource>asList(new ClassPathResource("/")));
             return requestHandler;
         }
     }
@@ -76,13 +77,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/forums", "/forums/{id}", "/posts/{id}","/search") // anyone can see the home and the ads pages
+                .antMatchers("/", "/forums", "/forums/{id}", "/posts/{id}", "/search") // anyone can see the home and the ads pages
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                         // only authenticated users can create ads
+                        // only authenticated users can create ads
                         "/profile", "/posts/create"// only authenticated users can edit ads
                 )
                 .authenticated()
