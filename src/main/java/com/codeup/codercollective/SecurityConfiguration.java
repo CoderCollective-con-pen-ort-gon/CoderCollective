@@ -1,14 +1,23 @@
 package com.codeup.codercollective;
 
 import com.codeup.codercollective.services.UserDetailsLoader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
+import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 
 //@EnableOAuth2Sso
@@ -49,13 +58,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/forums", "/forums/{id}", "/posts/{id}","/search") // anyone can see the home and the ads pages
+                .antMatchers("/", "/forums", "/forums/{id}", "/posts/{id}", "/search") // anyone can see the home and the ads pages
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                         // only authenticated users can create ads
+                        // only authenticated users can create ads
                         "/profile", "/posts/create"// only authenticated users can edit ads
                 )
                 .authenticated()

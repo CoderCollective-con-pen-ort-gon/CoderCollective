@@ -69,13 +69,20 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute User user) {
+    public String saveUser(@ModelAttribute User user, Model vModel) {
+        vModel.addAttribute("alreadyExists", false);
+
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         if (user.getPhoto().equalsIgnoreCase("")){
             user.setPhoto(null);
         }
-        if (userDao.findByUsername(user.getUsername()) != null|| userDao.findUserByEmail(user.getEmail()) != null){
+        if (userDao.findUserByEmail(user.getEmail()) != null){
+            vModel.addAttribute("alreadyExists", false);
+            return "redirect:/login";
+        }
+        if (userDao.findByUsername(user.getUsername()) != null){
+            vModel.addAttribute("alreadyExists", true);
             return "redirect:/login";
         }
         userDao.save(user);
