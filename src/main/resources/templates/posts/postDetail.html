@@ -156,7 +156,7 @@
 <!--                        <footer class="blockquote-footer" th:text="${post.createdAt}"></footer>-->
                         <div sec:authorize="isAuthenticated()">
                             <form th:action="@{'/posts/'+ ${post.id} +'/favorite'}" th:method="post">
-                                <button class="btn btn-link btn-sm text-primary" id="paddingFavorites">Add to Favorites </button>
+                                <button class="btn btn-link text-primary" id="paddingFavorites">Add to Favorites </button>
                             </form>
                         </div>
 

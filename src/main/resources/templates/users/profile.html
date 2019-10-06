@@ -23,7 +23,7 @@
             margin-top: 75px;
         }
 
-        #removeFav, #titleFav, .dropdown-toggle, .card-body, .list-group-item {
+        #titleFav, .dropdown-toggle, .card-body, .list-group-item {
             text-align: left;
             padding: 0px;
             margin: 0px;
@@ -31,6 +31,9 @@
 
         .body {
             background: #F1F3F4;
+        }
+        .textSize {
+            font-size: 20px;
         }
 
     </style>
@@ -58,17 +61,17 @@
                 <br/>
             </div>
             <div class="col-lg-6">
-                <h6><strong>Personal Data:</strong></h6>
-                <div th:text="'Email: ' + ${user.email}"></div>
-                <div th:text="'Title: ' + ${user.title}"></div>
-                <a th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>
+                <h5><strong>Personal Data:</strong></h5>
+                <div class="textSize" th:text="'Email: ' + ${user.email}"></div>
+                <div class="textSize" th:text="'Title: ' + ${user.title}"></div>
+                <a class="textSize" th:href="@{'/profile/'+ ${user.id} +'/edit'}">Edit Profile</a>
                 <br/>
             </div>
             <div class="col">
-                <h6><strong>Activity:</strong></h6>
-                <div th:text="'Posts: ' + ${user.post.size()}"></div>
-                <div th:text="'Comments: ' + ${user.comments.size()}"></div>
-                <div th:text="'Favorites: ' + ${user.favoritepost.size()}"></div>
+                <h5><strong>Activity:</strong></h5>
+                <div class="textSize" th:text="'Posts: ' + ${user.post.size()}"></div>
+                <div class="textSize" th:text="'Comments: ' + ${user.comments.size()}"></div>
+                <div class="textSize" th:text="'Favorites: ' + ${user.favoritepost.size()}"></div>
             </div>
         </div>
     </div>
@@ -77,15 +80,14 @@
 <div class="container body">
     <br/>
     <hr/>
-    <h1 class="text-center">Your Posts!</h1>
+    <h1 class="text-center">Your Posts</h1>
 
     <div class="row">
 
         <div class="card col-12 col-sm-6 col-md-3 mb-3 mx-auto" style="width: 18rem; height:25rem;" th:each="post : ${userPosts}">
             <div class="text-align-center mx-auto">
-                <label for="titleFav">Language</label> <br/>
-                <a class="mx-auto" th:href="@{/posts/{postId}(postId = ${post.id})}" id="Language"
-                   th:text="${post.getForums().getName()}"></a>
+                <a class="mx-auto textSize" th:href="@{/posts/{postId}(postId = ${post.id})}"
+                   th:text="'Language: ' + ${post.getForums().getName()}"></a>
             </div>
             <div class="card-header text-orange font-weight-bold" th:text="${post.title}"></div>
             <div class="card-body " style=" overflow-x: hidden;">
@@ -95,98 +97,97 @@
             </div>
             <div class="text-align-center">
                 <p class="card-body" th:Text="'Comments: ' + ${post.comments.size()}"></p>
-                <!--                <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">-->
-                <!--                <button type="submit" class="btn btn-link btn-sm">Edit Post</button>-->
-                <!--            </form>-->
-                <!--                <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">-->
-                <!--                    <button class="btn btn-link text-danger" type="submit">Delete Post</button>-->
-                <!--                </form>-->
                 <a class="btn btn-lg btn-block btn-indigo text-white mx-auto"
                    th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
                 <div class="row">
                     <div class="col-6">
                         <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">
-                            <button type="submit" class="btn btn-block btn-link btn-sm">Edit</button>
+                            <button type="submit" class="btn btn-block btn-link" style="padding: 0px;">Edit</button>
                         </form>
                     </div>
                     <div class="col-6">
 
                         <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">
-                            <button class="btn btn-block btn-link btn-sm text-danger" type="submit">Delete</button>
+                            <button class="btn btn-block btn-link text-danger" type="submit" style="padding: 0px;">Delete</button>
                         </form>
                     </div>
-
                 </div>
-
-
             </div>
         </div>
     </div>
 
 
-    <!--    <div class="container">-->
-    <!--        <div class="row">-->
-    <!--            <div class="card col-2 col-sm-2 col-md-2 shadow-none d-flex" style="width: 18rem;" th:each="post : ${userPosts}">-->
-    <!--                <img class="row justify-content-center" th:src= "@{'/pics/' +${post.getForums().getName()} +'.png'}" style="height:12rem;"/>-->
-    <!--                <div class="card-body">-->
-    <!--                    <ul class="list-group list-group-flush">-->
-    <!--                        <li class="list-group-item">-->
-    <!--                            <br/>-->
-    <!--&lt;!&ndash;                            <label for="title">Title:</label>&ndash;&gt;-->
-    <!--                            <br/>-->
-    <!--                            <a th:href="@{/posts/{postId}(postId = ${post.id})}" id="title" th:text="${post.title}"></a>-->
-    <!--                        </li>-->
-    <!--                        <li class="list-group-item">-->
-    <!--                            <form th:action="@{'/post/' + ${post.id} + '/edit'}" th:method="get" th:object="${post}">-->
-    <!--                                <button class="btn btn-link btn-sm">Edit Post</button>-->
-    <!--                            </form>-->
-    <!--                            <form th:action="@{'/' + ${post.id} + '/delete'}" method="post">-->
-    <!--                                <button class="btn btn-link btn-sm" type="submit">Delete Post</button>-->
-    <!--                            </form>-->
-    <!--                        </li>-->
-    <!--                    </ul>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-
     <br/>
 
-    <h1 class="text-center">Favorites!</h1>
+    <h1 class="text-center">Favorites</h1>
 
-    <div class="container">
-        <div class="row">
-            <div class="card col-12 col-sm-6 col-md-3 col-lg-3 border-0 mb-3 shadow d-flex mx-auto"
-                 style="width: 18rem; min-height: 12rem; min-width: 12rem;" th:each="post : ${favPosts}">
+    <div class="row">
+
+        <div class="card col-12 col-sm-6 col-md-3 mb-3 mx-auto" style="width: 18rem; height:25rem;" th:each="post : ${favPosts}">
+            <div class="text-align-center mx-auto">
+                <a class="mx-auto textSize" th:href="@{/posts/{postId}(postId = ${post.id})}"
+                   th:text="'Language: ' + ${post.getForums().getName()}"></a>
+            </div>
+            <div class="card-header text-orange font-weight-bold" th:text="${post.title}"></div>
+            <div class="card-body " style=" overflow-x: hidden;">
+                <p>Description:</p>
+
+                <p class="card-text" th:text="${post.body}"></p>
+            </div>
+            <div class="text-align-center">
+                <p class="card-body" th:Text="'Comments: ' + ${post.comments.size()}"></p>
+                <a class="btn btn-lg btn-block btn-indigo text-white mx-auto"
+                   th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
                 <div class="row">
-                    <div class="card-body text-left justify-content-center" id="addimghere" style=" padding-right: 15px;
-    padding-left: 15px;">
-                        <img th:src="@{'/pics/' +${post.getForums().getName()} +'.png'}"
-                             style="height:12rem; width: 12rem;" class="mx-auto d-block"/>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item mx-auto">
-                                <label for="titleFav">Language</label><br/>
-                                <a th:href="@{/posts/{postId}(postId = ${post.id})}" id="Language"
-                                   th:text="${post.getForums().getName()}"></a>
-                            </li>
-                            <li class="list-group-item">
-                                <br/>
-                                <label for="titleFav">Title:</label><br/>
-                                <a th:href="@{/posts/{postId}(postId = ${post.id})}" id="titleFav"
-                                   th:text="${post.title}"></a>
-                            </li>
-                            <li class="list-group-item" style="text-align: center">
-                                <form th:action="@{'/favorite/'+ ${post.id} +'/delete'}" th:method="post">
-                                    <button class="btn btn-link btn-sm" id="removeFav">Remove favorite</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                    <form th:action="@{'/favorite/'+ ${post.id} +'/delete'}" th:method="post">
+                        <button class="btn btn-link btn-sm" style="text-align: center; padding-left: 90px;">Remove favorite</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="card col-12 col-sm-6 col-md-3 col-lg-3 border-0 mb-3 shadow d-flex mx-auto"-->
+<!--                 style="width: 18rem; min-height: 12rem; min-width: 12rem;" th:each="post : ${favPosts}">-->
+<!--                <div class="row">-->
+<!--                    <div class="card-body text-left justify-content-center" id="addimghere" style=" padding-right: 15px;-->
+<!--    padding-left: 15px;">-->
+<!--                        <img th:src="@{'/pics/' +${post.getForums().getName()} +'.png'}"-->
+<!--                             style="height:12rem; width: 12rem;" class="mx-auto d-block"/>-->
+<!--                        <ul class="list-group list-group-flush">-->
+<!--                            <li class="list-group-item mx-auto">-->
+<!--                                <a th:href="@{/posts/{postId}(postId = ${post.id})}"-->
+<!--                                   th:text="'Language: ' + ${post.getForums().getName()}"></a>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                <br/>-->
+<!--                                <label for="titleFav">Title:</label><br/>-->
+<!--                                <a th:href="@{/posts/{postId}(postId = ${post.id})}" id="titleFav"-->
+<!--                                   th:text="${post.title}"></a>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item" style="text-align: center">-->
+<!--                                <form th:action="@{'/favorite/'+ ${post.id} +'/delete'}" th:method="post">-->
+<!--                                    <button class="btn btn-link btn-sm" id="removeFav">Remove favorite</button>-->
+<!--                                </form>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <th:block th:replace="fragments/footer">
