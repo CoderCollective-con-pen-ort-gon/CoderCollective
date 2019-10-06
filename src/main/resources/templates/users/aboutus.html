@@ -19,28 +19,34 @@
             position: relative;
             border-radius: 4px;
         }
+
+
     </style>
+
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav"/>
-<div class="view full-page-intro"
+<div class="view full-page-intro "
      style="background-image: url('https://images.all-free-download.com/images/graphiclarge/blue_3d_geometric_abstract_background_6815669.jpg'); background-repeat: no-repeat; background-size: cover;">
-    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center col-12 col-sm-12 col-md12 col-lg-12">
 
 
 
 
         <div class="imagec">
+            <h3 style="text-align: center; color: white">Joseph Ortega</h3>
             <img class="headshot" th:src="@{headshots/joseph.jpeg}" height="300" width="315"/>
             <div style="justify-content: center; display: flex">
+                <div class="row" style="margin-top: 3%">
             <a style="color: white; font-size: 20px" href="https://github.com/JosephSOrtega" class="nav-link" target="_blank">
                 <i class="fab fa-github"></i>GitHub
             </a>
             <a style="color: white; font-size: 20px" href="https://www.linkedin.com/in/josephsortega/" class="nav-link" target="_blank">
                 <i class="fab fa-linkedin"></i>LinkedIn
             </a>
+                </div>
             <a style="color: white; font-size: 20px" href="https://alumni.codeup.com/students/687" class="nav-link" target="_blank">
-                <i class=""></i>Alumni
+                <img th:src="@{/headshots/logo.png}" height="35" width="80" />
             </a>
         </div>
         </div>
@@ -51,17 +57,21 @@
 
 
         <div class="imaged">
+            <h3 style="text-align: center; color: white">Alexandra Contreras</h3>
             <img class="headshot" th:src="@{headshots/alex.jpeg}" height="300" width="315"/>
             <div style="justify-content: center; display: flex">
+                <div class="row" style="margin-top: 3%">
             <a style="color: white; font-size: 20px" href="https://github.com/alexchris0309" class="nav-link" target="_blank">
                 <i class="fab fa-github"></i>GitHub
             </a>
             <a style="color: white; font-size: 20px" href="https://www.linkedin.com/in/alexchris99/" class="nav-link" target="_blank">
                 <i class="fab fa-linkedin"></i>LinkedIn
             </a>
-            <a style="color: white; font-size: 20px" href="https://alumni.codeup.com/students/690" class="nav-link" target="_blank">
-                <i class=""></i>Alumni
+                </div>
+            <a style="color: white; font-size: 20px" href="https://alumni.codeup.com/students/690" class="nav-link" id="logo" target="_blank">
+                <img th:src="@{/headshots/logo.png}" height="35" width="80" />
             </a>
+
             </div>
         </div>
 
@@ -71,16 +81,19 @@
 
 
         <div class="imagec2">
+            <h3 style="text-align: center; color: white">Victor Pena</h3>
             <img class="headshot" th:src="@{headshots/victor.jpeg}" height="300" width="315"/>
             <div style="justify-content: center; display: flex">
+                <div class="row" style="margin-top: 3%">
             <a style="color: white; font-size: 20px" href="https://github.com/victorpena13" class="nav-link" target="_blank">
                 <i class="fab fa-github"></i>GitHub
             </a>
             <a style="color: white; font-size: 20px" href="https://www.linkedin.com/in/victor-pena13/" class="nav-link" target="_blank">
                 <i class="fab fa-linkedin"></i>LinkedIn
             </a>
+                </div>
             <a style="color: white; font-size: 20px" href="https://alumni.codeup.com/students/683" class="nav-link" target="_blank">
-                <i class=""></i>Alumni
+                <img th:src="@{/headshots/logo.png}" height="35" width="80" />
             </a>
             </div>
         </div>
@@ -91,24 +104,29 @@
 
 
         <div class="imagec3">
+            <h3 style="text-align: center; color: white">Jose Gonzalez</h3>
             <img class="headshot" th:src="@{headshots/joey.jpeg}" height="300" width="315"/>
             <div style="justify-content: center; display: flex">
+                <div class="row" style="margin-top: 3%">
             <a style="color: white; font-size: 20px" href="https://github.com/josegonzalez6227" class="nav-link" target="_blank">
                 <i class="fab fa-github"></i>GitHub
             </a>
             <a style="color: white; font-size: 20px" href="https://www.linkedin.com/in/josegonzalez21/" class="nav-link" target="_blank">
                 <i class="fab fa-linkedin"></i>LinkedIn
             </a>
+                </div>
             <a style="color: white; font-size: 20px" href="https://alumni.codeup.com/students/692" class="nav-link" target="_blank">
-                <i class=""></i>Alumni
+                <img th:src="@{/headshots/logo.png}" height="35" width="80" />
             </a>
             </div>
         </div>
 
         <br/>
 
-    </div>
 </div>
+
+    </div>
+
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
 <th:block th:replace="fragments/footer">
