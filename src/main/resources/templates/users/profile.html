@@ -43,8 +43,8 @@
 <th:block th:replace="fragments/navbar :: top-nav"/>
 
 <div id="marginTop"></div>
-<div class="container body">
-    <div class="container headerInfo">
+<div class="container body" style="margin-bottom: 0;">
+    <div class="container headerInfo" style="margin-bottom: 0;">
         <h2 class="indigo-text" th:text="'Hello, ' + ${user.username} + '!'"></h2>
 
         <div class="row">
@@ -75,9 +75,7 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="container body">
     <br/>
     <hr/>
     <h1 class="text-center">Your Posts</h1>
@@ -146,6 +144,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="container body" style="margin-top: 0;">
+
 </div>
 
 
