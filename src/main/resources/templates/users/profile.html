@@ -43,7 +43,7 @@
 <th:block th:replace="fragments/navbar :: top-nav"/>
 
 <div id="marginTop"></div>
-<div class="container body">
+<div class="container body" style="margin-bottom: 0">
     <div class="container headerInfo">
         <h2 class="indigo-text" th:text="'Hello, ' + ${user.username} + '!'"></h2>
 
@@ -120,28 +120,30 @@
     <br/>
 
     <h1 class="text-center">Favorites</h1>
+    <div class="container">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="card col-12 col-sm-6 col-md-3 mb-3 mx-auto" style="width: 18rem; height:25rem;" th:each="post : ${favPosts}">
-            <div class="text-align-center mx-auto">
-                <a class="mx-auto textSize" th:href="@{/posts/{postId}(postId = ${post.id})}"
-                   th:text="'Language: ' + ${post.getForums().getName()}"></a>
-            </div>
-            <div class="card-header text-orange font-weight-bold" th:text="${post.title}"></div>
-            <div class="card-body " style=" overflow-x: hidden;">
-                <p>Description:</p>
+            <div class="card col-12 col-sm-6 col-md-3 mb-3 mx-auto" style="width: 18rem; height:25rem;" th:each="post : ${favPosts}">
+                <div class="text-align-center mx-auto">
+                    <a class="mx-auto textSize" th:href="@{/posts/{postId}(postId = ${post.id})}"
+                       th:text="'Language: ' + ${post.getForums().getName()}"></a>
+                </div>
+                <div class="card-header text-orange font-weight-bold" th:text="${post.title}"></div>
+                <div class="card-body " style=" overflow-x: hidden;">
+                    <p>Description:</p>
 
-                <p class="card-text" th:text="${post.body}"></p>
-            </div>
-            <div class="text-align-center">
-                <p class="card-body" th:Text="'Comments: ' + ${post.comments.size()}"></p>
-                <a class="btn btn-lg btn-block btn-indigo text-white mx-auto"
-                   th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
-                <div class="row">
-                    <form th:action="@{'/favorite/'+ ${post.id} +'/delete'}" th:method="post">
-                        <button class="btn btn-link btn-sm" style="text-align: center; padding-left: 90px;">Remove favorite</button>
-                    </form>
+                    <p class="card-text" th:text="${post.body}"></p>
+                </div>
+                <div class="text-align-center">
+                    <p class="card-body" th:Text="'Comments: ' + ${post.comments.size()}"></p>
+                    <a class="btn btn-lg btn-block btn-indigo text-white mx-auto"
+                       th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+                    <div class="row">
+                        <form th:action="@{'/favorite/'+ ${post.id} +'/delete'}" th:method="post">
+                            <button class="btn btn-link btn-sm" style="text-align: center; padding-left: 90px;">Remove favorite</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
