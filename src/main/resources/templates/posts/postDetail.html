@@ -251,7 +251,7 @@
                 <ul class="list-group list-group-flush">
                     <div th:each="forum : ${forums}">
                         <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
-                            <li class="list-group-item text-center"><a th:href="@{/forums/{forumId}(forumId = ${forum.id})}" th:text="${forum.name}" style="font-size: 20px;"></a></li>
+                            <li class="list-group-item text-center"><a th:href="@{/forums/{forumId}(forumId = ${forum.id})}" th:text="${forum.name}" style="font-size: 16px;"></a></li>
                         </div>
                     </div>
                 </ul>
