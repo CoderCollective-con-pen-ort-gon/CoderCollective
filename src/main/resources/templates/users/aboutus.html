@@ -13,11 +13,11 @@
     <style>
         .headshot{
             object-fit: cover;
-            padding: 10px;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            border-radius: 4px;
+            width:100%;
+        }
+
+        .mTop{
+            margin-top: 10%;
         }
 
 
@@ -26,28 +26,31 @@
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav"/>
-<div class="view full-page-intro "
+
+<div class="view full-page-intro"
      style="background-image: url('https://images.all-free-download.com/images/graphiclarge/blue_3d_geometric_abstract_background_6815669.jpg'); background-repeat: no-repeat; background-size: cover;">
-    <div class="mask rgba-black-light d-flex justify-content-center align-items-center col-12 col-sm-12 col-md12 col-lg-12">
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+<div class="container-fluid">
+    <div class="row">
 
 
 
-
-        <div class="imagec">
+        <div class="imagec  mTop col-12 col-sm-12 col-md-3 col-lg-3">
             <h3 style="text-align: center; color: white">Joseph Ortega</h3>
-            <img class="headshot" th:src="@{headshots/joseph.jpeg}" height="300" width="315"/>
+            <img class="headshot" th:src="@{headshots/joseph.jpeg}" />
             <div style="justify-content: center; display: flex">
                 <div class="row" style="margin-top: 3%">
             <a style="color: white; font-size: 20px" href="https://github.com/JosephSOrtega" class="nav-link" target="_blank">
-                <i class="fab fa-github"></i>GitHub
+                <i class="fab fa-github"></i>
             </a>
             <a style="color: white; font-size: 20px" href="https://www.linkedin.com/in/josephsortega/" class="nav-link" target="_blank">
-                <i class="fab fa-linkedin"></i>LinkedIn
+                <i class="fab fa-linkedin"></i>
             </a>
-                </div>
             <a style="color: white; font-size: 20px" href="https://alumni.codeup.com/students/687" class="nav-link" target="_blank">
-                <img th:src="@{/headshots/logo.png}" height="35" width="80" />
+                <img th:src="@{/headshots/logo.png}" height="25" width="70" />
             </a>
+        </div>
         </div>
         </div>
 
@@ -56,23 +59,23 @@
 
 
 
-        <div class="imaged">
+        <div class="imaged mTop  col-12 col-sm-12 col-md-3 col-lg-3">
             <h3 style="text-align: center; color: white">Alexandra Contreras</h3>
-            <img class="headshot" th:src="@{headshots/alex.jpeg}" height="300" width="315"/>
+            <img class="headshot" th:src="@{headshots/alex.jpeg}" />
             <div style="justify-content: center; display: flex">
                 <div class="row" style="margin-top: 3%">
             <a style="color: white; font-size: 20px" href="https://github.com/alexchris0309" class="nav-link" target="_blank">
-                <i class="fab fa-github"></i>GitHub
+                <i class="fab fa-github"></i>
             </a>
             <a style="color: white; font-size: 20px" href="https://www.linkedin.com/in/alexchris99/" class="nav-link" target="_blank">
-                <i class="fab fa-linkedin"></i>LinkedIn
+                <i class="fab fa-linkedin"></i>
             </a>
-                </div>
             <a style="color: white; font-size: 20px" href="https://alumni.codeup.com/students/690" class="nav-link" id="logo" target="_blank">
-                <img th:src="@{/headshots/logo.png}" height="35" width="80" />
+                <img th:src="@{/headshots/logo.png}" height="25" width="70" />
             </a>
 
             </div>
+        </div>
         </div>
 
         <br/>
@@ -80,22 +83,23 @@
 
 
 
-        <div class="imagec2">
+        <div class="imagec2 mTop col-12 col-sm-12 col-md-3 col-lg-3">
             <h3 style="text-align: center; color: white">Victor Pena</h3>
-            <img class="headshot" th:src="@{headshots/victor.jpeg}" height="300" width="315"/>
+            <img class="headshot" th:src="@{headshots/victor.jpeg}" />
             <div style="justify-content: center; display: flex">
                 <div class="row" style="margin-top: 3%">
             <a style="color: white; font-size: 20px" href="https://github.com/victorpena13" class="nav-link" target="_blank">
-                <i class="fab fa-github"></i>GitHub
+                <i class="fab fa-github"></i>
             </a>
             <a style="color: white; font-size: 20px" href="https://www.linkedin.com/in/victor-pena13/" class="nav-link" target="_blank">
-                <i class="fab fa-linkedin"></i>LinkedIn
+                <i class="fab fa-linkedin"></i>
             </a>
-                </div>
+
             <a style="color: white; font-size: 20px" href="https://alumni.codeup.com/students/683" class="nav-link" target="_blank">
-                <img th:src="@{/headshots/logo.png}" height="35" width="80" />
+                <img th:src="@{/headshots/logo.png}" height="25" width="70" />
             </a>
             </div>
+        </div>
         </div>
 
         <br/>
@@ -103,29 +107,31 @@
 
 
 
-        <div class="imagec3">
+        <div class="imagec3 mTop col-12 col-sm-12 col-md-3 col-lg-3">
             <h3 style="text-align: center; color: white">Jose Gonzalez</h3>
-            <img class="headshot" th:src="@{headshots/joey.jpeg}" height="300" width="315"/>
+            <img class="headshot" th:src="@{headshots/joey.jpeg}" />
             <div style="justify-content: center; display: flex">
                 <div class="row" style="margin-top: 3%">
             <a style="color: white; font-size: 20px" href="https://github.com/josegonzalez6227" class="nav-link" target="_blank">
-                <i class="fab fa-github"></i>GitHub
+                <i class="fab fa-github"></i>
             </a>
             <a style="color: white; font-size: 20px" href="https://www.linkedin.com/in/josegonzalez21/" class="nav-link" target="_blank">
-                <i class="fab fa-linkedin"></i>LinkedIn
+                <i class="fab fa-linkedin"></i>
             </a>
-                </div>
             <a style="color: white; font-size: 20px" href="https://alumni.codeup.com/students/692" class="nav-link" target="_blank">
-                <img th:src="@{/headshots/logo.png}" height="35" width="80" />
+                <img th:src="@{/headshots/logo.png}" height="25" width="70" />
             </a>
             </div>
         </div>
-
+</div>
+    </div>
         <br/>
 
+    </div>
+    </div>
 </div>
 
-    </div>
+
 
 <script type="text/javascript" src="../../static/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
