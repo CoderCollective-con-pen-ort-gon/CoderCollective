@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <th:block th:replace="fragments/header :: my-header('Posts')">
+    <th:block th:replace="fragments/header :: my-header('Languages')">
     </th:block>
 
-    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+<!--    <link href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>-->
     <!-- Material Design Bootstrap -->
     <link href="../../static/css/mdb.css" th:href="@{/css/mdb.css}" rel="stylesheet"/>
     <!-- Your custom styles (optional) -->
@@ -156,7 +156,7 @@
 <!--                        <footer class="blockquote-footer" th:text="${post.createdAt}"></footer>-->
                         <div sec:authorize="isAuthenticated()">
                             <form th:action="@{'/posts/'+ ${post.id} +'/favorite'}" th:method="post">
-                                <button class="btn btn-link btn-sm text-primary" id="paddingFavorites">Add to Favorites </button>
+                                <button class="btn btn-link text-primary" id="paddingFavorites">Add to Favorites </button>
                             </form>
                         </div>
 
@@ -261,8 +261,8 @@
 </div>
 
 
-<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">
-</th:block>
+<!--<th:block th:replace="fragments/bootstrapjs :: bootstrap-script">-->
+<!--</th:block>-->
 </body>
 </html>
 
