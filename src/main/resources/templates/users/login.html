@@ -175,23 +175,23 @@
                     <h3 class="dark-grey-text text-center">
                         <strong>Sign In</strong>
                     </h3>
-                    <h6 class="text-center">Login with Google</h6>
-                    <div th:if="${param.error}">
-                        Invalid Username and Password.
-                    </div>
-                    <div th:if="${param.logout}">
-                        You have been logged out.
+<!--                    <h6 class="text-center">Login with Google</h6>-->
+<!--                    <div th:if="${param.error}">-->
+<!--                        Invalid Username and Password.-->
+<!--                    </div>-->
+<!--                    <div th:if="${param.logout}">-->
+<!--                        You have been logged out.-->
 
-                    </div>
-                    <div style="justify-content: center; display: flex" class="text-center">
-                        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-                    </div>
+<!--                    </div>-->
+<!--                    <div style="justify-content: center; display: flex" class="text-center">-->
+<!--                        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>-->
+<!--                    </div>-->
 
-<!--                    <form id="logOut" th:action="@{/logout}" th:method="post" style="">-->
-<!--                        <button th:onclick="${'javascript:signOut()'}" class="btn btn-warning my-2 my-sm-0" data-theme="dark">Sign out</button>-->
-<!--                    </form>-->
-                    <br/>
-                    <h6 class="text-center">OR</h6>
+<!--&lt;!&ndash;                    <form id="logOut" th:action="@{/logout}" th:method="post" style="">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button th:onclick="${'javascript:signOut()'}" class="btn btn-warning my-2 my-sm-0" data-theme="dark">Sign out</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </form>&ndash;&gt;-->
+<!--                    <br/>-->
+<!--                    <h6 class="text-center">OR</h6>-->
                     <form th:action="@{/login}" id="loginForm" method="post">
                         <div class="md-form">
                             <input type="text" class="form-control" id="username" name="username"
