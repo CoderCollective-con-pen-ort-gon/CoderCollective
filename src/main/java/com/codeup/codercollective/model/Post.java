@@ -10,26 +10,35 @@ import java.util.List;
 public class Post {
     @Id @GeneratedValue
     private long id;
+
     @Column(nullable = false)
     private String title;
+
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="create_date")
     private Date createdAt;
+
     @Column(nullable=true)
     private String photo;
+
     @ManyToOne
     @JoinColumn(name="user_id")
     private User owner;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
+
     @ManyToOne
     @JoinColumn (name="forum_id")
     private Forum forums;
+
     @ManyToMany(mappedBy = "favoritepost")
     private List<User> postfavorites;
+
     public Post () {
     }
     public Post(String title, String body, Date createdAt, String photo, User owner, List<Comment> comments, Forum forums, List<User> postfavorites) {

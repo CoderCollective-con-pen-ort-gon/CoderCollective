@@ -156,26 +156,26 @@
                                 <h4 class="dark-grey-text text-center">
                                     <strong>Sign Up</strong>
                                 </h4>
-                                <div th:if="${param.error}">
-                                    Invalid Username or Email.
-                                    <script>
-                                        window.addEventListener('DOMContentLoaded', (event) => {
-                                            let auth2 = gapi.auth2.getAuthInstance();
-                                            auth2.disconnect();
-                                            auth2.signOut().then(function () {
-                                                console.log('User signed out.');
-                                            });
-                                        });
-                                    </script>
-                                </div>
-                                <h6 class="text-center">Sign up with Google</h6>
+<!--                                <div th:if="${param.error}">-->
+<!--                                    Invalid Username or Email.-->
+<!--                                    <script>-->
+<!--                                        window.addEventListener('DOMContentLoaded', (event) => {-->
+<!--                                            let auth2 = gapi.auth2.getAuthInstance();-->
+<!--                                            auth2.disconnect();-->
+<!--                                            auth2.signOut().then(function () {-->
+<!--                                                console.log('User signed out.');-->
+<!--                                            });-->
+<!--                                        });-->
+<!--                                    </script>-->
+<!--                                </div>-->
+<!--                                <h6 class="text-center">Sign up with Google</h6>-->
 
-                                <div style="justify-content: center; display: flex" class="text-center">
+<!--                                <div style="justify-content: center; display: flex" class="text-center">-->
 
-                                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-                                </div>
-                                <br/>
-                                <h6 class="text-center">OR</h6>
+<!--                                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>-->
+<!--                                </div>-->
+<!--                                <br/>-->
+<!--                                <h6 class="text-center">OR</h6>-->
 
                                 <div class="md-form">
 
