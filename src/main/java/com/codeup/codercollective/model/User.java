@@ -49,6 +49,7 @@ public class User {
     private List<Post> favoritepost;
     public User(){
     }
+
     public User(String username, String email, String password, String firstname, String lastname, String title, String photo, List<Post> post, List<Comment> comments, List<Rating> ratings, List<Post> favoritepost) {
         this.username = username;
         this.email = email;

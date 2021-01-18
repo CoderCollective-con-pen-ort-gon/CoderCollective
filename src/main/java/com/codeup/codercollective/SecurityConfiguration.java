@@ -19,7 +19,6 @@ import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 import java.util.Arrays;
 import java.util.Collections;
 
-
 //@EnableOAuth2Sso
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {

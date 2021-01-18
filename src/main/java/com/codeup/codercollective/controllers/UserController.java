@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @Controller
 public class UserController {
     private final UserRepository userDao;
@@ -97,6 +96,8 @@ public class UserController {
         vModel.addAttribute("user",currentUser);
         return "users/edit";
     }
+
+
     @PostMapping("/profile/{id}/edit")
     public String editProfile(@PathVariable long id, @ModelAttribute User user){
         User userSession= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -114,6 +115,4 @@ public class UserController {
 //        }
 //        return "users/logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
 //    }
-
-
 }

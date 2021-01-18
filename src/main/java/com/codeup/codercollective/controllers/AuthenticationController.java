@@ -19,4 +19,6 @@ public class AuthenticationController {
         vModel.addAttribute("alreadyExists", false);
         return "users/login";
     }
+
+
 }

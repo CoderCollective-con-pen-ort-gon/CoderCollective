@@ -98,7 +98,7 @@ public class PostController {
     }
 
 
-    @PostMapping("profile/create")
+    @PostMapping("/profile/create")
     public String createPostOnProfile(@ModelAttribute Post post) {
         User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setOwner(userSession);
